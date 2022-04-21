@@ -1,3 +1,7 @@
+---
+title: First Post
+category: post
+---
 # Copia pedes accipe vestigia carinae campis ede
 
 ## Medusaeo doctas lanient

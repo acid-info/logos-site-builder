@@ -1,3 +1,7 @@
+---
+title: First Post
+category: post
+---
 # Ora dictis laevi sinus
 
 ## Binominis horrescere regnumque quem odoribus

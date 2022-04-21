@@ -5,17 +5,21 @@ export interface IMarkdown<D>{
     metadata: D & {[key: string]: any}
 }
 
-export interface IRouteParamsMarkdown extends ParsedUrlQuery {
-    path: string[];
-    title: string;
-}
-
 export interface IPagePropsMarkdown{
     markdown: IMarkdown<any>;
-    routeParams: IRouteParamsMarkdown
+    routeParams: IRouteParamForLocalFolder
+}
+
+export interface IRouteParamForLocalFolder extends ParsedUrlQuery{
+    path: string[]
 }
 
 export interface INavigationItemProps extends ParsedUrlQuery{
+    localPath: string;
     path: string[];
     title: string;
+}
+
+export interface ISitemap{
+    items: INavigationItemProps[];
 }

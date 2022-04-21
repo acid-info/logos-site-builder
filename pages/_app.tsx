@@ -8,8 +8,6 @@ interface IProps extends AppProps{
 
 function App({Component, pageProps}: IProps) {
     const {children, ...rest} = pageProps;
-    // const layout = Component.layout || ((page) => page)
-
     return (
         <ThemeProvider>
             <Component {...rest}>{children}</Component>

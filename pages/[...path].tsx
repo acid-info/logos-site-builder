@@ -1,7 +1,7 @@
-import {GetStaticPaths, GetStaticProps, NextPage} from "next";
+import {NextPage} from "next";
 
 import {DefaultTemplate_Markdown} from "../templates/DefaultTemplate";
-import {IPagePropsMarkdown, IRouteParamsMarkdown} from "../types/data.types";
+import {IPagePropsMarkdown} from "../types/data.types";
 
 import {markdownDataUtils} from "../utils/data-utils/utils.data.local-md";
 import {DOCS_DIR_NAME} from "../configs/defaults";
@@ -14,12 +14,8 @@ const DefaultPage: NextPage<IPagePropsMarkdown> = ({markdown}) => {
     )
 }
 
-export const getStaticPaths: GetStaticPaths<IRouteParamsMarkdown> = async () => {
-    return markdownDataUtils.getStaticPaths(DOCS_DIR_NAME);
-}
-
-export const getStaticProps: GetStaticProps<IPagePropsMarkdown, IRouteParamsMarkdown, any> = async (context) => {
-    return markdownDataUtils.getStaticProps(DOCS_DIR_NAME, context);
-}
+//`getStaticPaths` & `getStaticProps` are built-in functions in NextJs and are required for static routes generation
+export const getStaticPaths = markdownDataUtils.getStaticPaths(DOCS_DIR_NAME);
+export const getStaticProps = markdownDataUtils.getStaticProps<IPagePropsMarkdown>(DOCS_DIR_NAME);
 
 export default DefaultPage

@@ -1,9 +1,10 @@
 /** @type {import('next').NextConfig} */
-const createNextPluginPreval = require('next-plugin-preval/config');
-const withNextPluginPreval = createNextPluginPreval();
 
-const nextConfig = withNextPluginPreval({
-  reactStrictMode: true,
-})
-
-module.exports = nextConfig
+module.exports = {
+    webpack: (config, { isServer }) => {
+        if (isServer) {
+            require('./scripts/generate-sidebar-data.ts');
+        }
+        return config;
+    }
+}

@@ -1,3 +1,7 @@
+---
+title: First Post
+category: post
+---
 # Saepe ne iura
 
 ## Si Libys transformat fuerat dederatque mergor

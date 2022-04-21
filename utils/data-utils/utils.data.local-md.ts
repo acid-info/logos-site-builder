@@ -1,57 +1,42 @@
-import type {GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult} from "next/types";
-import glob from "fast-glob";
-import {sep, basename, join} from "path";
-import slugify from "@sindresorhus/slugify";
-import preval from 'next-plugin-preval';
-
-import {INavigationItemProps, IPagePropsMarkdown, IRouteParamsMarkdown} from "../../types/data.types";
-
+import type {GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult, PreviewData} from "next/types";
+import {INavigationItemProps, IRouteParamForLocalFolder} from "../../types/data.types";
 import {readFileSync} from "fs";
+import {join} from "path";
 import matter from "gray-matter";
-import {ISidebarPropsBase} from "../../types/ui.types";
 
+// @ts-ignore
+const sidebar: INavigationItemProps[] = require("/public/data/sidebar.min.json");
 
-export const markdownFileToNavLinkProps = (dirname: string, filepath: string): INavigationItemProps => ({
-    path: mdFilePathToSlugPath(dirname, filepath),
-    title: basename(filepath, ".md")
-});
-
-const mdFilePathToSlugPath = (dirname: string, p: string): string[] => {
-    const cleanP = p.replace(dirname, "").replace(".md", "");
-    return cleanP.split(sep).slice(1).map(s => slugify(s));
-}
-
-const getStaticPathsFromFolder = async(dirname: string): Promise<GetStaticPathsResult<IRouteParamsMarkdown>> => {
-    const files = await glob(`${dirname}/**/*.md`);
+const getStaticPathsFromFolder = (dirname: string) => async(): Promise<GetStaticPathsResult<IRouteParamForLocalFolder>> => {
     return {
-        paths: files.map(f => ({
-            params: markdownFileToNavLinkProps(dirname, f)
-        })),
+        paths: sidebar.map(({path}: INavigationItemProps) => ({params: {path}})),
         fallback: false
     }
 }
 
-export const getStaticPropsFromFolder = async (dir: string, context: GetStaticPropsContext<IRouteParamsMarkdown, IPagePropsMarkdown>): Promise<GetStaticPropsResult<IPagePropsMarkdown>> => {
+export const getStaticPropsFromFolder = <O extends PreviewData>(dir: string) => async(context: GetStaticPropsContext<IRouteParamForLocalFolder, O>): Promise<GetStaticPropsResult<any>> => {
     const params = context.params!
-    const rawMD = readFileSync(join(dir,params.path.join(sep))+".md", 'utf-8');
+
+    const navProps = sidebar.find((item: INavigationItemProps) => item.path.join("") === params.path.join(""));
+
+    if(!navProps){
+        return {
+            notFound: true,
+        }
+    }
+
+    const rawMD = readFileSync(join(process.cwd(), navProps.localPath), 'utf-8');
     const {data: metadata, content} = matter(rawMD);
 
     return {
         props: {
             markdown: {content, metadata},
             routeParams: params
-        },
+        }
     };
-}
-
-async function getData(dirname: string): Promise<ISidebarPropsBase> {
-    const files = await glob(`${dirname}/**/*.md`);
-    return { items: files.map(f => markdownFileToNavLinkProps(dirname, f))}
 }
 
 export const markdownDataUtils = {
     getStaticPaths: getStaticPathsFromFolder,
-    getStaticProps: getStaticPropsFromFolder,
+    getStaticProps: getStaticPropsFromFolder
 }
-
-export const getSidebarData = (dirname: string) => preval(getData(dirname));
