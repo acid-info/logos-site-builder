@@ -3,6 +3,7 @@ import {TTemplateProps} from "../types/ui.types";
 import {Sidebar} from "../components/Sidebar";
 import ReactMarkdown from "react-markdown";
 import {IMarkdown} from "../types/data.types";
+import {Header} from "../components/Header";
 
 interface IProps{
     markdown: IMarkdown<any>;
@@ -13,14 +14,15 @@ export const DefaultTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => {
 
     return (
         <>
+            <Header/>
+            {!append&&props.children}
             <Sidebar/>
             <main>
-                {!append&&props.children}
                 <ReactMarkdown>
                     {markdown.content}
                 </ReactMarkdown>
-                {append&&props.children}
             </main>
+            {append&&props.children}
         </>
     )
 }

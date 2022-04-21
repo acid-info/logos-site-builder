@@ -9,13 +9,17 @@ import {DOCS_DIR_NAME} from "../configs/defaults";
 const DefaultPage: NextPage<IPagePropsMarkdown> = ({markdown}) => {
     return (
         <DefaultTemplate_Markdown markdown={markdown}>
-            <div>VIDEO</div>
+            <div style={{
+                background: "gray",
+                width: "100%",
+                height: "75vh"
+            }}>VIDEO</div>
         </DefaultTemplate_Markdown>
     )
 }
 
 //`getStaticPaths` & `getStaticProps` are built-in functions in NextJs and are required for static routes generation
-export const getStaticPaths = markdownDataUtils.getStaticPaths(DOCS_DIR_NAME);
-export const getStaticProps = markdownDataUtils.getStaticProps<IPagePropsMarkdown>(DOCS_DIR_NAME);
+export const getStaticPaths = markdownDataUtils.getStaticPaths();
+export const getStaticProps = markdownDataUtils.getStaticProps<IPagePropsMarkdown>();
 
 export default DefaultPage

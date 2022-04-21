@@ -3,7 +3,9 @@ import {FC} from "react";
 
 const Index: FC<NextPage> = (props) => {
     return (
-        <div>hi</div>
+        <div>
+
+        </div>
     )
 }
 
