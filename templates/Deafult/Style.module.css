@@ -1,0 +1,20 @@
+.container{
+    max-width: 1200px;
+    margin: auto;
+}
+
+.sidebarWrapper{
+    width: 30%;
+}
+
+.mainWrapper{
+    width: 50%;
+}
+
+.headerGap{
+    height: 20vh;
+}
+
+.searchInput input{
+    width: 100%;
+}

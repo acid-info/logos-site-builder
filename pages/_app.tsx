@@ -1,17 +1,20 @@
 import type {AppProps} from 'next/app'
-import {ThemeProvider} from "../components/mocked-design-system"
 import {PageComponent} from "../types/page";
+import {LogosThemeProvider} from "../context/ThemeProvider";
 
 interface IProps extends AppProps{
     Component: PageComponent
 }
 
+import "../public/compiled/theme.css";
+import "../styles/globals.css";
+
 function App({Component, pageProps}: IProps) {
     const {children, ...rest} = pageProps;
     return (
-        <ThemeProvider>
+        <LogosThemeProvider>
             <Component {...rest}>{children}</Component>
-        </ThemeProvider>
+        </LogosThemeProvider>
     );
 }
 

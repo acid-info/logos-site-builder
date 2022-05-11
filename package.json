@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@sindresorhus/slugify": "^2.1.0",
+    "@svgr/webpack": "^6.2.1",
     "fast-glob": "^3.2.11",
     "gray-matter": "^4.0.3",
     "next": "12.1.4",

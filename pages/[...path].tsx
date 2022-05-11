@@ -1,20 +1,13 @@
 import {NextPage} from "next";
 
-import {DefaultTemplate_Markdown} from "../templates/DefaultTemplate";
+import {DefaultTemplate_Markdown} from "../templates/Deafult/DefaultTemplate";
 import {IPagePropsMarkdown} from "../types/data.types";
 
 import {markdownDataUtils} from "../utils/data-utils/utils.data.local-md";
-import {DOCS_DIR_NAME} from "../configs/defaults";
 
 const DefaultPage: NextPage<IPagePropsMarkdown> = ({markdown}) => {
     return (
-        <DefaultTemplate_Markdown markdown={markdown}>
-            <div style={{
-                background: "gray",
-                width: "100%",
-                height: "75vh"
-            }}>VIDEO</div>
-        </DefaultTemplate_Markdown>
+        <DefaultTemplate_Markdown markdown={markdown}/>
     )
 }
 

@@ -5,11 +5,12 @@ import {INavigationItemProps} from "../types/data.types";
 // @ts-ignore
 const sidebar: INavigationItemProps[] = require("/public/data/sidebar.min.json");
 
-interface IProps{}
+interface IProps{
+}
 
 export const Sidebar: FC<IProps> = (props) => {
     return (
-        <nav>
+        <nav className={`default-sidebar`}>
             <ul>
                 {
                     sidebar.map((item,i) => (

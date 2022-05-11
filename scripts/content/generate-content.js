@@ -5,6 +5,11 @@ const {readFileSync, writeFileSync} = require("fs");
 const matter = require("gray-matter");
 const slug = require('url-slug');
 
+const configs = require("../../logos.config");
+
+const COMPILED_DIR = join(process.cwd(), "public/compiled");
+
+
 (async () => {
     const folder = process.env.NEXT_PUBLIC_LOCAL_CONTENT_FOLDER || "docs";
     const dir = join(process.cwd(), folder);
@@ -19,7 +24,7 @@ const slug = require('url-slug');
                 const rawMD = readFileSync(localPath, 'utf-8');
                 const {data: metadata = {}} = matter(rawMD);
                 return {
-                    path: relPath.replace(".md", "").split(sep).map(slug),
+                    path: relPath.replace(".md", "").split(sep).map((s) => slug(s)),
                     localPath: join(folder, relPath),
                     title: metadata.title || basename(localPath, ".md")
                 }

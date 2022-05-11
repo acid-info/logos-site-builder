@@ -1,0 +1,9 @@
+:root{
+            --dark-background-color: #000000;
+            --dark-text-color: #FFFFFF;
+            --dark-highlight-color: #7187FF;
+            --light-background-color: #FFFFFF;
+            --light-text-color: #000000;
+            --light-highlight-color: #7187FF;
+            --fontFamily: monospace
+        }

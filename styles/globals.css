@@ -1,0 +1,65 @@
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body, body.dark{
+    background: var(--dark-background-color);
+    color: var(--dark-text-color);
+    font-family: var(--fontFamily);
+}
+
+body.light{
+    background: var(--light-background-color);
+    color: var(--light-text-color);
+    font-family: var(--fontFamily);
+}
+
+a, a:visited, a:hover,
+body.dark a, body.dark a:visited, body.dark a:hover{
+    color: var(--dark-highlight-color);
+}
+
+body.light a, body.light a:visited, body.light a:hover{
+    color: var(--dark-highlight-color);
+}
+
+svg, svg *,
+body.dark svg, body.dark svg *{
+    fill: var(--dark-text-color);
+}
+
+body.light svg, body.light svg *{
+    fill: var(--light-text-color);
+}
+
+input[type="text"]{
+    background: transparent;
+    color: var(--dark-text-color);
+}
+
+body.light input[type="text"]{
+    color: var(--light-text-color);
+}
+
+::placeholder,
+:-ms-input-placeholder,
+::-ms-input-placeholder {
+    color: var(--dark-text-color);
+    opacity: 1;
+}
+
+body.light ::placeholder,
+body.light :-ms-input-placeholder,
+body.light ::-ms-input-placeholder {
+    color: var(--light-text-color);
+    opacity: 1;
+}
+
+.button{
+    cursor: pointer;
+}
+
+p{
+    text-align: justify;
+}
