@@ -1,13 +1,11 @@
-const {basename, join, sep, relative} = require("path");
-const {readFileSync, writeFileSync} = require("fs");
+const {join} = require("path");
+const {writeFileSync} = require("fs");
+const {COMPILED_DIR, siteConfigs} = require("./configs");
 
-const configs = require("../logos.config");
-
-const COMPILED_DIR = join(process.cwd(), "public/compiled");
 const THEME_STYLE_PATH = join(COMPILED_DIR, "theme.css");
 
 (async() => {
-    const {theme: {palettes, fontFamily}} = configs;
+    const {theme: {palettes, fontFamily}} = siteConfigs;
 
     const css = `
         :root{

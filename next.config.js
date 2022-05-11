@@ -3,7 +3,7 @@
 module.exports = {
     webpack: (config, { isServer }) => {
         if (isServer) {
-            require('./scripts/generate-sidebar-data');
+            require('./scripts/content/index');
             require('./scripts/generate-theme-style');
             require('./scripts/generate-theme-assets');
         }

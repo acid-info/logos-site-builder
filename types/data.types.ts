@@ -14,10 +14,12 @@ export interface IRouteParamForLocalFolder extends ParsedUrlQuery{
     path: string[]
 }
 
-export interface INavigationItemProps extends ParsedUrlQuery{
+
+export interface INavigationItemProps{
     localPath: string;
     path: string[];
     title: string;
+    children: INavigationItemProps[]
 }
 
 export interface ISitemap{

@@ -1,12 +1,10 @@
-const {basename, join, sep, relative} = require("path");
+const {join} = require("path");
 const {copyFileSync} = require("fs");
+const {COMPILED_DIR, siteConfigs} = require("./configs");
 
-const configs = require("../logos.config");
-
-const COMPILED_DIR = join(process.cwd(), "public/compiled");
 const LOGO_PATH = join(COMPILED_DIR, "logo.svg");
 
 (async() => {
-    const {assets: {logo}} = configs;
+    const {assets: {logo}} = siteConfigs;
     copyFileSync(join(process.cwd(), logo), LOGO_PATH);
 })();
