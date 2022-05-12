@@ -8,8 +8,6 @@ const {join} = path
 const {COMPILED_DIR, siteConfigs: {content}} = require("../configs");
 
 (async () => {
-    let sitemap = [];
-
     if(content.type === "git"){
         try{
             if(existsSync(content.dist)){
