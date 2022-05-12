@@ -38,6 +38,6 @@ yarn-error.log*
 
 .idea
 
-/public/data/*.*
+/public/compiled/*.*
 
 docs
