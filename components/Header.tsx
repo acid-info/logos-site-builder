@@ -17,8 +17,10 @@ export const Header: FC<IProps> = (props) => {
             <Stack justifyContent={"space-between"}
             >
                 <SidebarToggleButton onClick={toggleSidebar}/>
-                <LogoHolder onClick={toggleMode} filePath={"/assets/logos-logo.svg"}/>
-                <div/>
+                <div style={{width: "30%"}}/>
+                <div style={{width: "50%"}}>
+                    <LogoHolder onClick={toggleMode} filePath={"/assets/logos-logo.svg"}/>
+                </div>
             </Stack>
         </header>
     )

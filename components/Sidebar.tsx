@@ -1,27 +1,69 @@
-import Link from "next/link";
-import {FC} from "react";
+import {FC, PropsWithChildren} from "react";
 import {INavigationItemProps} from "../types/data.types";
+import Link from "next/link";
 
-// @ts-ignore
-const sidebar: INavigationItemProps[] = require("/public/data/sidebar.min.json");
+const sidebar: INavigationItemProps = require("../public/compiled/sidebar.tree.min.json");
 
-interface IProps{
+interface ISidebarProps{
 }
 
-export const Sidebar: FC<IProps> = (props) => {
+interface IMenuProps{
+    items: INavigationItemProps[]
+    level?: number
+}
+
+interface IMenuItemProps{
+    item: INavigationItemProps
+    level?: number
+}
+
+const MenuItem: FC<PropsWithChildren<IMenuItemProps>>= ({level, item, children}) => (
+    <li className={`menuitem level-${level}`}>
+        <div className={"menuitem-title"}>
+            <Link href={`/${item.path.join("/")}`}>
+                <a>
+                    {
+                        level===0?
+                            <b>{item.title}</b>
+                            :
+                            <span>{item.title}</span>
+                    }
+                </a>
+            </Link>
+        </div>
+        {
+            children
+        }
+    </li>
+)
+
+const Menu: FC<IMenuProps> = (props) => {
+    const {items, level = 0} = props;
+    return(
+        <ul className={"sidebar-menu"}>
+            {items.map((item) => {
+                return (
+                    <MenuItem item={item}
+                              level={level}
+                              key={item.localPath}
+                    >
+                        <Menu items={item.children} level={level+1}/>
+                    </MenuItem>
+                );
+            })}
+        </ul>
+    )
+}
+
+export const Sidebar: FC<ISidebarProps> = (props) => {
+    const mainItems = sidebar.children.filter((c) => c.children.length===0)
+    const subItems = sidebar.children.filter((c) => c.children.length!==0);
+
     return (
         <nav className={`default-sidebar`}>
-            <ul>
-                {
-                    sidebar.map((item,i) => (
-                        <li key={i}>
-                            <Link href={item.path.join("/")}>
-                                <a>{item.title}</a>
-                            </Link>
-                        </li>
-                    ))
-                }
-            </ul>
+            <Menu items={[{...sidebar, title: "", children: mainItems}]}/>
+            <br/>
+            <Menu items={subItems}/>
         </nav>
     )
 }

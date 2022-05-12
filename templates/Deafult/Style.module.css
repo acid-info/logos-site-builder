@@ -1,20 +1,61 @@
+@value headerGapT: 300px;
+@value headerGapB: 4em;
+@value containerGapT: 2em;
+@value mainGapB: 20em;
+
 .container{
     max-width: 1200px;
     margin: auto;
+    padding-top: containerGapT;
 }
 
-.sidebarWrapper{
+.container :global(.sidebar-toggle-button){
+    position: fixed;
+    top: containerGapT;
+}
+
+.banner{
+    /*background: var(--dark-background-color);*/
+    position: sticky;
+    z-index: 9999;
+    padding-bottom: headerGapB;
+    padding-top: headerGapT;
+    top: calc(calc(-1 * headerGapT) + containerGapT)
+}
+
+.container main{
+    padding-bottom: mainGapB;
+}
+
+.col_1_4{
     width: 30%;
 }
 
-.mainWrapper{
+.col_2_4{
     width: 50%;
 }
 
+.sidebarWrapper{
+    position: sticky;
+    top: calc(headerGapB + 1em);
+}
+
 .headerGap{
-    height: 20vh;
+
 }
 
 .searchInput input{
     width: 100%;
+}
+
+.container p{
+    text-align: justify;
+}
+
+.container nav > ul{
+    padding-left: 0;
+}
+
+.container ul, .container li{
+    list-style: none;
 }

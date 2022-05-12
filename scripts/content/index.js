@@ -7,19 +7,6 @@ const {join} = path
 
 const {COMPILED_DIR, siteConfigs: {content}} = require("../configs");
 
-
-async function walk(dir) {
-    let files = await fsp.readdir(dir);
-    files = await Promise.all(files.map(async file => {
-        const filePath = join(dir, file);
-        const stats = await fsp.stat(filePath);
-        if (stats.isDirectory()) return walk(filePath);
-        else if(stats.isFile()) return filePath;
-    }));
-
-    return files.reduce((all, folderContents) => all.concat(folderContents), []);
-}
-
 (async () => {
     let sitemap = [];
 
@@ -37,14 +24,15 @@ async function walk(dir) {
     }
 
     try{
-        sitemap = await buildTreeForMarkdownDirectory(content.dist);
+        const {treemap, flatmap} = await buildTreeForMarkdownDirectory(content.dist);
+        writeFileSync(join(COMPILED_DIR, "sidebar.tree.json"), JSON.stringify(treemap, null, 2));
+        writeFileSync(join(COMPILED_DIR, "sidebar.tree.min.json"), JSON.stringify(treemap));
+        writeFileSync(join(COMPILED_DIR, "sidebar.flat.json"), JSON.stringify(flatmap, null, 2));
+        writeFileSync(join(COMPILED_DIR, "sidebar.flat.min.json"), JSON.stringify(flatmap));
     }catch (e){
         console.log("Error building tree sitemap");
         console.log(e);
     }
-
-    writeFileSync(join(COMPILED_DIR, "sidebar.json"), JSON.stringify(sitemap, null, 2));
-    writeFileSync(join(COMPILED_DIR, "sidebar.min.json"), JSON.stringify(sitemap));
 })()
 
 module.exports = {}

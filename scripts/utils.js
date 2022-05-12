@@ -1,7 +1,7 @@
 const download = require("download-git-repo");
 const {readdirSync, statSync, readFileSync} = require("fs");
 const {readFile} = require("fs").promises;
-const {extname, relative, sep, basename} = require("path");
+const {extname, relative, sep, basename, join} = require("path");
 const matter = require("gray-matter");
 const slug = require("url-slug");
 
@@ -17,26 +17,32 @@ const downloadRepo = (url, dist) => {
 }
 
 class TreeNodeMarkdown {
-    localPath;
-    children;
     title;
+    localPath;
     path;
+    children;
     constructor(path, rootPath) {
-        const relPath = relative(rootPath, path);
-        this.localPath = path;
+        this.localPath = relative(rootPath, path);
+        // this.localPath = path;
+        this.path = this.localPath.replace(".md", "").split(sep).map((s) => slug(s))
         this.children = [];
-        this.path = relPath.replace(".md", "").split(sep).map((s) => slug(s))
+        this.title = basename(path, ".md");
     }
-    async attachMetadata(){
-        const rawMD = await readFile(this.localPath, 'utf-8');
+
+    async attachMetadata(rootPath){
+        const localPathAbs = join(rootPath, this.localPath);
+        const rawMD = await readFile(localPathAbs, 'utf-8');
         const {data: metadata = {}} = matter(rawMD);
-        this.title = metadata.title || basename(this.localPath, ".md")
+        if(metadata.title){
+            this.title = metadata.title
+        }
     }
 }
 
 async function buildTreeForMarkdownDirectory(rootPath) {
     const ALLOWED_EXTENSIONS = ['.md']
     const root = new TreeNodeMarkdown(rootPath, rootPath);
+    let flatmap = [];
 
     const stack = [root];
 
@@ -44,19 +50,21 @@ async function buildTreeForMarkdownDirectory(rootPath) {
         const currentNode = stack.pop();
 
         if (currentNode) {
-            const children = readdirSync(currentNode.localPath);
+            const currentNodeLocalPathAbs = join(rootPath, currentNode.localPath)
+            const children = readdirSync(currentNodeLocalPathAbs);
 
             for await (let child of children) {
-                const childPath = `${currentNode.localPath}/${child}`;
+                const childPath = join(currentNodeLocalPathAbs, child);
                 const childNode = new TreeNodeMarkdown(childPath, rootPath);
 
-                const isDirectory = statSync(childNode.localPath).isDirectory();
+                const isDirectory = statSync(join(rootPath, childNode.localPath)).isDirectory();
                 const extension = extname(childNode.localPath);
                 const isAllowed = ALLOWED_EXTENSIONS.includes(extension);
 
                 if (isAllowed) {
                     currentNode.children.push(childNode);
-                    await childNode.attachMetadata();
+                    await childNode.attachMetadata(rootPath);
+                    flatmap.push(childNode);
                 }
 
                 if (isDirectory) {
@@ -67,7 +75,7 @@ async function buildTreeForMarkdownDirectory(rootPath) {
         }
     }
 
-    return root;
+    return {treemap: root, flatmap};
 }
 
 module.exports= {

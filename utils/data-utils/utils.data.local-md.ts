@@ -4,8 +4,9 @@ import {readFileSync} from "fs";
 import {join} from "path";
 import matter from "gray-matter";
 
-// @ts-ignore
-const sidebar: INavigationItemProps[] = require("/public/data/sidebar.min.json");
+import logosConfigs from "../../logos.config";
+
+const sidebar: INavigationItemProps[] = require("../../public/compiled/sidebar.flat.json");
 
 const getStaticPathsFromFolder = () => async(): Promise<GetStaticPathsResult<IRouteParamForLocalFolder>> => {
     return {
@@ -25,7 +26,7 @@ export const getStaticPropsFromFolder = <O extends PreviewData>() => async(conte
         }
     }
 
-    const rawMD = readFileSync(join(process.cwd(), navProps.localPath), 'utf-8');
+    const rawMD = readFileSync(join(logosConfigs.content.dist, navProps.localPath), 'utf-8');
     const {data: metadata, content} = matter(rawMD);
 
     return {

@@ -34,11 +34,14 @@ body.light svg, body.light svg *{
 }
 
 input[type="text"]{
-    background: transparent;
+    background: var(--dark-background-color);
     color: var(--dark-text-color);
+    padding: 0.5em;
+    border: 1px solid;
 }
 
 body.light input[type="text"]{
+    background: var(--light-background-color);
     color: var(--light-text-color);
 }
 
@@ -60,6 +63,34 @@ body.light ::-ms-input-placeholder {
     cursor: pointer;
 }
 
-p{
-    text-align: justify;
+nav a,
+nav a:visited,
+nav a:hover{
+    text-decoration: none;
+    color: var(--dark-text-color) !important;
+    text-transform: capitalize;
+}
+
+body.light nav a,
+body.light nav a:visited,
+body.light nav a:hover{
+    text-decoration: none;
+    color: var(--light-text-color) !important;
+    text-transform: capitalize;
+}
+
+
+.default-sidebar .sidebar-menu > li.level-0{
+    margin-bottom: 1em;
+}
+
+.default-sidebar .sidebar-menu > li.level-0  > .menuitem-title{
+    margin-bottom: 1em;
+}
+
+
+/*this part should be coming from the content but for now for sake of the look*/
+h1,h2,h3,h4,h5,h6{
+    font-size: inherit !important;
+    /*font-weight: normal;*/
 }

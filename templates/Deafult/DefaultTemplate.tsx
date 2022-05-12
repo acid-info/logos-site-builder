@@ -7,8 +7,8 @@ import {Header} from "../../components/Header";
 import {Stack} from "../../components/design-system/Stack/Stack";
 
 import style from "./Style.module.css";
-import {SearchInput} from "../../components/SearchInput";
 
+import {SearchInput} from "../../components/SearchInput";
 
 interface IProps{
     markdown: IMarkdown<any>;
@@ -22,24 +22,22 @@ export const DefaultTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => {
         <div className={style.container}>
             <Header toggleSidebar={() => setSideBarHide(!sidebarHide)}/>
             {!append&&props.children}
-            <div className={style.headerGap}/>
+            <div className={style.banner}>
+                <Stack>
+                    <div className={style.col_1_4}/>
+                    <div className={`${style.searchInput} ${style.col_2_4}`}>
+                        <SearchInput/>
+                    </div>
+                </Stack>
+            </div>
             <Stack>
-                <div className={style.sidebarWrapper}/>
-                <div className={`${style.searchInput} ${style.mainWrapper}`}>
-                    <SearchInput/>
-                </div>
-            </Stack>
-            <br/>
-            <br/>
-            <br/>
-            <Stack>
-                <div className={style.sidebarWrapper}>
+                <div className={`${style.sidebarWrapper} ${style.col_1_4}`}>
                     {
                         !sidebarHide&&
                         <Sidebar/>
                     }
                 </div>
-                <main className={style.mainWrapper}>
+                <main className={style.col_2_4}>
                     <ReactMarkdown>
                         {markdown.content}
                     </ReactMarkdown>
