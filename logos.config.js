@@ -23,5 +23,9 @@ module.exports = {
         type: "git",
         source: "https://github.com/acid-info/content-example-repo-markdown/archive/refs/heads/master.zip",
         dist: join(process.cwd(), "docs")
+    },
+    navigation: {
+        //if set custom pages/index.tsx will be ignored!
+        home: "index.md"
     }
 }

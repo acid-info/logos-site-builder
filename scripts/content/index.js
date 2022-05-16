@@ -2,10 +2,10 @@
 const path = require("path");
 const {writeFileSync, existsSync} = require("fs");
 const fsp = require('fs').promises;
-const {downloadRepo, buildTreeForMarkdownDirectory} = require("../utils");
+const {downloadRepo, buildSitemapForMarkdownDirectory} = require("../utils");
 const {join} = path
 
-const {COMPILED_DIR, siteConfigs: {content}} = require("../configs");
+const {COMPILED_DIR, siteConfigs: {content, navigation}} = require("../configs");
 
 (async () => {
     if(content.type === "git"){
@@ -22,7 +22,7 @@ const {COMPILED_DIR, siteConfigs: {content}} = require("../configs");
     }
 
     try{
-        const {treemap, flatmap} = await buildTreeForMarkdownDirectory(content.dist);
+        let {treemap, flatmap} = await buildSitemapForMarkdownDirectory(content.dist);
         writeFileSync(join(COMPILED_DIR, "sidebar.tree.json"), JSON.stringify(treemap, null, 2));
         writeFileSync(join(COMPILED_DIR, "sidebar.tree.min.json"), JSON.stringify(treemap));
         writeFileSync(join(COMPILED_DIR, "sidebar.flat.json"), JSON.stringify(flatmap, null, 2));

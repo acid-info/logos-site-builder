@@ -17,19 +17,19 @@ interface IMenuItemProps{
     level?: number
 }
 
-const MenuItem: FC<PropsWithChildren<IMenuItemProps>>= ({level, item, children}) => (
+const MenuItem: FC<PropsWithChildren<IMenuItemProps>> = ({level, item, children}) => (
     <li className={`menuitem level-${level}`}>
         <div className={"menuitem-title"}>
-            <Link href={`/${item.path.join("/")}`}>
-                <a>
-                    {
-                        level===0?
-                            <b>{item.title}</b>
-                            :
+            {
+                item.children.length?
+                    <b>{item.title}</b>
+                    :
+                    <Link href={`/${item.path.join("/")}`}>
+                        <a>
                             <span>{item.title}</span>
-                    }
-                </a>
-            </Link>
+                        </a>
+                    </Link>
+            }
         </div>
         {
             children

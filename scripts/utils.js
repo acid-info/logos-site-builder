@@ -5,6 +5,9 @@ const {extname, relative, sep, basename, join} = require("path");
 const matter = require("gray-matter");
 const slug = require("url-slug");
 
+const {siteConfigs: {navigation}} = require("./configs");
+
+
 const downloadRepo = (url, dist) => {
     return new Promise((resolve, reject) => {
         download(`direct:${url}`, dist, {}, (err) => {
@@ -39,7 +42,7 @@ class TreeNodeMarkdown {
     }
 }
 
-async function buildTreeForMarkdownDirectory(rootPath) {
+async function buildSitemapForMarkdownDirectory(rootPath) {
     const ALLOWED_EXTENSIONS = ['.md']
     const root = new TreeNodeMarkdown(rootPath, rootPath);
     let flatmap = [];
@@ -62,8 +65,14 @@ async function buildTreeForMarkdownDirectory(rootPath) {
                 const isAllowed = ALLOWED_EXTENSIONS.includes(extension);
 
                 if (isAllowed) {
-                    currentNode.children.push(childNode);
                     await childNode.attachMetadata(rootPath);
+                    //sorting already
+                    if(childNode.localPath===navigation.home){
+                        currentNode.children.unshift(childNode);
+                    }else{
+                        currentNode.children.push(childNode);
+                    }
+                    currentNode.children.sort((a,b) => b.title.localeCompare(a.title));
                     flatmap.push(childNode);
                 }
 
@@ -75,10 +84,17 @@ async function buildTreeForMarkdownDirectory(rootPath) {
         }
     }
 
+    if(navigation.home && typeof navigation.home === "string"){
+        const homeNodeIndex = flatmap.findIndex(n => n.localPath === navigation.home);
+        if (homeNodeIndex>-1){
+            flatmap[homeNodeIndex].path = [];
+        }
+    }
+
     return {treemap: root, flatmap};
 }
 
 module.exports= {
     downloadRepo,
-    buildTreeForMarkdownDirectory
+    buildSitemapForMarkdownDirectory
 }
