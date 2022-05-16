@@ -4,14 +4,23 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "yarn build:data && next build && next export",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build:data":  "node scripts/index.js"
   },
   "dependencies": {
+    "@sindresorhus/slugify": "^2.1.0",
+    "@svgr/webpack": "^6.2.1",
+    "axios": "^0.27.2",
+    "download-git-repo": "^3.0.2",
+    "fast-glob": "^3.2.11",
+    "gray-matter": "^4.0.3",
     "next": "12.1.4",
     "react": "18.0.0",
-    "react-dom": "18.0.0"
+    "react-dom": "18.0.0",
+    "react-markdown": "^8.0.2",
+    "url-slug": "^3.0.3"
   },
   "devDependencies": {
     "@types/node": "17.0.23",
