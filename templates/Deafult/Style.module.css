@@ -1,29 +1,44 @@
 @value headerGapT: 300px;
 @value headerGapB: 4em;
 @value containerGapT: 2em;
+@value mainGapT: 3em;
 @value mainGapB: 20em;
+@value pagePaddingT: containerGapT;
+@value pagePaddingR: inherit;
+@value pagePaddingB: inherit;
+@value pagePaddingL: inherit;
 
 .container{
     max-width: 1200px;
     margin: auto;
-    padding-top: containerGapT;
+    padding-top: pagePaddingT;
+    padding-bottom: pagePaddingB;
+    padding-right: pagePaddingR;
+    padding-left: pagePaddingL;
 }
 
-.container :global(.sidebar-toggle-button){
+.mainContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.header{
+    text-align: center;
+}
+
+.header :global(.sidebar-toggle-button){
     position: fixed;
-    top: containerGapT;
 }
 
 .banner{
-    /*background: var(--dark-background-color);*/
-    position: sticky;
     z-index: 9999;
     padding-bottom: headerGapB;
     padding-top: headerGapT;
-    top: calc(calc(-1 * headerGapT) + containerGapT)
+    top: calc(calc(-1 * headerGapT) + containerGapT);
 }
 
-.container main{
+.container main .content{
+    padding-top: mainGapT;
     padding-bottom: mainGapB;
 }
 
@@ -35,13 +50,9 @@
     width: 50%;
 }
 
-.sidebarWrapper{
+.searchInput{
     position: sticky;
-    top: calc(headerGapB + 1em);
-}
-
-.headerGap{
-
+    top: containerGapT;
 }
 
 .searchInput input{
@@ -54,8 +65,90 @@
 
 .container nav > ul{
     padding-left: 0;
+    padding-top: 0;
+    margin-top: 0;
 }
 
 .container ul, .container li{
     list-style: none;
+}
+
+/*SIDEBAR*/
+.sidebarWrapper{
+    padding-top: calc(mainGapT - 1em)
+}
+.sidebar{
+    position: sticky;
+    top: calc(headerGapB + 3em);
+    padding-top: mainGapT;
+}
+
+.sidebar:global(.hide) nav{
+    display: none;
+}
+
+.sidebarDefault{
+}
+
+.sidebarNarrow{
+    display: none;
+}
+
+.sidebar :global(.sidebar-close-icon){
+    display: none;
+}
+
+@media (max-width:600px) {
+    @value pagePaddingT: 6em;
+    @value pagePaddingR: 4em;
+    @value pagePaddingB: 3em;
+    @value pagePaddingL: 4em;
+
+    @value headerGapT: 100px;
+    @value headerGapB: 4em;
+
+    .sidebarDefault{
+        display: none;
+    }
+    .sidebarNarrow{
+        display: block;
+    }
+
+    .searchInput.withOpenSidebar{
+        z-index: -1;
+    }
+
+    .sidebar :global(.sidebar-close-icon){
+        display: block;
+        position: fixed;
+        top: pagePaddingT;
+        transform: translate(9px, 10px);
+    }
+
+
+    .sidebar nav{
+        position: fixed;
+        background: var(--bg-color);
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        padding-top: calc(pagePaddingT + headerGapT);
+        padding-bottom: pagePaddingB;
+        padding-right: pagePaddingR;
+        padding-left: pagePaddingL;
+    }
+
+    .sidebar :global(.sidebar-toggle-button){
+        z-index: 999999999;
+    }
+
+    .searchInput{
+        /*z-index: -1;*/
+    }
+
+    .col_1_4, .col_2_4{
+        width: 100%;
+    }
+
 }

@@ -1,10 +1,18 @@
-import {FC, PropsWithChildren} from "react";
+import {FC, PropsWithChildren, useEffect, useState} from "react";
 import {INavigationItemProps} from "../types/data.types";
 import Link from "next/link";
+import {SidebarToggleButton} from "./SidebarToggleButton";
+import CloseIcon from "/public/assets/sidebar-icon-close.svg";
+import {useViewport} from "../utils/ui-utils";
 
 const sidebar: INavigationItemProps = require("../public/compiled/sidebar.tree.min.json");
 
 interface ISidebarProps{
+    className?: string;
+    onClose?: () => void;
+    onOpen?: () => void;
+    initialHide?: boolean;
+    hide: boolean;
 }
 
 interface IMenuProps{
@@ -56,14 +64,33 @@ const Menu: FC<IMenuProps> = (props) => {
 }
 
 export const Sidebar: FC<ISidebarProps> = (props) => {
+    const {className = "", onClose = ()=>{}, onOpen = () => {}, initialHide = false, hide} = props;
     const mainItems = sidebar.children.filter((c) => c.children.length===0)
     const subItems = sidebar.children.filter((c) => c.children.length!==0);
+    const [firstTime, setFirstTime] = useState(false);
+
+    const isOpen = !((!firstTime&&initialHide) || hide);
+    const hideClass = isOpen? "":"hide"
+
+    useEffect(() => {
+        if(hide){
+            setFirstTime(true);
+        }
+        if(isOpen){
+            onOpen();
+        }
+    }, [hide, isOpen])
 
     return (
-        <nav className={`default-sidebar`}>
-            <Menu items={[{...sidebar, title: "", children: mainItems}]}/>
-            <br/>
-            <Menu items={subItems}/>
-        </nav>
+        <div className={`${className} ${hideClass}`}>
+            <nav className={`sidebarNav`}>
+                <div className={"sidebar-close-icon button"} onClick={onClose}>
+                    <CloseIcon/>
+                </div>
+                <Menu items={[{...sidebar, title: "", children: mainItems}]}/>
+                <br/>
+                <Menu items={subItems}/>
+            </nav>
+        </div>
     )
 }

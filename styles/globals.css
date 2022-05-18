@@ -1,61 +1,50 @@
+:root{
+    --bg-color: var(--dark-background-color);
+    --txt-color: var(--dark-text-color);
+    --hl-color: var(--dark-highlight-color);
+    --ff: var(--fontFamily);
+}
+
 *, :after, :before {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
 
-body, body.dark{
-    background: var(--dark-background-color);
-    color: var(--dark-text-color);
-    font-family: var(--fontFamily);
+html, body{
+
+}
+
+body{
+    background: var(--bg-color);
+    color: var(--txt-color);
+    font-family: var(--ff);
 }
 
 body.light{
-    background: var(--light-background-color);
-    color: var(--light-text-color);
-    font-family: var(--fontFamily);
+    --bg-color: var(--light-background-color);
+    --txt-color: var(--light-text-color);
+    --hl-color: var(--light-highlight-color);
 }
 
-a, a:visited, a:hover,
-body.dark a, body.dark a:visited, body.dark a:hover{
-    color: var(--dark-highlight-color);
+a, a:visited, a:hover{
+    color: var(--hl-color);
 }
 
-body.light a, body.light a:visited, body.light a:hover{
-    color: var(--dark-highlight-color);
-}
-
-svg, svg *,
-body.dark svg, body.dark svg *{
-    fill: var(--dark-text-color);
-}
-
-body.light svg, body.light svg *{
-    fill: var(--light-text-color);
+svg, svg *{
+    fill: var(--txt-color);
 }
 
 input[type="text"]{
-    background: var(--dark-background-color);
-    color: var(--dark-text-color);
+    background: var(--bg-color);
+    color: var(--txt-color);
     padding: 0.5em;
     border: 1px solid;
-}
-
-body.light input[type="text"]{
-    background: var(--light-background-color);
-    color: var(--light-text-color);
 }
 
 ::placeholder,
 :-ms-input-placeholder,
 ::-ms-input-placeholder {
-    color: var(--dark-text-color);
-    opacity: 1;
-}
-
-body.light ::placeholder,
-body.light :-ms-input-placeholder,
-body.light ::-ms-input-placeholder {
-    color: var(--light-text-color);
+    color: var(--txt-color);
     opacity: 1;
 }
 
@@ -67,18 +56,9 @@ nav a,
 nav a:visited,
 nav a:hover{
     text-decoration: none;
-    color: var(--dark-text-color) !important;
+    color: var(--txt-color) !important;
     text-transform: capitalize;
 }
-
-body.light nav a,
-body.light nav a:visited,
-body.light nav a:hover{
-    text-decoration: none;
-    color: var(--light-text-color) !important;
-    text-transform: capitalize;
-}
-
 
 .default-sidebar .sidebar-menu > li.level-0{
     margin-bottom: 1em;
@@ -88,9 +68,12 @@ body.light nav a:hover{
     margin-bottom: 1em;
 }
 
-
 /*this part should be coming from the content but for now for sake of the look*/
 h1,h2,h3,h4,h5,h6{
     font-size: inherit !important;
     /*font-weight: normal;*/
+}
+
+pre{
+    overflow-x: auto;
 }

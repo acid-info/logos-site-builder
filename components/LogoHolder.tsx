@@ -9,7 +9,12 @@ export interface ILogosHolderProps{
 }
 
 export const LogoHolder: FC<PropsWithChildren<ILogosHolderProps>> = ({onClick, filePath, alt, title, children}) => (
-    <div onClick={onClick} className={"logo-holder button"}>
+    <div onClick={onClick}
+         className={"logo-holder button"}
+         style={{
+             display: "inline-block"
+         }}
+    >
         <LogoSvg/>
     </div>
 )
