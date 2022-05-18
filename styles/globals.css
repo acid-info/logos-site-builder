@@ -26,7 +26,7 @@ body.light{
     --hl-color: var(--light-highlight-color);
 }
 
-a, a:visited, a:hover{
+a, a:visited, a:hover, .text_column code{
     color: var(--hl-color);
 }
 
@@ -77,3 +77,47 @@ h1,h2,h3,h4,h5,h6{
 pre{
     overflow-x: auto;
 }
+
+
+/**********/
+/*MARKDOWN*/
+
+/*CODE highlights*/
+.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 1em !important;
+    filter: grayscale(1);
+
+    background: var(--bg-color) !important;
+    color: var(--txt-color);
+    border: 1px dashed var(--txt-color);
+}
+
+.hljs-doctag, .hljs-formula, .hljs-keyword {
+    /*color: var(--hl-color);*/
+}
+.hljs-addition, .hljs-attribute, .hljs-meta .hljs-string, .hljs-regexp, .hljs-string{
+    /*color: gray;*/
+}
+
+/*Paragraphs*/
+.text_column{
+    white-space: break-spaces;
+}
+.text_column p{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.text_column.xx{
+    column-count: 2;
+}
+.text_column.xxx{
+    column-count: 3;
+}
+.text_column.xxxx{
+    column-count: 4;
+}
+
+

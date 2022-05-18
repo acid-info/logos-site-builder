@@ -1,4 +1,7 @@
 import {FC, useEffect, useState} from "react";
+import rehypeHighlight from "rehype-highlight";
+import rehypeAttrs from "rehype-attr";
+
 import {TTemplateProps} from "../../types/ui.types";
 import {Sidebar} from "../../components/Sidebar";
 import ReactMarkdown from "react-markdown";
@@ -7,6 +10,12 @@ import {Header} from "../../components/Header";
 import {SearchInput} from "../../components/SearchInput";
 
 import style from "./Style.module.css";
+
+import {CustomMarkdownCode} from "./markdown/custom-components/Code";
+import {CustomMarkdownPre} from "./markdown/custom-components/Pre";
+
+
+// import "highlight.js/styles/base16/harmonic16-dark.css"
 
 interface IProps{
     markdown: IMarkdown<any>;
@@ -48,7 +57,17 @@ export const DefaultTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => {
                     </div>
                     <div className={style.content}>
                         {!append&&props.children}
-                        <ReactMarkdown>
+                        <ReactMarkdown
+                            rehypePlugins={[
+                                rehypeHighlight,
+                            ]}
+                            remarkPlugins={[
+                            ]}
+                            components={{
+                                code: CustomMarkdownCode,
+                                pre: CustomMarkdownPre
+                            }}
+                        >
                             {markdown.content}
                         </ReactMarkdown>
                         {append&&props.children}

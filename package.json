@@ -7,7 +7,7 @@
     "build": "yarn build:data && next build && next export",
     "start": "next start",
     "lint": "next lint",
-    "build:data":  "node scripts/index.js"
+    "build:data": "node scripts/index.js"
   },
   "dependencies": {
     "@sindresorhus/slugify": "^2.1.0",
@@ -16,10 +16,14 @@
     "download-git-repo": "^3.0.2",
     "fast-glob": "^3.2.11",
     "gray-matter": "^4.0.3",
+    "highlight.js": "^11.5.1",
     "next": "12.1.4",
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-markdown": "^8.0.2",
+    "rehype-attr": "^2.0.8",
+    "rehype-highlight": "^5.0.2",
+    "remark-attr": "^0.11.1",
     "url-slug": "^3.0.3"
   },
   "devDependencies": {
