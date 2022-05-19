@@ -1,4 +1,6 @@
 import {ParsedUrlQuery} from "querystring";
+import {LogosTheme} from "./theme.types";
+import Theme = LogosTheme.Theme;
 
 export interface IMarkdown<D>{
     content: string;
@@ -24,4 +26,20 @@ export interface INavigationItemProps{
 
 export interface ISitemap{
     items: INavigationItemProps[];
+}
+
+export interface ISiteConfigs{
+    theme: Theme;
+    assets: {
+        logo: string
+    }
+    content: {
+        type: string;
+        source: string;
+        dist: string;
+        staticDir: string;
+    }
+    navigation: {
+        home: string;
+    }
 }

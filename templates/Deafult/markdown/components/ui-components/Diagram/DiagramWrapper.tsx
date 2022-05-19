@@ -1,6 +1,7 @@
 import {FC, PropsWithChildren, useState} from "react";
-import CloseIcon from "/public/assets/sidebar-icon-close.svg";
 import {Diagram} from "./Diagram";
+import {Dialog} from "../../../../../../components/design-system/Dialog/Dialog";
+import {FullScreenIcon} from "../../../../../../components/design-system/html-icons";
 
 interface IProps {
 }
@@ -14,27 +15,22 @@ export const DiagramWrapper: FC<PropsWithChildren<IProps>> = (props) => {
             <Diagram>
                 {children}
             </Diagram>
-            <button
-                className={"button"}
-                onClick={() => setEnlarge(true)}
-                dangerouslySetInnerHTML={{__html: `&#128269;`}}
-                style={{
-                    position: 'absolute',
-                    bottom: `2em`,
-                    right: 0
-                }}/>
+            <FullScreenIcon onClick={() => setEnlarge(true)}
+                            style={{
+                                position: 'absolute',
+                                bottom: `1em`,
+                                right: 0,
+                                fontSize: "xx-large"
+                            }}
+                            className={"button"}
+            />
             {
                 enlarge&&
-                <div className={"enlarge-container"}>
-                    <div className={"close-icon button"} onClick={() => setEnlarge(false)}>
-                        <CloseIcon/>
-                    </div>
-                    <div className={"enlarge-container-innerwrapper"}>
-                        <Diagram>
-                            {children}
-                        </Diagram>
-                    </div>
-                </div>
+                <Dialog onClose={() => setEnlarge(false)}>
+                    <Diagram>
+                        {children}
+                    </Diagram>
+                </Dialog>
             }
         </div>
     )
