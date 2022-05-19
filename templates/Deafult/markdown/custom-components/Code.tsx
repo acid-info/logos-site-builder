@@ -1,8 +1,10 @@
 import ReactMarkdown from "react-markdown";
 import {CodeComponent} from "react-markdown/lib/ast-to-react";
+import {hljsLangClassnames} from "../configs";
 
 export const CustomMarkdownCode: CodeComponent = ({node, inline, className, children, ..._props}) => {
-    return (className||"").includes("plaintext")?
+    const isMatch = !!hljsLangClassnames.find(l => (className||"").includes(l));
+    return isMatch?
         (
             <>
                 <ReactMarkdown>

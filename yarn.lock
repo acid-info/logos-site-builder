@@ -4004,6 +4004,13 @@ remark-attr@^0.11.1:
     md-attr-parser "^1.3.0"
     remark-footnotes "^1.0.0"
 
+remark-custom-blocks@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/remark-custom-blocks/-/remark-custom-blocks-2.6.0.tgz#487fa162016f9fc3a03e8d4ee3de7dbefc109ed6"
+  integrity sha512-8Lt1WKxOzAGmYH4VrZ9Cq0ZhFCMW2wBKwCxCv0XmmF8jTfWChXer9QYUe0fi9vW/eMbjXh8RLMed3Rst3SQ+KA==
+  dependencies:
+    space-separated-tokens "^1.1.5"
+
 remark-footnotes@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/remark-footnotes/-/remark-footnotes-1.0.0.tgz#9c7a97f9a89397858a50033373020b1ea2aad011"
@@ -4188,6 +4195,11 @@ source-map@^0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
+
+space-separated-tokens@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/space-separated-tokens/-/space-separated-tokens-1.1.5.tgz#85f32c3d10d9682007e917414ddc5c26d1aa6899"
+  integrity sha512-q/JSVd1Lptzhf5bkYm4ob4iWPjx0KiRe3sRFBNrVqbJkFaBm5vbbowy1mymoPNLRa52+oadOhJ+K49wsSeSjTA==
 
 space-separated-tokens@^2.0.0:
   version "2.0.1"

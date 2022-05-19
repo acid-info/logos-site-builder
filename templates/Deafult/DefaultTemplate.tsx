@@ -1,7 +1,5 @@
 import {FC, useEffect, useState} from "react";
 import rehypeHighlight from "rehype-highlight";
-import rehypeAttrs from "rehype-attr";
-
 import {TTemplateProps} from "../../types/ui.types";
 import {Sidebar} from "../../components/Sidebar";
 import ReactMarkdown from "react-markdown";
@@ -13,7 +11,7 @@ import style from "./Style.module.css";
 
 import {CustomMarkdownCode} from "./markdown/custom-components/Code";
 import {CustomMarkdownPre} from "./markdown/custom-components/Pre";
-
+import {paragraphLanguage} from "./markdown/custom-highlight-languages";
 
 // import "highlight.js/styles/base16/harmonic16-dark.css"
 
@@ -59,10 +57,11 @@ export const DefaultTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => {
                         {!append&&props.children}
                         <ReactMarkdown
                             rehypePlugins={[
-                                rehypeHighlight,
+                                [rehypeHighlight, {
+                                    languages: [paragraphLanguage]
+                                }],
                             ]}
-                            remarkPlugins={[
-                            ]}
+                            remarkPlugins={[]}
                             components={{
                                 code: CustomMarkdownCode,
                                 pre: CustomMarkdownPre

@@ -24,6 +24,7 @@
     "rehype-attr": "^2.0.8",
     "rehype-highlight": "^5.0.2",
     "remark-attr": "^0.11.1",
+    "remark-custom-blocks": "^2.6.0",
     "url-slug": "^3.0.3"
   },
   "devDependencies": {

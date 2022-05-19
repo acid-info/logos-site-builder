@@ -98,6 +98,16 @@
     display: none;
 }
 
+.container :global(.logos-diagram) p{
+    white-space: pre;
+    font-size: 0.65vw
+}
+
+.container :global(.logos-paragraph) p{
+    white-space: break-spaces;
+    column-count: 2;
+}
+
 @media (max-width:600px) {
     @value pagePaddingT: 6em;
     @value pagePaddingR: 4em;
@@ -110,6 +120,11 @@
     .sidebarDefault{
         display: none;
     }
+
+    .sidebarWrapper{
+        position: fixed;
+    }
+
     .sidebarNarrow{
         display: block;
     }
@@ -143,12 +158,18 @@
         z-index: 999999999;
     }
 
-    .searchInput{
-        /*z-index: -1;*/
-    }
-
     .col_1_4, .col_2_4{
         width: 100%;
+    }
+
+    .container :global(.logos-diagram) p{
+        white-space: pre;
+        font-size: 1vw
+    }
+
+    .container :global(.logos-paragraph) p{
+        white-space: break-spaces;
+        column-count: 1;
     }
 
 }
