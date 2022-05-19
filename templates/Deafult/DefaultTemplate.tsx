@@ -1,5 +1,4 @@
-import {FC, useEffect, useState} from "react";
-import rehypeHighlight from "rehype-highlight";
+import {FC, useState} from "react";
 import {TTemplateProps} from "../../types/ui.types";
 import {Sidebar} from "../../components/Sidebar";
 import ReactMarkdown from "react-markdown";
@@ -9,9 +8,9 @@ import {SearchInput} from "../../components/SearchInput";
 
 import style from "./Style.module.css";
 
-import {CustomMarkdownCode} from "./markdown/custom-components/Code";
-import {CustomMarkdownPre} from "./markdown/custom-components/Pre";
-import {paragraphLanguage} from "./markdown/custom-highlight-languages";
+import {logosRehypePlugins} from "./markdown/logos-rehype-plugins";
+import {logosRemarkPlugins} from "./markdown/logos-remark-plugins";
+import {logosReactMarkdownComponents} from "./markdown/components";
 
 // import "highlight.js/styles/base16/harmonic16-dark.css"
 
@@ -56,16 +55,9 @@ export const DefaultTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => {
                     <div className={style.content}>
                         {!append&&props.children}
                         <ReactMarkdown
-                            rehypePlugins={[
-                                [rehypeHighlight, {
-                                    languages: [paragraphLanguage]
-                                }],
-                            ]}
-                            remarkPlugins={[]}
-                            components={{
-                                code: CustomMarkdownCode,
-                                pre: CustomMarkdownPre
-                            }}
+                            rehypePlugins={logosRehypePlugins}
+                            remarkPlugins={logosRemarkPlugins}
+                            components={logosReactMarkdownComponents}
                         >
                             {markdown.content}
                         </ReactMarkdown>

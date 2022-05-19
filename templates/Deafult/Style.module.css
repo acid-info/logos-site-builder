@@ -47,7 +47,7 @@
 }
 
 .col_2_4{
-    width: 50%;
+    width: 60%;
 }
 
 .searchInput{
@@ -98,14 +98,48 @@
     display: none;
 }
 
+.container :global(.logos-diagram-wrapper){
+    position: relative;
+}
+.container :global(.logos-diagram){
+    overflow: hidden;
+}
+
 .container :global(.logos-diagram) p{
     white-space: pre;
-    font-size: 0.65vw
 }
 
 .container :global(.logos-paragraph) p{
     white-space: break-spaces;
     column-count: 2;
+}
+
+.container p{
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.container :global(.enlarge-container){
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background: var(--bg-color);
+}
+
+.container :global(.enlarge-container) :global(.enlarge-container-innerwrapper){
+    width: 80vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container :global(.enlarge-container) :global(.close-icon){
+    position: fixed;
+    top: pagePaddingT;
+    left: pagePaddingL;
 }
 
 @media (max-width:600px) {
@@ -162,14 +196,7 @@
         width: 100%;
     }
 
-    .container :global(.logos-diagram) p{
-        white-space: pre;
-        font-size: 1vw
-    }
-
     .container :global(.logos-paragraph) p{
-        white-space: break-spaces;
         column-count: 1;
     }
-
 }

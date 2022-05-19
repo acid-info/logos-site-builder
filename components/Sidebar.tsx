@@ -1,9 +1,7 @@
 import {FC, PropsWithChildren, useEffect, useState} from "react";
 import {INavigationItemProps} from "../types/data.types";
 import Link from "next/link";
-import {SidebarToggleButton} from "./SidebarToggleButton";
 import CloseIcon from "/public/assets/sidebar-icon-close.svg";
-import {useViewport} from "../utils/ui-utils";
 
 const sidebar: INavigationItemProps = require("../public/compiled/sidebar.tree.min.json");
 
