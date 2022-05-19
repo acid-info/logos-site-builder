@@ -111,8 +111,20 @@
 
 .container :global(.logos-paragraph) p{
     white-space: break-spaces;
+}
+.container :global(.logos-paragraph.x) p{
+    column-count: 1;
+}
+.container :global(.logos-paragraph.xx) p{
     column-count: 2;
 }
+.container :global(.logos-paragraph.xxx) p{
+    column-count: 3;
+}
+.container :global(.logos-paragraph.xxxx) p{
+    column-count: 4;
+}
+
 
 .container p{
     margin-top: 0;
