@@ -73,7 +73,7 @@ async function buildSitemapForMarkdownDirectory(rootPath, homeFilename) {
                     flatmap.push(childNode);
                 }
 
-                if (isDirectory) {
+                if (isDirectory && !childNode.localPath.startsWith(".")) {
                     currentNode.children.push(childNode);
                     stack.push(childNode);
                 }
