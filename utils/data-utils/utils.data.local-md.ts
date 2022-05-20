@@ -1,10 +1,8 @@
 import type {GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult, PreviewData} from "next/types";
-import {INavigationItemProps, IRouteParamForLocalFolder} from "../../types/data.types";
+import {INavigationItemProps, IRouteParamForLocalFolder, ISiteConfigs} from "../../types/data.types";
 import {readFileSync} from "fs";
 import {join} from "path";
 import matter from "gray-matter";
-
-import logosConfigs from "../../logos.config";
 
 const sidebar: INavigationItemProps[] = require("../../public/compiled/sidebar.flat.json");
 
@@ -15,16 +13,6 @@ const getStaticPathsFromFolder = () => async(): Promise<GetStaticPathsResult<IRo
             path: [],
         }
     })
-    // paths.push({
-    //     params: {
-    //         path: ["/"],
-    //     }
-    // })
-    // paths.push({
-    //     params: {
-    //         path: [""],
-    //     }
-    // })
     return {
         paths,
         fallback: false
@@ -41,7 +29,7 @@ export const getStaticPropsFromFolder = <O extends PreviewData>() => async(conte
         }
     }
 
-    const rawMD = readFileSync(join(logosConfigs.content.dist, navProps.localPath), 'utf-8');
+    const rawMD = readFileSync(join(process.cwd(), "docs", navProps.localPath), 'utf-8');
     const {data: metadata, content} = matter(rawMD);
 
     return {

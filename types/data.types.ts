@@ -33,12 +33,6 @@ export interface ISiteConfigs{
     assets: {
         logo: string
     }
-    content: {
-        type: string;
-        source: string;
-        dist: string;
-        staticDir: string;
-    }
     navigation: {
         home: string;
     }
