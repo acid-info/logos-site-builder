@@ -1,12 +1,9 @@
 const download = require("download-git-repo");
-const {readdirSync, statSync, readFileSync} = require("fs");
+const {readdirSync, statSync} = require("fs");
 const {readFile} = require("fs").promises;
 const {extname, relative, sep, basename, join} = require("path");
 const matter = require("gray-matter");
 const slug = require("url-slug");
-
-const {siteConfigs: {navigation}} = require("./configs");
-
 
 const downloadRepo = (url, dist) => {
     return new Promise((resolve, reject) => {
@@ -42,7 +39,7 @@ class TreeNodeMarkdown {
     }
 }
 
-async function buildSitemapForMarkdownDirectory(rootPath) {
+async function buildSitemapForMarkdownDirectory(rootPath, homeFilename) {
     const ALLOWED_EXTENSIONS = ['.md']
     const root = new TreeNodeMarkdown(rootPath, rootPath);
     let flatmap = [];
@@ -67,7 +64,7 @@ async function buildSitemapForMarkdownDirectory(rootPath) {
                 if (isAllowed) {
                     await childNode.attachMetadata(rootPath);
                     //sorting already
-                    if(childNode.localPath===navigation.home){
+                    if(childNode.localPath===homeFilename){
                         currentNode.children.unshift(childNode);
                     }else{
                         currentNode.children.push(childNode);
@@ -84,8 +81,8 @@ async function buildSitemapForMarkdownDirectory(rootPath) {
         }
     }
 
-    if(navigation.home && typeof navigation.home === "string"){
-        const homeNodeIndex = flatmap.findIndex(n => n.localPath === navigation.home);
+    if(homeFilename && typeof homeFilename === "string"){
+        const homeNodeIndex = flatmap.findIndex(n => n.localPath === homeFilename);
         if (homeNodeIndex>-1){
             flatmap[homeNodeIndex].path = [];
         }
@@ -94,33 +91,8 @@ async function buildSitemapForMarkdownDirectory(rootPath) {
     return {treemap: root, flatmap};
 }
 
-const hexTofeColorMatrix = (hex) => {
-    let RGB = [];
-    let numberList = [1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,0];
-
-    for (let i = 0; i < hex.length; i+=2) {
-        const firstDigit = parseInt(hex[i], 16);
-        const firstDigitPartial = firstDigit * 16;
-        let RGBValue = parseInt(hex[i+1], 16) + firstDigitPartial;
-
-        RGBValue = RGBValue / 255;
-        RGB.push(RGBValue.toFixed(2));
-    }
-
-    const red = RGB[0];
-    const green = RGB[1];
-    const blue = RGB[2];
-
-    numberList[0] = red;
-    numberList[6] = green;
-    numberList[12] = blue;
-
-    return numberList.join(' ');
-};
-
 
 module.exports= {
     downloadRepo,
-    buildSitemapForMarkdownDirectory,
-    hexTofeColorMatrix
+    buildSitemapForMarkdownDirectory
 }

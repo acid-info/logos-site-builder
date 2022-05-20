@@ -4,7 +4,6 @@ import {ISiteConfigs} from "../types/data.types";
 import {hexTofeColorMatrix} from "../utils/utils.theme";
 import IThemeProviderProps = LogosTheme.IThemeProviderProps;
 import EThemeMode = LogosTheme.EThemeMode;
-import EThemeMode = LogosTheme.EThemeMode;
 
 const siteConfigs: ISiteConfigs = require("../public/compiled/configs.json");
 

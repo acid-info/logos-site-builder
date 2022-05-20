@@ -43,7 +43,7 @@
 }
 
 .col_1_4{
-    width: 30%;
+    width: 20%;
 }
 
 .col_2_4{
@@ -75,7 +75,7 @@
 
 /*SIDEBAR*/
 .sidebarWrapper{
-    padding-top: calc(mainGapT - 1em)
+    padding-top: calc(mainGapT - 1em);
 }
 .sidebar{
     position: sticky;

@@ -1,7 +1,15 @@
 const {join} = require("path");
-const configs = require("../logos.config");
+
+const {STATIC_CONTENT_FOLDER} = process.env;
+
+const LOCAL_CONTENT_DIST = join(process.cwd(), "docs");
 const COMPILED_DIR = join(process.cwd(), "public/compiled");
-const STATIC_CONTENT_FILES_DIR = join(process.cwd(), "public/static-content");
+const STATIC_CONTENT_DIR_TARGET = join(process.cwd(), "public/static-content");
+const STATIC_CONTENT_DIR_SOURCE = join(LOCAL_CONTENT_DIST, STATIC_CONTENT_FOLDER);
+const SITE_CONFIG_JSON_PATH_SOURCE = join(LOCAL_CONTENT_DIST, "configs.json");
+const CONFIG_JSON_TARGET_PATH = join(COMPILED_DIR, "configs.json");
+
+const DEFAULT_THEME_LOGO = join(process.cwd(), "public/assets/logos-logo.svg");
 
 const supportedStaticFilesExtension = [
     ".jpg", ".jpeg", ".png", ".gif",
@@ -10,7 +18,11 @@ const supportedStaticFilesExtension = [
 
 module.exports = {
     COMPILED_DIR,
-    STATIC_CONTENT_FILES_DIR,
-    siteConfigs: configs,
-    supportedStaticFilesExtension
+    STATIC_CONTENT_DIR_TARGET,
+    STATIC_CONTENT_DIR_SOURCE,
+    LOCAL_CONTENT_DIST,
+    SITE_CONFIG_JSON_PATH_SOURCE,
+    supportedStaticFilesExtension,
+    CONFIG_JSON_TARGET_PATH,
+    DEFAULT_THEME_LOGO
 }

@@ -13,6 +13,7 @@
     "@sindresorhus/slugify": "^2.1.0",
     "@svgr/webpack": "^6.2.1",
     "axios": "^0.27.2",
+    "dotenv": "^16.0.1",
     "download-git-repo": "^3.0.2",
     "fast-glob": "^3.2.11",
     "gray-matter": "^4.0.3",

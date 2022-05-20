@@ -17,7 +17,7 @@ module.exports = {
         fontFamily: "monospace",
     },
     assets: {
-        logo: "public/assets/logos-logo.svg"
+        logo: "static/logos-logo.svg"
     },
     content: {
         type: "git",

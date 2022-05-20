@@ -39,5 +39,6 @@ yarn-error.log*
 .idea
 
 /public/compiled/*.*
+/public/static-content/*.*
 
 docs

@@ -1,8 +1,12 @@
 (async() => {
     await require('./clear');
-    await require('./content/index');
-    await require('./content/static-files');
-    await require('./generate-theme-style');
-    await require('./generate-theme-assets');
-    await require('./generate-config-json');
+    const siteConfigs = await require("./download-source")();
+
+    await require('./copy-static-files')(siteConfigs);
+    await require("./generate-sidebar-data")(siteConfigs);
+    await require('./generate-theme-style')(siteConfigs);
+    await require('./generate-theme-assets')(siteConfigs);
+    await require('./copy-config-json')(siteConfigs);
 })()
+
+module.exports = {};

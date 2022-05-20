@@ -1,12 +1,11 @@
 const {join} = require("path");
 const {writeFileSync} = require("fs");
-const {COMPILED_DIR, siteConfigs} = require("./configs");
 
+const {COMPILED_DIR} = require("./configs");
 const THEME_STYLE_PATH = join(COMPILED_DIR, "theme.css");
 
-(async() => {
+module.exports = async (siteConfigs) => {
     const {theme: {palettes, fontFamily}} = siteConfigs;
-
     const css = `
         :root{
             --dark-background-color: ${palettes.dark.background};
@@ -18,6 +17,5 @@ const THEME_STYLE_PATH = join(COMPILED_DIR, "theme.css");
             --fontFamily: ${fontFamily}
         }
     `.trim();
-
     writeFileSync(THEME_STYLE_PATH, css, "utf8");
-})();
+}
