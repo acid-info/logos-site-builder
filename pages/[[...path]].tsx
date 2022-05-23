@@ -1,14 +1,14 @@
 import {NextPage} from "next";
-
-import {DefaultTemplate_Markdown} from "../templates/Deafult/DefaultTemplate";
-import {IPagePropsMarkdown} from "../types/data.types";
+import {IPagePropsMarkdown, ISiteConfigs} from "../types/data.types";
 
 import {markdownDataUtils} from "../utils/data-utils/utils.data.local-md";
+import {defaultTemplateName} from "../configs/defaults";
+import {logosTemplates} from "../configs/templates";
+const siteConfigs: ISiteConfigs = require("../public/compiled/configs.json");
 
 const DefaultPage: NextPage<IPagePropsMarkdown> = ({markdown}) => {
-    return (
-        <DefaultTemplate_Markdown markdown={markdown}/>
-    )
+    const component = logosTemplates[siteConfigs.template||defaultTemplateName];
+    return component({markdown});
 }
 
 //`getStaticPaths` & `getStaticProps` are built-in functions in NextJs and are required for static routes generation

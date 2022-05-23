@@ -28,8 +28,13 @@ export interface ISitemap{
     items: INavigationItemProps[];
 }
 
+export enum ESiteTemplateNames{
+    DEFAULT="default"
+}
+
 export interface ISiteConfigs{
     theme: Theme;
+    template: ESiteTemplateNames;
     assets: {
         logo: string
     }

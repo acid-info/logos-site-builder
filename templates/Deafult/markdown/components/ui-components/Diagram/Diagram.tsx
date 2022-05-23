@@ -32,14 +32,14 @@ export const Diagram: FC<PropsWithChildren<IProps>> = (props) => {
     }
 
     useEffect(() => {
-        adjustScale(() => setReady(true));
-        window.addEventListener("resize", () => adjustScale());
-        return () => window.removeEventListener("resize", () => adjustScale());
+        // adjustScale(() => setReady(true));
+        // window.addEventListener("resize", () => adjustScale());
+        // return () => window.removeEventListener("resize", () => adjustScale());
     }, []);
 
     return (
         <div className={logosCustomMarkdownLanguages.diagram}
-             style={{opacity: ready ? 1 : 0}}
+             style={{opacity: ready ? 1 : 1}}
              ref={ref}
         >
             <span style={{position: "fixed", opacity: 0, zIndex: -1}} ref={measureCharRef}>-</span>
