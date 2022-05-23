@@ -70,7 +70,7 @@ async function buildSitemapForMarkdownDirectory(rootPath, siteConfigs) {
                 const childNode = new TreeNodeMarkdown(childPath, rootPath);
                 const isDirectory = statSync(join(rootPath, childNode.localPath)).isDirectory();
                 const extension = extname(childNode.localPath);
-                const isAllowed = ALLOWED_EXTENSIONS.includes(extension);
+                const isAllowed = ALLOWED_EXTENSIONS.includes(extension) && basename(childNode.localPath, extension).toLowerCase() !== "readme";
 
                 if (isAllowed) {
                     await childNode.attachMetadata(rootPath);
