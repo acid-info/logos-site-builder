@@ -3,6 +3,7 @@
     --txt-color: var(--dark-text-color);
     --hl-color: var(--dark-highlight-color);
     --ff: var(--fontFamily);
+    --lh: 1.6em;
 }
 
 *, :after, :before {
@@ -18,6 +19,8 @@ body{
     background: var(--bg-color);
     color: var(--txt-color);
     font-family: var(--ff);
+    line-height: var(--lh);
+    -webkit-font-smoothing: antialiased;
 }
 
 body.light{

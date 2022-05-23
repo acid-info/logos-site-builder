@@ -16,6 +16,7 @@ interface ISidebarProps{
 interface IMenuProps{
     items: INavigationItemProps[]
     level?: number
+    className?: string;
 }
 
 interface IMenuItemProps{
@@ -28,7 +29,7 @@ const MenuItem: FC<PropsWithChildren<IMenuItemProps>> = ({level, item, children}
         <div className={"menuitem-title"}>
             {
                 item.children.length?
-                    <b>{item.title}</b>
+                    <span>{item.title}</span>
                     :
                     <Link href={`/${item.path.join("/")}`}>
                         <a>
@@ -44,9 +45,10 @@ const MenuItem: FC<PropsWithChildren<IMenuItemProps>> = ({level, item, children}
 )
 
 const Menu: FC<IMenuProps> = (props) => {
-    const {items, level = 0} = props;
+    const {items, level = 0, className} = props;
+    let cname = level===0? className: "";
     return(
-        <ul className={"sidebar-menu"}>
+        <ul className={`sidebar-menu ${cname}`}>
             {items.map((item) => {
                 return (
                     <MenuItem item={item}
@@ -85,9 +87,11 @@ export const Sidebar: FC<ISidebarProps> = (props) => {
                 <div className={"sidebar-close-icon button"} onClick={onClose}>
                     <CloseIcon/>
                 </div>
-                <Menu items={[{...sidebar, title: "", children: mainItems}]}/>
+                <Menu items={[{...sidebar, title: "", children: mainItems}]}
+                      className={"mainMenu"}
+                />
                 <br/>
-                <Menu items={subItems}/>
+                <Menu items={subItems} className={"subMenu"}/>
             </nav>
         </div>
     )

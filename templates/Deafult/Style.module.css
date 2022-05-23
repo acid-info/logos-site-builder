@@ -69,6 +69,14 @@
     margin-top: 0;
 }
 
+/*.container nav :global(.subMenu) > li{*/
+/*    margin-bottom: 1.6em;*/
+/*}*/
+/*.container nav :global(.subMenu) > li > :global(.menuitem-title){*/
+/*    margin-bottom: 1.6em;*/
+/*}*/
+
+
 .container ul, .container li{
     list-style: none;
 }
@@ -81,6 +89,7 @@
     position: sticky;
     top: calc(headerGapB + 3em);
     padding-top: mainGapT;
+    margin-top: 4px;
 }
 
 .sidebar:global(.hide) nav{
@@ -128,6 +137,10 @@
 .container p{
     margin-top: 0;
     padding-top: 0;
+}
+
+.container .content >*{
+    margin: 0;
 }
 
 .container :global(.dialog-container) :global(.dialog-container-innerwrapper){
