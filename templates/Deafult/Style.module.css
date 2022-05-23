@@ -1,6 +1,6 @@
-@value headerGapT: 300px;
+@value headerGapT: calc(8 * var(--lh));
 @value headerGapB: calc(4 * var(--lh));
-@value containerGapT: calc(2 * var(--lh));
+@value containerGapT: calc(4 * var(--lh));
 @value mainGapT: calc(3 * var(--lh));
 @value mainGapB: 20em;
 @value pagePaddingT: containerGapT;
@@ -33,8 +33,7 @@
 
 .banner{
     z-index: 9999;
-    padding-bottom: headerGapB;
-    padding-top: headerGapT;
+    padding: headerGapT 0 headerGapB 0;
     top: calc(calc(-1 * headerGapT) + containerGapT);
 }
 
@@ -171,8 +170,6 @@
     @value pagePaddingB: 3em;
     @value pagePaddingL: 4em;
 
-    @value headerGapT: 100px;
-    @value headerGapB: 4em;
 
     .sidebarDefault{
         display: none;

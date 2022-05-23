@@ -1,5 +1,6 @@
 const {join}  = require("path");
 const {writeFileSync} = require("fs");
+
 const {buildSitemapForMarkdownDirectory} = require("./utils");
 
 const {COMPILED_DIR, LOCAL_CONTENT_DIST} = require("./configs");

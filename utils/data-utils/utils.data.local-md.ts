@@ -3,6 +3,7 @@ import {INavigationItemProps, IRouteParamForLocalFolder, ISiteConfigs} from "../
 import {readFileSync} from "fs";
 import {join} from "path";
 import matter from "gray-matter";
+// const toc = require('markdown-toc');
 
 const sidebar: INavigationItemProps[] = require("../../public/compiled/sidebar.flat.json");
 
@@ -31,6 +32,7 @@ export const getStaticPropsFromFolder = <O extends PreviewData>() => async(conte
 
     const rawMD = readFileSync(join(process.cwd(), "docs", navProps.localPath), 'utf-8');
     const {data: metadata, content} = matter(rawMD);
+    // const _toc = toc(content).json
 
     return {
         props: {
