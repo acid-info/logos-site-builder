@@ -1,7 +1,7 @@
 @value headerGapT: 300px;
-@value headerGapB: 4em;
-@value containerGapT: 2em;
-@value mainGapT: 3em;
+@value headerGapB: calc(4 * var(--lh));
+@value containerGapT: calc(2 * var(--lh));
+@value mainGapT: calc(3 * var(--lh));
 @value mainGapB: 20em;
 @value pagePaddingT: containerGapT;
 @value pagePaddingR: inherit;
@@ -52,7 +52,7 @@
 
 .searchInput{
     position: sticky;
-    top: containerGapT;
+    top: calc(containerGapT + mainGapT - var(--lh));
 }
 
 .searchInput input{
@@ -81,13 +81,12 @@
 
 /*SIDEBAR*/
 .sidebarWrapper{
-    padding-top: calc(mainGapT - 1em);
+    padding-top: calc(mainGapT - var(--lh));
 }
 .sidebar{
     position: sticky;
-    top: calc(headerGapB + 3em);
-    padding-top: mainGapT;
-    margin-top: 4px;
+    top: calc(pagePaddingT - calc(mainGapT - var(--lh)) - 9px);
+    padding-top: calc(mainGapT - 10px);
 }
 
 .sidebar:global(.hide) nav{

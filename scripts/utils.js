@@ -18,6 +18,7 @@ const downloadRepo = (url, dist) => {
 
 class TreeNodeMarkdown {
     title;
+    navOrder = -1;
     localPath;
     path;
     children;
@@ -37,9 +38,20 @@ class TreeNodeMarkdown {
             this.title = metadata.title
         }
     }
+
+    setOrder(orderIndex){
+        if(orderIndex===-1){
+            this.navOrder = -1;
+        }else{
+            this.navOrder = 9999-orderIndex;
+        }
+    }
 }
 
-async function buildSitemapForMarkdownDirectory(rootPath, homeFilename) {
+async function buildSitemapForMarkdownDirectory(rootPath, siteConfigs) {
+    const {navigation = {}} = siteConfigs;
+    const {fileOrdersInSidenav = [], folderOrdersInSidenav = []} = navigation;
+
     const ALLOWED_EXTENSIONS = ['.md']
     const root = new TreeNodeMarkdown(rootPath, rootPath);
     let flatmap = [];
@@ -56,32 +68,31 @@ async function buildSitemapForMarkdownDirectory(rootPath, homeFilename) {
             for await (let child of children) {
                 const childPath = join(currentNodeLocalPathAbs, child);
                 const childNode = new TreeNodeMarkdown(childPath, rootPath);
-
                 const isDirectory = statSync(join(rootPath, childNode.localPath)).isDirectory();
                 const extension = extname(childNode.localPath);
                 const isAllowed = ALLOWED_EXTENSIONS.includes(extension);
 
                 if (isAllowed) {
                     await childNode.attachMetadata(rootPath);
-                    //sorting already
-                    if(childNode.localPath===homeFilename){
-                        currentNode.children.unshift(childNode);
-                    }else{
-                        currentNode.children.push(childNode);
-                    }
+                    currentNode.children.push(childNode);
                     flatmap.push(childNode);
+                    childNode.setOrder(fileOrdersInSidenav.indexOf(childNode.localPath))
                 }
 
                 if (isDirectory && !childNode.localPath.startsWith(".")) {
                     currentNode.children.push(childNode);
+                    childNode.setOrder(folderOrdersInSidenav.indexOf(childNode.localPath))
                     stack.push(childNode);
                 }
+
+                currentNode.children.sort((a,b) => b.navOrder - a.navOrder);
             }
         }
     }
 
-    if(homeFilename && typeof homeFilename === "string"){
-        const homeNodeIndex = flatmap.findIndex(n => n.localPath === homeFilename);
+
+    if(navigation.home && typeof navigation.home === "string"){
+        const homeNodeIndex = flatmap.findIndex(n => n.localPath === navigation.home);
         if (homeNodeIndex>-1){
             flatmap[homeNodeIndex].path = [];
         }
@@ -89,7 +100,6 @@ async function buildSitemapForMarkdownDirectory(rootPath, homeFilename) {
 
     return {treemap: root, flatmap};
 }
-
 
 module.exports= {
     downloadRepo,
