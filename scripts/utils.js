@@ -69,7 +69,6 @@ async function buildSitemapForMarkdownDirectory(rootPath, homeFilename) {
                     }else{
                         currentNode.children.push(childNode);
                     }
-                    currentNode.children.sort((a,b) => b.title.localeCompare(a.title));
                     flatmap.push(childNode);
                 }
 

@@ -18,9 +18,10 @@ export const Diagram: FC<PropsWithChildren<IProps>> = (props) => {
             //the second child is always a paragraph containing our ascii value
             const asciiContainer = ref.current.children[1] as HTMLElement
             if (asciiContainer) {
-                const lines = asciiContainer.innerText.split("\n");
-                const targetLine = lines[~~(lines.length / 2)];
+                const lines = asciiContainer.innerText.trim().split("\n")
+                const targetLine = lines.sort((a,b) => b.length-a.length)[0];
                 const glyphsPerTargetLine = targetLine.length;
+                console.log(maxGlyphsPerLine, glyphsPerTargetLine)
                 const scale = maxGlyphsPerLine / glyphsPerTargetLine;
                 asciiContainer.style.transform = `scale(${scale})`;
                 asciiContainer.style.transformOrigin = `top left`
