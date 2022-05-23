@@ -3,7 +3,7 @@ import {logosCustomMarkdownLanguages} from "../../../configs";
 interface IProps {
 }
 
-export const Diagram: FC<PropsWithChildren<IProps>> = (props) => {
+export const Ascii: FC<PropsWithChildren<IProps>> = (props) => {
     const {children} = props;
     const ref = useRef<HTMLDivElement>(null);
     const measureCharRef = useRef<HTMLSpanElement>(null);
@@ -38,7 +38,7 @@ export const Diagram: FC<PropsWithChildren<IProps>> = (props) => {
     }, []);
 
     return (
-        <div className={logosCustomMarkdownLanguages.diagram}
+        <div className={logosCustomMarkdownLanguages.ascii}
              style={{opacity: ready ? 1 : 0}}
              ref={ref}
         >

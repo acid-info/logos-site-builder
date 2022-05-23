@@ -1,20 +1,20 @@
 import {FC, PropsWithChildren, useState} from "react";
-import {Diagram} from "./Diagram";
 import {Dialog} from "../../../../../../components/design-system/Dialog/Dialog";
 import {FullScreenIcon} from "../../../../../../components/design-system/html-icons";
+import {Ascii} from "./Ascii";
 
 interface IProps {
 }
 
-export const DiagramWrapper: FC<PropsWithChildren<IProps>> = (props) => {
+export const AsciiWrapper: FC<PropsWithChildren<IProps>> = (props) => {
     const {children} = props;
     const [enlarge, setEnlarge] = useState(false);
 
     return (
-        <div className={`logos-diagram-wrapper`}>
-            <Diagram>
+        <div className={`logos-ascii-wrapper`}>
+            <Ascii>
                 {children}
-            </Diagram>
+            </Ascii>
             <FullScreenIcon onClick={() => setEnlarge(true)}
                             style={{
                                 position: 'absolute',
@@ -27,9 +27,9 @@ export const DiagramWrapper: FC<PropsWithChildren<IProps>> = (props) => {
             {
                 enlarge&&
                 <Dialog onClose={() => setEnlarge(false)}>
-                    <Diagram>
+                    <Ascii>
                         {children}
-                    </Diagram>
+                    </Ascii>
                 </Dialog>
             }
         </div>

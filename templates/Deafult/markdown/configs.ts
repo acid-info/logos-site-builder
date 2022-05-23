@@ -1,6 +1,6 @@
 export const logosCustomMarkdownLanguages = {
     default: "logos",
-    diagram: "logos-diagram",
+    ascii: "logos-ascii",
     paragraph: "logos-paragraph"
 }
 

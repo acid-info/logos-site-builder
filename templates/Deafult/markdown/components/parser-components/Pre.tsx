@@ -1,9 +1,8 @@
 import {CodeComponent} from "react-markdown/lib/ast-to-react";
 import {ElementContent} from "hast";
 import {hljsLangClassnames, logosCustomMarkdownLanguages} from "../../configs";
-import {Diagram} from "../ui-components/Diagram/Diagram";
 import {Paragraph} from "../ui-components/Paragraph";
-import {DiagramWrapper} from "../ui-components/Diagram/DiagramWrapper";
+import {AsciiWrapper} from "../ui-components/Ascii/AsciiWrapper";
 
 export const CustomMarkdownPre: CodeComponent = ({node, inline, className, children, ..._props}) => {
     const nodeWithCodePlaintext: ElementContent | undefined = node.children.find((c) => (
@@ -34,7 +33,7 @@ export const CustomMarkdownPre: CodeComponent = ({node, inline, className, child
 
     return (
         {
-            [logosCustomMarkdownLanguages.diagram]: <DiagramWrapper>{children}</DiagramWrapper>,
+            [logosCustomMarkdownLanguages.ascii]: <AsciiWrapper>{children}</AsciiWrapper>,
             [logosCustomMarkdownLanguages.paragraph]: <Paragraph>{children}</Paragraph>,
         }[c]
     )

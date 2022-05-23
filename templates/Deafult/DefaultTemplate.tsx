@@ -13,8 +13,6 @@ import {logosRemarkPlugins} from "./markdown/logos-remark-plugins";
 import {logosReactMarkdownComponents} from "./markdown/components";
 import {transformImageUri} from "./markdown/logos-react-md-transformers/image-uri";
 
-// import "highlight.js/styles/base16/harmonic16-dark.css"
-
 interface IProps{
     markdown: IMarkdown<any>;
 }

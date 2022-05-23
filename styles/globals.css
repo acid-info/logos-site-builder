@@ -110,6 +110,7 @@ img:hover{
 /*CODE highlights*/
 .hljs {
     display: block;
+    background: var(--bg-color) !important;
 }
 
 .hljs-doctag, .hljs-formula, .hljs-keyword {

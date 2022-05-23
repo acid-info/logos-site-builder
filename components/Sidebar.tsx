@@ -37,7 +37,7 @@ const MenuItem: FC<PropsWithChildren<IMenuItemProps>> = (props) => {
                         {item.title}
                     </span>
                         :
-                        <Link href={`/${item.path.join("/")}`}>
+                        <Link href={`/${item.path.join("/")}`} scroll={false}>
                             <a className={isActive?"active":""}>
                                 <span>{item.title}</span>
                             </a>

@@ -28,6 +28,7 @@
 
 .header :global(.sidebar-toggle-button){
     position: fixed;
+    z-index: 99999999;
 }
 
 .banner{
@@ -82,11 +83,13 @@
 /*SIDEBAR*/
 .sidebarWrapper{
     padding-top: calc(mainGapT - var(--lh));
+    z-index: 0;
 }
 .sidebar{
     position: sticky;
     top: calc(pagePaddingT - calc(mainGapT - var(--lh)) - 9px);
     padding-top: calc(mainGapT - 10px);
+    z-index: 0;
 }
 
 .sidebar:global(.hide) nav{
@@ -104,14 +107,14 @@
     display: none;
 }
 
-.container :global(.logos-diagram-wrapper){
+.container :global(.logos-ascii-wrapper){
     position: relative;
 }
-.container :global(.logos-diagram){
+.container :global(.logos-ascii){
     overflow: hidden;
 }
 
-.container :global(.logos-diagram) p{
+.container :global(.logos-ascii) p{
     white-space: pre;
 }
 
