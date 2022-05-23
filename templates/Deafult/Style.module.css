@@ -66,16 +66,14 @@
 .container nav > ul{
     padding-left: 0;
     padding-top: 0;
-    margin-top: 0;
+    margin: 0;
 }
 
-/*.container nav :global(.subMenu) > li{*/
-/*    margin-bottom: 1.6em;*/
-/*}*/
-/*.container nav :global(.subMenu) > li > :global(.menuitem-title){*/
-/*    margin-bottom: 1.6em;*/
-/*}*/
-
+.container :global(pre){
+    margin: var(--lh) 0 !important;
+    padding-top: calc(var(--lh) / 2) !important;
+    padding-bottom: calc(var(--lh) / 2) !important;
+}
 
 .container ul, .container li{
     list-style: none;
@@ -159,6 +157,10 @@
 
 .container :global(img){
     width: 100%;
+}
+
+.container :global(.menuitem-title){
+    text-transform: capitalize;
 }
 
 @media (max-width:600px) {

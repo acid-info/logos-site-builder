@@ -2,6 +2,7 @@ import {FC, PropsWithChildren, useEffect, useState} from "react";
 import {INavigationItemProps} from "../types/data.types";
 import Link from "next/link";
 import CloseIcon from "/public/assets/sidebar-icon-close.svg";
+import {useRouter} from "next/router";
 
 const sidebar: INavigationItemProps = require("../public/compiled/sidebar.tree.min.json");
 
@@ -22,31 +23,43 @@ interface IMenuProps{
 interface IMenuItemProps{
     item: INavigationItemProps
     level?: number
+    isActive?: boolean;
 }
 
-const MenuItem: FC<PropsWithChildren<IMenuItemProps>> = ({level, item, children}) => (
-    <li className={`menuitem level-${level}`}>
-        <div className={"menuitem-title"}>
+const MenuItem: FC<PropsWithChildren<IMenuItemProps>> = (props) => {
+    const {level, item, children, isActive = false} = props;
+    return (
+        <li className={`menuitem level-${level}`}>
+            <div className={"menuitem-title"}>
+                {
+                    item.children.length?
+                        <span>
+                        {item.title}
+                    </span>
+                        :
+                        <Link href={`/${item.path.join("/")}`}>
+                            <a className={isActive?"active":""}>
+                                <span>{item.title}</span>
+                            </a>
+                        </Link>
+                }
+            </div>
             {
-                item.children.length?
-                    <span>{item.title}</span>
-                    :
-                    <Link href={`/${item.path.join("/")}`}>
-                        <a>
-                            <span>{item.title}</span>
-                        </a>
-                    </Link>
+                children
             }
-        </div>
-        {
-            children
-        }
-    </li>
-)
+            {
+                level===0&&
+                <br/>
+            }
+        </li>
+    )
+}
 
 const Menu: FC<IMenuProps> = (props) => {
     const {items, level = 0, className} = props;
     let cname = level===0? className: "";
+    const {asPath} = useRouter();
+
     return(
         <ul className={`sidebar-menu ${cname}`}>
             {items.map((item) => {
@@ -54,6 +67,7 @@ const Menu: FC<IMenuProps> = (props) => {
                     <MenuItem item={item}
                               level={level}
                               key={item.localPath}
+                              isActive={asPath===`/${item.path.join("/")}`}
                     >
                         <Menu items={item.children} level={level+1}/>
                     </MenuItem>
@@ -90,6 +104,7 @@ export const Sidebar: FC<ISidebarProps> = (props) => {
                 <Menu items={[{...sidebar, title: "", children: mainItems}]}
                       className={"mainMenu"}
                 />
+                <br/>
                 <br/>
                 <Menu items={subItems} className={"subMenu"}/>
             </nav>

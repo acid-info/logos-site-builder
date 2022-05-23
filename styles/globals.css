@@ -59,8 +59,12 @@ nav a,
 nav a:visited,
 nav a:hover{
     text-decoration: none;
-    color: var(--txt-color) !important;
+    color: var(--txt-color);
     text-transform: capitalize;
+}
+
+nav a.active{
+    text-decoration: underline;
 }
 
 .default-sidebar .sidebar-menu > li.level-0{
@@ -79,6 +83,14 @@ h1,h2,h3,h4,h5,h6{
 
 pre{
     overflow-x: auto;
+    filter: grayscale(1);
+
+    padding: 0 1em;
+
+    background: var(--bg-color) !important;
+    color: var(--txt-color);
+    border: 1px dashed var(--txt-color);
+    box-sizing: content-box;
 }
 
 img{
@@ -98,13 +110,6 @@ img:hover{
 /*CODE highlights*/
 .hljs {
     display: block;
-    overflow-x: auto;
-    padding: 1em !important;
-    filter: grayscale(1);
-
-    background: var(--bg-color) !important;
-    color: var(--txt-color);
-    border: 1px dashed var(--txt-color);
 }
 
 .hljs-doctag, .hljs-formula, .hljs-keyword {
