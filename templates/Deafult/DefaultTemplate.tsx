@@ -12,6 +12,7 @@ import {logosRehypePlugins} from "./markdown/logos-rehype-plugins";
 import {logosRemarkPlugins} from "./markdown/logos-remark-plugins";
 import {logosReactMarkdownComponents} from "./markdown/components";
 import {transformImageUri} from "./markdown/logos-react-md-transformers/image-uri";
+import {MarkdownToc} from "../../components/MarkdownToc";
 
 interface IProps{
     markdown: IMarkdown<any>;
@@ -64,6 +65,11 @@ export const DefaultTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => {
                         {append&&props.children}
                     </div>
                 </main>
+                <div className={`${style.tocWrapper} ${style.col_1_4}`}>
+                    <MarkdownToc toc={markdown.toc}
+                                 className={style.toc}
+                    />
+                </div>
             </div>
         </div>
     )

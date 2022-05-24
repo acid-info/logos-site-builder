@@ -24,9 +24,12 @@
     "react-dom": "18.0.0",
     "react-markdown": "^8.0.2",
     "rehype-attr": "^2.0.8",
+    "rehype-autolink-headings": "^6.1.1",
     "rehype-highlight": "^5.0.2",
+    "rehype-slug": "^5.0.1",
     "remark-attr": "^0.11.1",
     "remark-custom-blocks": "^2.6.0",
+    "remark-toc": "^8.0.1",
     "traverse": "^0.6.6",
     "url-slug": "^3.0.3"
   },

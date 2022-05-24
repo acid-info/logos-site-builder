@@ -5,11 +5,19 @@ import Theme = LogosTheme.Theme;
 export interface IMarkdown<D>{
     content: string;
     metadata: D & {[key: string]: any}
+    toc: IMarkdownTocItem[];
 }
 
 export interface IPagePropsMarkdown{
     markdown: IMarkdown<any>;
     routeParams: IRouteParamForLocalFolder
+}
+
+export interface IMarkdownTocItem{
+    content: string;
+    slug: string;
+    lvl: number;
+    i: number
 }
 
 export interface IRouteParamForLocalFolder extends ParsedUrlQuery{

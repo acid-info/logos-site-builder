@@ -7,9 +7,10 @@
 @value pagePaddingR: inherit;
 @value pagePaddingB: inherit;
 @value pagePaddingL: inherit;
+@value columnGap: 2vw;
 
 .container{
-    max-width: 1200px;
+    max-width: 1400px;
     margin: auto;
     padding-top: pagePaddingT;
     padding-bottom: pagePaddingB;
@@ -37,6 +38,10 @@
     top: calc(calc(-1 * headerGapT) + containerGapT);
 }
 
+.container main{
+    padding-right: calc(2 * columnGap);
+}
+
 .container main .content{
     padding-top: mainGapT;
     padding-bottom: mainGapB;
@@ -52,7 +57,7 @@
 
 .searchInput{
     position: sticky;
-    top: calc(containerGapT + mainGapT - var(--lh));
+    top: calc(containerGapT + mainGapT - calc(3 *  var(--lh)));
 }
 
 .searchInput input{
@@ -79,12 +84,19 @@
     list-style: none;
 }
 
+
 /*SIDEBAR*/
 .sidebarWrapper{
+    padding-right: calc(2 * columnGap) !important;
+}
+
+.sidebarWrapper,
+.tocWrapper{
     padding-top: calc(mainGapT - var(--lh));
     z-index: 0;
 }
-.sidebar{
+.sidebar,
+.toc{
     position: sticky;
     top: calc(pagePaddingT - calc(mainGapT - var(--lh)) - 9px);
     padding-top: calc(mainGapT - 10px);
@@ -104,6 +116,24 @@
 
 .sidebar :global(.sidebar-close-icon){
     display: none;
+}
+
+.toc{
+}
+
+.toc ul{
+    border-left: 1px solid;
+    padding-left: calc(2 * columnGap) !important;
+}
+
+.toc :global(.h-1){
+    margin-top: var(--lh);
+}
+.toc :global(.h-2){
+    padding-left: columnGap;
+}
+.toc :global(.h-3){
+    padding-left: calc(2 * columnGap);
 }
 
 .container :global(.logos-ascii-wrapper){
