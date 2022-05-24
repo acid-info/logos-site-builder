@@ -1,6 +1,7 @@
-import {FC} from "react";
+import {ChangeEventHandler, FC, FormEventHandler} from "react";
 
 interface IProps{
+    onChange: ChangeEventHandler;
 }
 
 export const SearchInput: FC<IProps> = (props) => {
@@ -8,6 +9,7 @@ export const SearchInput: FC<IProps> = (props) => {
         <div>
             <input type={"text"}
                    placeholder={"Search Logos Network"}
+                   onChange={props.onChange}
             />
         </div>
     )

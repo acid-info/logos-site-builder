@@ -40,6 +40,15 @@ export enum ESiteTemplateNames{
     DEFAULT="default"
 }
 
+export interface ITemplateUiConfig{
+    searchResultSnippedTextLengthPre: number;
+    searchResultSnippedTextLengthPost: number;
+}
+
+export interface ITemplateUiConfigs{
+    [ESiteTemplateNames.DEFAULT]: ITemplateUiConfig;
+}
+
 export interface ISiteConfigs{
     theme: Theme;
     template: ESiteTemplateNames;
@@ -48,5 +57,6 @@ export interface ISiteConfigs{
     }
     navigation: {
         home: string;
+        homeTitle: string;
     }
 }

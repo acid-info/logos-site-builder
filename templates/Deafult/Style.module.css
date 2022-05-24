@@ -194,6 +194,19 @@
     text-transform: capitalize;
 }
 
+.searchBox ul{
+    margin: 0;
+    padding: 0;
+}
+
+.searchBox :global(.logos-search-box-results){
+    border: 1px solid;
+    padding: var(--lh) columnGap;
+    position: absolute;
+    z-index: 9999;
+    background: var(--bg-color);
+}
+
 @media (max-width:600px) {
     @value pagePaddingT: 6em;
     @value pagePaddingR: 4em;

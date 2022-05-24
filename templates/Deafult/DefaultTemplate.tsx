@@ -13,6 +13,7 @@ import {logosRemarkPlugins} from "./markdown/logos-remark-plugins";
 import {logosReactMarkdownComponents} from "./markdown/components";
 import {transformImageUri} from "./markdown/logos-react-md-transformers/image-uri";
 import {MarkdownToc} from "../../components/MarkdownToc";
+import {Search} from "../../components/Search/Search";
 
 interface IProps{
     markdown: IMarkdown<any>;
@@ -50,7 +51,7 @@ export const DefaultTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => {
                 </div>
                 <main className={`${style.col_2_4}`}>
                     <div className={`${style.searchInput} ${sidebarOpen? style.withOpenSidebar: ""}`}>
-                        <SearchInput/>
+                        <Search className={style.searchBox}/>
                     </div>
                     <div className={style.content}>
                         {!append&&props.children}
