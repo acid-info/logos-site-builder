@@ -26,7 +26,7 @@ export const SearchResultItem: FC<IProps> = (props) => {
 
     return (
         <div className={"search-result-item"}>
-            <Link href={`/${p}`}>
+            <Link href={`/${p}`} scroll={false}>
                 <a className={"cap"}>
                     {item.id}
                 </a>

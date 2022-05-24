@@ -230,13 +230,14 @@
         z-index: -1;
     }
 
-    .sidebar :global(.sidebar-close-icon){
-        display: block;
-        position: fixed;
-        top: pagePaddingT;
-        transform: translate(9px, 10px);
+    .tocWrapper{
+        display: none;
     }
 
+    .container :global(.sidebar-toggle-button){
+        left: calc(pagePaddingL - 20px);
+        transform: translateY(-4px);
+    }
 
     .sidebar nav{
         position: fixed;
