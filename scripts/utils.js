@@ -79,7 +79,11 @@ async function buildSitemapForMarkdownDirectory(rootPath, siteConfigs) {
                     childNode.setOrder(fileOrdersInSidenav.indexOf(childNode.localPath))
                 }
 
-                if (isDirectory && !childNode.localPath.startsWith(".")) {
+                if (
+                    isDirectory
+                    && !childNode.localPath.startsWith(".")
+                    && childNode.localPath!==process.env.STATIC_CONTENT_FOLDER
+                ) {
                     currentNode.children.push(childNode);
                     childNode.setOrder(folderOrdersInSidenav.indexOf(childNode.localPath))
                     stack.push(childNode);

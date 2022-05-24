@@ -83,7 +83,7 @@ h1,h2,h3,h4,h5,h6{
 
 pre{
     overflow-x: auto;
-    filter: grayscale(1);
+    /*filter: grayscale(1);*/
 
     padding: 0 1em;
 
@@ -103,21 +103,30 @@ img:hover{
     filter: grayscale(0);
 }
 
+.cap{
+    text-transform: capitalize;
+}
 
 /**********/
 /*MARKDOWN*/
 
 /*CODE highlights*/
-.hljs {
+pre:not(:hover) .hljs {
     display: block;
     background: var(--bg-color) !important;
 }
 
-.hljs-doctag, .hljs-formula, .hljs-keyword {
-    /*color: var(--hl-color);*/
+pre:not(:hover) .hljs-doctag,
+pre:not(:hover) .hljs-formula,
+pre:not(:hover) .hljs-keyword {
+    color: var(--hl-color);
 }
-.hljs-addition, .hljs-attribute, .hljs-meta .hljs-string, .hljs-regexp, .hljs-string{
-    /*color: gray;*/
+pre:not(:hover) .hljs-addition,
+pre:not(:hover) .hljs-attribute,
+pre:not(:hover) .hljs-meta .hljs-string,
+pre:not(:hover) .hljs-regexp,
+pre:not(:hover) .hljs-string{
+    color: gray;
 }
 
 /*Paragraphs*/
