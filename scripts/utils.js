@@ -4,7 +4,6 @@ const {readFile} = require("fs").promises;
 const {extname, relative, sep, basename, join} = require("path");
 const matter = require("gray-matter");
 const slug = require("url-slug");
-const {LOCAL_CONTENT_DIST} = require("./configs");
 
 const downloadRepo = (url, dist) => {
     return new Promise((resolve, reject) => {
