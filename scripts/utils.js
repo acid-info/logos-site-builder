@@ -4,6 +4,7 @@ const {readFile} = require("fs").promises;
 const {extname, relative, sep, basename, join} = require("path");
 const matter = require("gray-matter");
 const slug = require("url-slug");
+const {LOCAL_CONTENT_DIST} = require("./configs");
 
 const downloadRepo = (url, dist) => {
     return new Promise((resolve, reject) => {
@@ -49,7 +50,7 @@ class TreeNodeMarkdown {
 }
 
 async function buildSitemapForMarkdownDirectory(rootPath, siteConfigs) {
-    const {navigation = {}} = siteConfigs;
+    const {navigation = {}, static_assets_folder} = siteConfigs;
     const {fileOrdersInSidenav = [], folderOrdersInSidenav = []} = navigation;
 
     const ALLOWED_EXTENSIONS = ['.md']
@@ -79,10 +80,11 @@ async function buildSitemapForMarkdownDirectory(rootPath, siteConfigs) {
                     childNode.setOrder(fileOrdersInSidenav.indexOf(childNode.localPath))
                 }
 
+
                 if (
                     isDirectory
                     && !childNode.localPath.startsWith(".")
-                    && childNode.localPath!==process.env.STATIC_CONTENT_FOLDER
+                    && childNode.localPath!==static_assets_folder
                 ) {
                     currentNode.children.push(childNode);
                     childNode.setOrder(folderOrdersInSidenav.indexOf(childNode.localPath))
