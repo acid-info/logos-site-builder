@@ -4,6 +4,7 @@
     --hl-color: var(--dark-highlight-color);
     --ff: var(--fontFamily);
     --lh: 1.6em;
+    --column-gap: 2vw;
 }
 
 *, :after, :before {
@@ -33,7 +34,7 @@ a, a:visited, a:hover, .text_column code{
     color: var(--hl-color);
 }
 
-svg, svg *{
+:not(.vac).logo-holder svg, :not(.vac).logo-holder svg *{
     fill: var(--txt-color);
 }
 
@@ -78,7 +79,6 @@ nav a.active{
 /*this part should be coming from the content but for now for sake of the look*/
 h1,h2,h3,h4,h5,h6{
     font-size: inherit !important;
-    /*font-weight: normal;*/
 }
 
 pre{
@@ -128,24 +128,3 @@ pre:not(:hover) .hljs-regexp,
 pre:not(:hover) .hljs-string{
     color: gray;
 }
-
-/*Paragraphs*/
-.text_column{
-    white-space: break-spaces;
-}
-.text_column p{
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-.text_column.xx{
-    column-count: 2;
-}
-.text_column.xxx{
-    column-count: 3;
-}
-.text_column.xxxx{
-    column-count: 4;
-}
-
-

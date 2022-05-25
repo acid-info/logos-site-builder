@@ -24,7 +24,6 @@ export interface IRouteParamForLocalFolder extends ParsedUrlQuery{
     path: string[]
 }
 
-
 export interface INavigationItemProps{
     localPath: string;
     path: string[];
@@ -49,14 +48,32 @@ export interface ITemplateUiConfigs{
     [ESiteTemplateNames.DEFAULT]: ITemplateUiConfig;
 }
 
+export enum ELogosDesignSystemID{
+    LOGOS="logos",
+    LOGOS_BLOCKCHAIN="logos_blockchain",
+    VAC="vac",
+    WAKU="waku",
+    CODEX="codex"
+}
+
+export interface ISiteSeoSocialMedia{
+    handler: string;
+    provider: string;
+}
+
 export interface ISiteConfigs{
+    ds_id: ELogosDesignSystemID;
     theme: Theme;
     template: ESiteTemplateNames;
-    assets: {
-        logo: string
-    }
     navigation: {
         home: string;
         homeTitle: string;
+    }
+    seo: {
+        title: string;
+        description: string;
+        image: string;
+        url: string;
+        social_media: ISiteSeoSocialMedia[]
     }
 }

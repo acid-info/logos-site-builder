@@ -7,7 +7,7 @@
 @value pagePaddingR: inherit;
 @value pagePaddingB: inherit;
 @value pagePaddingL: inherit;
-@value columnGap: 2vw;
+@value columnGap: var(--column-gap);
 
 .container{
     max-width: 1400px;
@@ -80,7 +80,7 @@
     padding-bottom: calc(var(--lh) / 2) !important;
 }
 
-.container ul, .container li{
+.container nav ul, .container nav li{
     list-style: none;
 }
 
@@ -127,12 +127,16 @@
 }
 
 .toc :global(.h-1){
-    margin-top: var(--lh);
+    margin-top: calc(2 * var(--lh));
 }
 .toc :global(.h-2){
+    margin-top: var(--lh);
+}
+
+.toc :global(.h-3){
     padding-left: columnGap;
 }
-.toc :global(.h-3){
+.toc :global(.h-4){
     padding-left: calc(2 * columnGap);
 }
 
@@ -147,19 +151,22 @@
     white-space: pre;
 }
 
-.container :global(.logos-paragraph) p{
-    white-space: break-spaces;
+.container :global(.logos-paragraph){
+    /*white-space: break-spaces;*/
+    column-gap: var(--column-gap);
+    /*text-indent: var(--column-gap);*/
 }
-.container :global(.logos-paragraph.x) p{
+
+.container :global(.logos-paragraph.x){
     column-count: 1;
 }
-.container :global(.logos-paragraph.xx) p{
+.container :global(.logos-paragraph.xx){
     column-count: 2;
 }
-.container :global(.logos-paragraph.xxx) p{
+.container :global(.logos-paragraph.xxx){
     column-count: 3;
 }
-.container :global(.logos-paragraph.xxxx) p{
+.container :global(.logos-paragraph.xxxx){
     column-count: 4;
 }
 
@@ -171,6 +178,16 @@
 .container .content >*{
     margin: 0;
 }
+
+.container .content > *{
+    margin-bottom: var(--lh);
+}
+
+.container .content > h1,
+.container .content > h2{
+    margin-bottom: calc(2 * var(--lh));
+}
+
 
 .container :global(.dialog-container) :global(.dialog-container-innerwrapper){
     width: 80vw;
@@ -209,9 +226,9 @@
 
 @media (max-width:600px) {
     @value pagePaddingT: 6em;
-    @value pagePaddingR: 4em;
+    @value pagePaddingR: var(--column-gap);
     @value pagePaddingB: 3em;
-    @value pagePaddingL: 4em;
+    @value pagePaddingL: var(--column-gap);
 
 
     .sidebarDefault{
@@ -260,11 +277,10 @@
         width: 100%;
     }
 
-
-    .container :global(.logos-paragraph.x) p,
-    .container :global(.logos-paragraph.xx) p,
-    .container :global(.logos-paragraph.xxx) p,
-    .container :global(.logos-paragraph.xxxx) p{
+    .container :global(.logos-paragraph.x),
+    .container :global(.logos-paragraph.xx),
+    .container :global(.logos-paragraph.xxx),
+    .container :global(.logos-paragraph.xxxx){
         column-count: 1;
     }
 }

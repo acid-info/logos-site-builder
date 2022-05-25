@@ -40,6 +40,6 @@ yarn-error.log*
 .idea
 
 /public/compiled/*.*
-/public/static-content/*.*
+/public/compiled-assets/*.*
 
 docs

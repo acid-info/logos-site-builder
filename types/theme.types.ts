@@ -15,6 +15,7 @@ export namespace LogosTheme{
 
     export interface Theme{
         fontFamily: string;
+        codeTheme: string;
         palettes: {
             [EThemeMode.LIGHT]: IThemePalette;
             [EThemeMode.DARK]: IThemePalette;

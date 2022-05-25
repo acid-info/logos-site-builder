@@ -1,11 +1,9 @@
 import {createContext, FC, PropsWithChildren, useContext, useState} from 'react'
 import {LogosTheme} from "../types/theme.types";
-import {ISiteConfigs} from "../types/data.types";
 import {hexTofeColorMatrix} from "../utils/utils.theme";
 import IThemeProviderProps = LogosTheme.IThemeProviderProps;
 import EThemeMode = LogosTheme.EThemeMode;
-
-const siteConfigs: ISiteConfigs = require("../public/compiled/config.json");
+import {useLogosSite} from "./SiteProvider";
 
 interface IThemeProviderContext{
     mode: EThemeMode;
@@ -22,6 +20,7 @@ const logosThemeContext = createContext<IThemeProviderContext>(defaultThemeState
 export const LogosThemeProvider: FC<PropsWithChildren<IThemeProviderProps>> = (props) => {
     const { children } = props;
     const [mode, setMode] = useState<EThemeMode>(props.mode||defaultThemeState.mode);
+    const {config: {theme}} = useLogosSite();
 
     const modeToggleHandler = () => {
         if(window){
@@ -31,7 +30,7 @@ export const LogosThemeProvider: FC<PropsWithChildren<IThemeProviderProps>> = (p
         }
     }
 
-    const color = siteConfigs.theme.palettes[EThemeMode.DARK].background.replace("#", "")
+    const color = theme.palettes[EThemeMode.DARK].background.replace("#", "")
 
     return (
         <logosThemeContext.Provider

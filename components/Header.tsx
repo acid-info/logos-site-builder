@@ -1,7 +1,8 @@
 import {FC} from "react";
-import {LogoHolder} from "./LogoHolder";
 import {SidebarToggleButton} from "./SidebarToggleButton";
 import {useLogosTheme} from "../context/ThemeProvider";
+import {Logo} from "./design-system/logos";
+import {useLogosSite} from "../context/SiteProvider";
 
 interface IProps{
     className?: string;
@@ -10,11 +11,12 @@ interface IProps{
 
 export const Header: FC<IProps> = ({className="", onSidebarToggle}) => {
     const {toggleMode} = useLogosTheme();
+    const {config} = useLogosSite();
 
     return (
         <header className={className}>
             <SidebarToggleButton onClick={onSidebarToggle} />
-            <LogoHolder onClick={toggleMode} filePath={"/assets/logos-logo.svg"}/>
+            <Logo dsid={config.ds_id} onClick={toggleMode}/>
         </header>
     )
 }

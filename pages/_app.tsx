@@ -1,7 +1,8 @@
 import type {AppProps} from 'next/app'
 import {PageComponent} from "../types/page";
+import {LogosSiteProvider} from "../context/SiteProvider";
 import {LogosThemeProvider} from "../context/ThemeProvider";
-import Head from 'next/head'
+import {Head} from "../components/Head";
 
 interface IProps extends AppProps{
     Component: PageComponent
@@ -13,13 +14,12 @@ import "../styles/globals.css";
 function App({Component, pageProps}: IProps) {
     const {children, ...rest} = pageProps;
     return (
-        <LogosThemeProvider>
-            <Head>
-                <title>Logos site builder</title>
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-            </Head>
-            <Component {...rest}>{children}</Component>
-        </LogosThemeProvider>
+        <LogosSiteProvider>
+            <Head/>
+            <LogosThemeProvider>
+                <Component {...rest}>{children}</Component>
+            </LogosThemeProvider>
+        </LogosSiteProvider>
     );
 }
 

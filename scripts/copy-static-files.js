@@ -1,12 +1,15 @@
 const {extname, join} = require("path");
-const {existsSync} = require("fs");
+const {existsSync, fsp} = require("fs");
 const {readdir, rm, copyFile, mkdir} = require("fs/promises");
 
-const {STATIC_CONTENT_DIR_TARGET, STATIC_CONTENT_DIR_SOURCE, supportedStaticFilesExtension} = require("./configs");
+const {STATIC_CONTENT_DIR_TARGET,LOCAL_CONTENT_DIST, supportedStaticFilesExtension} = require("./configs");
 
-module.exports = async () => {
-    if(!existsSync(STATIC_CONTENT_DIR_SOURCE)){
-        console.warn("Missing static folder: "+STATIC_CONTENT_DIR_SOURCE)
+module.exports = async (siteConfig) => {
+    const {static_assets_folder} = siteConfig;
+    const staticSourceDir = join(LOCAL_CONTENT_DIST, static_assets_folder);
+
+    if(!existsSync(staticSourceDir)){
+        console.warn("Missing static folder: "+static_assets_folder)
         return;
     }
 
@@ -16,12 +19,13 @@ module.exports = async () => {
 
     await mkdir(STATIC_CONTENT_DIR_TARGET);
 
-    const supportedFiles = await readdir(STATIC_CONTENT_DIR_SOURCE).then((files) => files.filter(f => {
+    const supportedFiles = await readdir(staticSourceDir).then((files) => files.filter(f => {
         const ext = extname(f);
         return supportedStaticFilesExtension.indexOf(ext.toLowerCase()) > -1;
     }))
 
     for await (const f of supportedFiles){
-        await copyFile(join(STATIC_CONTENT_DIR_SOURCE, f), join(STATIC_CONTENT_DIR_TARGET, f));
+        console.log(f)
+        await copyFile(join(staticSourceDir, f), join(STATIC_CONTENT_DIR_TARGET, f));
     }
 }
