@@ -7,5 +7,5 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 export const logosRehypePlugins: PluggableList = [
     [rehypeHighlight, {languages: [logosCustomLangForHljs]}],
     rehypeSlug,
-    rehypeAutolinkHeadings
+    // [rehypeAutolinkHeadings, {behavior: "append"}]
 ]

@@ -243,6 +243,18 @@
     background: var(--bg-color);
 }
 
+.container a:global(.anchor){
+    display: block;
+    position: relative;
+    top: calc(-1 * calc(6 *  var(--lh)));
+}
+
+.container a:global(.ha){
+    font-size: inherit;
+    color: inherit;
+    text-decoration: none;
+}
+
 @media (max-width:600px) {
     @value pagePaddingT: 6em;
     @value pagePaddingR: var(--column-gap);

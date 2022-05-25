@@ -1,4 +1,4 @@
-import {FC, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import {TTemplateProps} from "../../types/ui.types";
 import {Sidebar} from "../../components/Sidebar";
 import ReactMarkdown from "react-markdown";
@@ -15,6 +15,7 @@ import {transformImageUri} from "./markdown/logos-react-md-transformers/image-ur
 import {MarkdownToc} from "../../components/MarkdownToc";
 import {Search} from "../../components/Search/Search";
 import {Footer} from "../../components/Footer";
+import {useRouter} from "next/router";
 
 interface IProps{
     markdown: IMarkdown<any>;
@@ -24,6 +25,13 @@ export const DefaultTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => {
     const {append = false, markdown} = props;
     const [sidebarHide, setSideBarHide] = useState(false);
     const [sidebarOpen, setSidebarOpen] = useState(false);
+
+    const {asPath} = useRouter();
+
+    useEffect(() => {
+
+    }, [asPath]);
+
 
     const onSidebarOpen = () => {
         setSidebarOpen(true);
