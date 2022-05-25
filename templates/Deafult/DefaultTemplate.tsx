@@ -26,13 +26,6 @@ export const DefaultTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => {
     const [sidebarHide, setSideBarHide] = useState(false);
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
-    const {asPath} = useRouter();
-
-    useEffect(() => {
-
-    }, [asPath]);
-
-
     const onSidebarOpen = () => {
         setSidebarOpen(true);
     }

@@ -34,21 +34,33 @@
 
 .footer{
     margin-top: containerGapT;
+    position: absolute;
+    bottom: var(--lh);
+
+    width: 80%;
+    max-width: 1400px;
 }
 
 
 .footer{
     display: flex;
     align-items: flex-start;
+}
 
+.footer :global(.footer-content-container){
+    width: 60%;
 }
 
 .footer :global(.footer-logos-container){
     display: flex;
     flex-direction: column;
-    /*width: 20%;*/
+    width: 20%;
     transform: scale(0.5);
     transform-origin: top left;
+}
+
+.footer :global(.footer-logos-container)>*{
+    margin-bottom: 10px;
 }
 
 .banner{
@@ -105,7 +117,8 @@
 
 
 /*SIDEBAR*/
-.sidebarWrapper{
+.sidebarWrapper,
+.footer :global(.footer-logos-container){
     padding-right: calc(2 * columnGap) !important;
 }
 
@@ -207,7 +220,6 @@
     margin-bottom: calc(2 * var(--lh));
 }
 
-
 .container :global(.dialog-container) :global(.dialog-container-innerwrapper){
     width: 80vw;
     position: absolute;
@@ -256,11 +268,12 @@
 }
 
 @media (max-width:600px) {
-    @value pagePaddingT: 6em;
+    @value pagePaddingT: calc(2 * var(--lh));
     @value pagePaddingR: var(--column-gap);
-    @value pagePaddingB: 3em;
+    @value pagePaddingB: calc(2 * var(--lh));
     @value pagePaddingL: var(--column-gap);
 
+    @value headerGapT: calc(2 * var(--lh));
 
     .sidebarDefault{
         display: none;
@@ -278,13 +291,23 @@
         z-index: -1;
     }
 
+
+    .searchInput{
+        position: sticky;
+        top: calc(containerGapT + mainGapT - calc(6 *  var(--lh)));
+    }
+
     .tocWrapper{
         display: none;
     }
 
     .container :global(.sidebar-toggle-button){
-        left: calc(pagePaddingL - 20px);
-        transform: translateY(-4px);
+        left: calc(2 * pagePaddingL);
+        top: calc(containerGapT + mainGapT - calc(4 *  var(--lh)));
+    }
+
+    .container main{
+        padding-right: 0;
     }
 
     .sidebar nav{
@@ -314,4 +337,23 @@
     .container :global(.logos-paragraph.xxxx){
         column-count: 1;
     }
+
+    .footer{
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .footer :global(.footer-content-container){
+        width: 100%;
+    }
+
+    .footer :global(.footer-logos-container){
+        flex-direction: row;
+    }
+
+    .footer :global(.footer-logos-container) > *{
+        margin-right: 20px;
+        margin-bottom: 0;
+    }
+
 }

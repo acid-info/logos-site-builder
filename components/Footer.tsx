@@ -20,9 +20,9 @@ export const Footer: FC<IProps> = ({className=""}) => {
                     <Logo dsid={ds_id}/>
                 }
             </div>
-            <div>
+            <div className={"footer-content-container"}>
                 <p>
-                    <span>©</span><span>{new Date().getFullYear()}</span><span> Logos DAO</span>
+                    <span className={"copy-left"}>©</span><span>{new Date().getFullYear()}</span><span> Logos DAO</span>
                 </p>
                 <p>
                     Gentoo is a trademark of the Gentoo Foundation, Inc. The contents of this document, unless otherwise expressly stated, are licensed under the CC-BY-SA-3.0 license. The Gentoo Name and Logo Usage Guidelines apply.
