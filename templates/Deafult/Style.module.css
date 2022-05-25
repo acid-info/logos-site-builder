@@ -32,6 +32,25 @@
     z-index: 99999999;
 }
 
+.footer{
+    margin-top: containerGapT;
+}
+
+
+.footer{
+    display: flex;
+    align-items: flex-start;
+
+}
+
+.footer :global(.footer-logos-container){
+    display: flex;
+    flex-direction: column;
+    /*width: 20%;*/
+    transform: scale(0.5);
+    transform-origin: top left;
+}
+
 .banner{
     z-index: 9999;
     padding: headerGapT 0 headerGapB 0;

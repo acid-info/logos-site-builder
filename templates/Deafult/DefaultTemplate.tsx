@@ -14,6 +14,7 @@ import {logosReactMarkdownComponents} from "./markdown/components";
 import {transformImageUri} from "./markdown/logos-react-md-transformers/image-uri";
 import {MarkdownToc} from "../../components/MarkdownToc";
 import {Search} from "../../components/Search/Search";
+import {Footer} from "../../components/Footer";
 
 interface IProps{
     markdown: IMarkdown<any>;
@@ -72,6 +73,7 @@ export const DefaultTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => {
                     />
                 </div>
             </div>
+            <Footer className={style.footer}/>
         </div>
     )
 }
