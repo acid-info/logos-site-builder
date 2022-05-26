@@ -52,7 +52,7 @@ input[type="text"]{
     opacity: 1;
 }
 
-.button{
+button, .button{
     cursor: pointer;
 }
 

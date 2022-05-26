@@ -267,6 +267,15 @@
     text-decoration: none;
 }
 
+.container code{
+    position: relative;
+}
+.container code :global(.copy-to-clipboard){
+    position: absolute;
+    top: calc(var(--lh) / 2);
+    right: calc(var(--lh) / 2);
+}
+
 @media (max-width:600px) {
     @value pagePaddingT: calc(2 * var(--lh));
     @value pagePaddingR: var(--column-gap);
