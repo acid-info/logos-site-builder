@@ -71,6 +71,7 @@
 
 .container main{
     padding-right: calc(2 * columnGap);
+    min-height: 60vh;
 }
 
 .container main .content{
