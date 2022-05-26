@@ -12,6 +12,7 @@ interface ISidebarProps{
     onOpen?: () => void;
     initialHide?: boolean;
     hide: boolean;
+    isFullscreen?: boolean;
 }
 
 interface IMenuProps{
@@ -78,7 +79,7 @@ const Menu: FC<IMenuProps> = (props) => {
 }
 
 export const Sidebar: FC<ISidebarProps> = (props) => {
-    const {className = "", onClose = ()=>{}, onOpen = () => {}, initialHide = false, hide} = props;
+    const {className = "", isFullscreen = false, onClose = ()=>{}, onOpen = () => {}, initialHide = false, hide} = props;
     const mainItems = sidebar.children.filter((c) => c.children.length===0)
     const subItems = sidebar.children.filter((c) => c.children.length!==0);
     const [firstTime, setFirstTime] = useState(false);
@@ -92,6 +93,13 @@ export const Sidebar: FC<ISidebarProps> = (props) => {
         }
         if(isOpen){
             onOpen();
+            if(isFullscreen){
+                document.body.style.overflow = "hidden";
+            }
+        }else{
+            if(isFullscreen){
+                document.body.style.overflow = "auto";
+            }
         }
     }, [hide, isOpen])
 

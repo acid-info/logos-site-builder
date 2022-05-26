@@ -33,6 +33,7 @@ export const DefaultTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => {
     const onSidebarClose = () => {
         setSidebarOpen(false);
         setSideBarHide(true)
+        console.log("close");
     }
 
     return (
@@ -49,6 +50,7 @@ export const DefaultTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => {
                              initialHide={true}
                              onOpen={onSidebarOpen}
                              onClose={onSidebarClose}
+                             isFullscreen={true}
                     />
                 </div>
                 <main className={`${style.col_2_4}`}>

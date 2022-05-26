@@ -1,10 +1,13 @@
 :root{
     --bg-color: var(--dark-background-color);
     --txt-color: var(--dark-text-color);
-    --hl-color: var(--dark-highlight-color);
+    --hla-color: var(--dark-accent-active-color);
+    --hlm-color: var(--dark-accent-mute-color);
     --ff: var(--fontFamily);
     --lh: 1.6em;
     --column-gap: 2vw;
+    --scrollbar-width: 8px;
+    --scrollbar-height: 3px;
 }
 
 *, :after, :before {
@@ -27,14 +30,18 @@ body{
 body.light{
     --bg-color: var(--light-background-color);
     --txt-color: var(--light-text-color);
-    --hl-color: var(--light-highlight-color);
+    --hla-color: var(--light-accent-active-color);
+    --hlm-color: var(--light-accent-mute-color);
 }
 
 a, a:visited, a:hover, .text_column code{
-    color: var(--hl-color);
+    color: var(--hla-color);
 }
 
-:not(.vac).logo-holder svg, :not(.vac).logo-holder svg *{
+:not(.vac).logo-holder svg,
+:not(.vac).logo-holder svg *,
+.icon svg, .icon svg *,
+.button svg, .button svg *{
     fill: var(--txt-color);
 }
 
@@ -83,8 +90,6 @@ h1,h2,h3,h4,h5,h6{
 
 pre{
     overflow-x: auto;
-    /*filter: grayscale(1);*/
-
     padding: 0 1em;
 
     background: var(--bg-color) !important;
@@ -113,20 +118,20 @@ img:hover{
 /*CODE highlights*/
 pre:not(:hover) .hljs {
     display: block;
-    background: var(--bg-color) !important;
+    background: transparent !important;
 }
 
 pre:not(:hover) .hljs-doctag,
 pre:not(:hover) .hljs-formula,
 pre:not(:hover) .hljs-keyword {
-    color: var(--hl-color);
+    color: var(--hla-color);
 }
 pre:not(:hover) .hljs-addition,
 pre:not(:hover) .hljs-attribute,
 pre:not(:hover) .hljs-meta .hljs-string,
 pre:not(:hover) .hljs-regexp,
 pre:not(:hover) .hljs-string{
-    color: gray;
+    color: var(--hlm-color);
 }
 
 .copy-left{
@@ -137,3 +142,18 @@ pre:not(:hover) .hljs-string{
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
 }
+
+::-webkit-scrollbar {
+    width: var(--scrollbar-width);
+    height: var(--scrollbar-height);
+}
+::-webkit-scrollbar-button { background-color: var(--hlm-color);}
+::-webkit-scrollbar-track {  background-color: var(--hlm-color)}
+::-webkit-scrollbar-track-piece { background-color: var(--bg-color)}
+::-webkit-scrollbar-thumb {
+    height: 50px;
+    background-color: var(--hlm-color);
+    border-radius: 3px;
+}
+::-webkit-scrollbar-corner { background-color: var(--hlm-color)}
+::-webkit-resizer { background-color: var(--hlm-color)}

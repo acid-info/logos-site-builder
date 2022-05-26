@@ -33,7 +33,7 @@ export const Footer: FC<IProps> = ({className=""}) => {
                         seo.social_media.map((sm) => {
                             switch (sm.provider){
                                 case "twitter":
-                                    return <span><a href={`https://twitter.com/${sm.handler}`}>Twitter</a></span>
+                                    return <span key={`sm-${sm.provider}`}><a href={`https://twitter.com/${sm.handler}`}>Twitter</a></span>
                                 default:
                                     return null;
                             }

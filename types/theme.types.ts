@@ -10,7 +10,8 @@ export namespace LogosTheme{
     export interface IThemePalette{
         background: string;
         text: string;
-        highlight: string
+        accentActive: string;
+        accentMute: string;
     }
 
     export interface Theme{

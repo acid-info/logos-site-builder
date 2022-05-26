@@ -90,6 +90,7 @@
 .searchInput{
     position: sticky;
     top: calc(containerGapT + mainGapT - calc(3 *  var(--lh)));
+    z-index: 999;
 }
 
 .searchInput input{
@@ -327,14 +328,19 @@
         left: 0;
         width: 100vw;
         height: 100vh;
-        padding-top: calc(pagePaddingT + headerGapT);
+        padding-top: calc(containerGapT + mainGapT - calc(4 *  var(--lh)));
         padding-bottom: pagePaddingB;
         padding-right: pagePaddingR;
-        padding-left: pagePaddingL;
+        padding-left: calc(2 * pagePaddingL);
+        z-index: 999999;
     }
 
-    .sidebar :global(.sidebar-toggle-button){
-        z-index: 999999999;
+    .sidebar :global(.sidebar-close-icon){
+        display: block;
+    }
+
+    .header :global(.sidebar-toggle-button){
+        z-index: 0;
     }
 
     .col_1_4, .col_2_4{
