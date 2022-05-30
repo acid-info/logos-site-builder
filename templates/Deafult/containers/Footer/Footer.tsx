@@ -1,18 +1,21 @@
 import {FC} from "react";
-import {useLogosSite} from "../context/SiteProvider";
-import {LogosLogo} from "./design-system/logos/LogosLogo";
-import {ELogosDesignSystemID} from "../types/data.types";
-import {Logo} from "./design-system/logos";
+import {useLogosSite} from "../../../../context/SiteProvider";
+import {LogosLogo} from "../../../../components/design-system/logos/LogosLogo";
+import {ELogosDesignSystemID} from "../../../../types/data.types";
+import {Logo} from "../../../../components/design-system/logos";
+
+import styles from "./Styles.module.css";
 
 interface IProps{
     className?: string;
 }
 
+
 export const Footer: FC<IProps> = ({className=""}) => {
     const {config: {seo, ds_id}} = useLogosSite();
 
     return (
-        <footer className={className}>
+        <footer className={`${styles.container} ${className}`}>
             <div className={"footer-logos-container"}>
                 <LogosLogo/>
                 {

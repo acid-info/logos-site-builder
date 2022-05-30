@@ -5,7 +5,7 @@
     --hlm-color: var(--dark-accent-mute-color);
     --ff: var(--fontFamily);
     --lh: 1.6em;
-    --column-gap: 2vw;
+    --column-gap: 2.2vw;
     --scrollbar-width: 8px;
     --scrollbar-height: 3px;
 }
@@ -110,6 +110,10 @@ img:hover{
 
 .cap{
     text-transform: capitalize;
+}
+
+.uppercase{
+    text-transform: uppercase;
 }
 
 /**********/

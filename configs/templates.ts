@@ -1,4 +1,4 @@
-import {ESiteTemplateNames, ITemplateUiConfig, ITemplateUiConfigs} from "../types/data.types";
+import {ESiteTemplateNames, ITemplateUiConfigs} from "../types/data.types";
 import {DefaultTemplate_Markdown} from "../templates/Deafult/DefaultTemplate";
 
 export const logosTemplatesUiConfig:ITemplateUiConfigs = {

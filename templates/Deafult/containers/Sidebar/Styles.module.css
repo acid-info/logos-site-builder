@@ -1,0 +1,46 @@
+@value vars: "../../styles/vars.css";
+@value pagePaddingT, maxWidth from vars;
+
+.container{
+    grid-area: sidebar;
+}
+
+.container nav{
+    padding: pagePaddingT var(--column-gap);
+}
+
+.container .mobile :global(.close-icon){
+    position: fixed;
+    top: pagePaddingT;
+    left: var(--column-gap);
+}
+
+.desktop{
+    display: none;
+}
+
+.container :global(.sidebar-toggle-button){
+    position: fixed;
+    left: var(--column-gap);
+    top: pagePaddingT;
+}
+
+
+@media (min-width:600px) {
+    .desktop{
+        display: block;
+    }
+    .mobile{
+        display: none !important;
+    }
+
+    .container nav{
+        padding: 0;
+    }
+
+    .container :global(.sidebar-toggle-button){
+        position: fixed;
+        left: max(calc(calc(100vw - maxWidth) / 2), var(--column-gap));
+    }
+
+}

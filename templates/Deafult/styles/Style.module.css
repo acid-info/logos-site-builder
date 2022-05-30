@@ -1,0 +1,113 @@
+@value vars: "vars.css";
+@value pagePaddingT, maxWidth from vars;
+
+.container{
+    display: grid;
+    grid-template-areas:"header" "banner" "search" "sidebar" "content" "toc" "footer";
+    padding-top: pagePaddingT;
+}
+
+.container > * {
+    margin-bottom: pagePaddingT;
+}
+
+.search{
+    position: sticky;
+    display: block;
+    top: 0;
+    z-index: 9;
+}
+
+.toc {
+    display: none;
+}
+
+.footer {}
+
+.container nav ul{
+    list-style: none;
+    margin: 0;
+    padding-top: 0;
+}
+
+
+/*LAYOUT SPACING*/
+.container a:global(.anchor){
+    display: block;
+    position: relative;
+    top: calc(-1 * calc(4 *  var(--lh)));
+}
+
+/*TYPOGRAPHY sizing*/
+.container p{
+    text-align: justify;
+}
+
+/*TYPOGRAPHY SPACING*/
+.toc :global(.h-1){
+    margin-top: calc(2 * var(--lh));
+}
+.toc :global(.h-2+.h-2){
+    margin-top: var(--lh);
+}
+.toc :global(.h-3){
+    padding-left: var(--column-gap);
+}
+.toc :global(.h-4){
+    padding-left: calc(2 * var(--column-gap));
+}
+.content >*:first-child{
+    margin-top: 0;
+}
+.sidebar :global(.sidebar-menu) ul:first-child{
+    padding-left: 0;
+}
+.container nav > ul{
+    padding-left: 0;
+    padding-top: 0;
+    margin: 0;
+}
+
+/*STYLE*/
+.container a:global(.ha){
+    font-size: inherit;
+    color: inherit;
+    text-decoration: none;
+}
+
+@media (min-width:600px){
+    .container{
+        max-width: maxWidth;
+        margin: auto;
+        grid-template-columns: repeat(5, 1fr);
+        grid-column-gap: calc(var(--column-gap) * 2);
+        grid-template-areas:
+      "header header header header header"
+      "banner banner banner banner banner"
+      ". search search search ."
+      "sidebar content content content toc"
+      "footer footer footer footer footer";
+    }
+
+    .toc ul{
+        border-left: 1px solid;
+        padding-left: var(--column-gap) !important;
+    }
+
+    .sidebar, .toc{
+        display: block;
+        position: sticky;
+        top: pagePaddingT;
+        width: auto;
+        height: fit-content;
+    }
+
+    .search{
+        top: pagePaddingT;
+        padding-right: var(--column-gap);
+    }
+
+    .content{
+        padding-right: var(--column-gap);
+    }
+}

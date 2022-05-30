@@ -1,0 +1,25 @@
+@value vars: "../../styles/vars.css";
+@value pagePaddingT from vars;
+
+.container{
+    grid-area: search;
+}
+
+.searchBox input{
+    width: 100%;
+}
+
+.searchBox :global(.logos-search-box-results){
+    border: 1px solid;
+    box-sizing: border-box;
+    padding: var(--lh) var(--column-gap) var(--lh) 0;
+    position: absolute;
+    z-index: 9999;
+    background: var(--bg-color);
+}
+
+@media (min-width:600px) {
+    .searchBox :global(.logos-search-box-results){
+        width: calc(100% - var(--column-gap));
+    }
+}

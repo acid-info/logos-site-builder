@@ -1,0 +1,2 @@
+@value pagePaddingT: calc(2 * var(--lh));
+@value maxWidth: 1400px;

@@ -5,5 +5,5 @@
     left: 0;
     top: 0;
     background: var(--bg-color);
-    z-index: 999999999;
+    z-index: 999;
 }
