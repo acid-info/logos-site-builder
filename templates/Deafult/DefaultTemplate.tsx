@@ -5,7 +5,6 @@ import {Header} from "./containers/Header/Header";
 
 import style from "./styles/Style.module.css";
 
-
 import {Footer} from "./containers/Footer/Footer";
 import {Banner} from "./containers/Banner/Banner";
 import {Content} from "./containers/Content/Content";

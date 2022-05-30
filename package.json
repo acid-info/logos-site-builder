@@ -21,6 +21,7 @@
     "highlight.js": "^11.5.1",
     "markdown-to-text": "^0.1.1",
     "markdown-toc": "^1.2.0",
+    "mermaid.cli": "^0.5.1",
     "next": "12.1.4",
     "react": "18.0.0",
     "react-dom": "18.0.0",
@@ -32,6 +33,7 @@
     "rehype-slug": "^5.0.1",
     "remark-attr": "^0.11.1",
     "remark-custom-blocks": "^2.6.0",
+    "remark-mermaid": "^0.2.0",
     "remark-toc": "^8.0.1",
     "traverse": "^0.6.6",
     "url-slug": "^3.0.3"

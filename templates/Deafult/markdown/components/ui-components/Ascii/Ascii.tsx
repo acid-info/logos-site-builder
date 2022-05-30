@@ -20,6 +20,7 @@ export const Ascii: FC<PropsWithChildren<IProps>> = (props) => {
             if (asciiContainer) {
                 const lines = asciiContainer.innerText.trim().split("\n")
                 const targetLine = lines.sort((a,b) => b.length-a.length)[0];
+                console.log(asciiContainer.innerText)
                 const glyphsPerTargetLine = targetLine.length;
                 console.log(maxGlyphsPerLine, glyphsPerTargetLine)
                 const scale = maxGlyphsPerLine / glyphsPerTargetLine;

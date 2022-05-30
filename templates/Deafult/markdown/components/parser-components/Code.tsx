@@ -13,6 +13,7 @@ interface ICodeProps{
 const Code: FC<PropsWithChildren<ICodeProps>> = ({className, hastProps, children}) => {
     const ref = useRef<HTMLElement>(null);
     const [hovered, setHovered] = useState(false)
+    console.log("className", className)
 
     const onEnter = () => {
         setHovered(true)
