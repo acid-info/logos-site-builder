@@ -1,15 +1,16 @@
 @value vars: "vars.css";
-@value pagePaddingT, maxWidth from vars;
+@value pagePaddingT, footerHeight, bannerHeight, maxWidth from vars;
 
 .container{
     display: grid;
-    grid-template-areas:"header" "banner" "search" "sidebar" "content" "toc" "footer";
+    grid-template-columns: 100%;
+    grid-template-areas: "header" "banner" "search" "main" "footer";
     padding-top: pagePaddingT;
+    position: relative;
+    min-height: calc(100vh - bannerHeight);
 }
 
-.container > * {
-    margin-bottom: pagePaddingT;
-}
+.banner{}
 
 .search{
     position: sticky;
@@ -18,11 +19,26 @@
     z-index: 9;
 }
 
+.main{
+    grid-area: main;
+    padding-bottom: footerHeight;
+}
+
+.container > * {
+    margin-bottom: pagePaddingT;
+}
+
 .toc {
     display: none;
 }
 
-.footer {}
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: calc(footerHeight - pagePaddingT);
+    padding-top: pagePaddingT;
+}
 
 .container nav ul{
     list-style: none;
@@ -128,8 +144,22 @@
       "header header header header header"
       "banner banner banner banner banner"
       ". search search search ."
-      "sidebar content content content toc"
+      "main main main main main"
       "footer footer footer footer footer";
+    }
+
+    .main, .footer{
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-column-gap: calc(var(--column-gap) * 2);
+    }
+
+    .main{
+        grid-template-areas: "sidebar content content content toc";
+    }
+
+    .footer :global(.footer-content-container){
+        grid-column: 2/5;
     }
 
     .toc ul{

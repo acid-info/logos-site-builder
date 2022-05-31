@@ -1,4 +1,7 @@
+@value vars: "../../styles/vars.css";
+@value bannerHeight from vars;
+
 .container{
-    height: 15vh;
+    height: bannerHeight;
     grid-area: banner;
 }

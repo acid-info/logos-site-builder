@@ -16,7 +16,7 @@ import {transformImageUri} from "../../markdown/logos-react-md-transformers/imag
 export const Content: FC<PropsWithChildren<IProps>> = (props) => {
     const {className="", children, content, append = true} = props;
     return (
-        <main className={`${styles.container} ${className}`}>
+        <article className={`${styles.container} ${className}`}>
             {!append && children}
             <ReactMarkdown
                 rehypePlugins={logosRehypePlugins}
@@ -27,6 +27,6 @@ export const Content: FC<PropsWithChildren<IProps>> = (props) => {
                 {content}
             </ReactMarkdown>
             {append && props.children}
-        </main>
+        </article>
     )
 }

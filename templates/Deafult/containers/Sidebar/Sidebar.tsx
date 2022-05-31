@@ -18,8 +18,11 @@ export const Sidebar: FC<IProps> = ({className}) => {
     }
 
     const toggle = () => {
-        setMobileShow(!mobileShow);
-        setDesktopShow(!desktopShow);
+        if(window.innerWidth <=600){
+            setMobileShow(!mobileShow);
+        }else{
+            setDesktopShow(!desktopShow);
+        }
     }
 
     return (
