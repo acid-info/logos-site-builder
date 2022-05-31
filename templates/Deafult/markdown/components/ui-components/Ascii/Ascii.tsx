@@ -20,9 +20,7 @@ export const Ascii: FC<PropsWithChildren<IProps>> = (props) => {
             if (asciiContainer) {
                 const lines = asciiContainer.innerText.trim().split("\n")
                 const targetLine = lines.sort((a,b) => b.length-a.length)[0];
-                console.log(asciiContainer.innerText)
                 const glyphsPerTargetLine = targetLine.length;
-                console.log(maxGlyphsPerLine, glyphsPerTargetLine)
                 const scale = maxGlyphsPerLine / glyphsPerTargetLine;
                 asciiContainer.style.transform = `scale(${scale})`;
                 asciiContainer.style.transformOrigin = `top left`
@@ -37,14 +35,13 @@ export const Ascii: FC<PropsWithChildren<IProps>> = (props) => {
         window.addEventListener("resize", () => adjustScale());
         return () => window.removeEventListener("resize", () => adjustScale());
     }, []);
-
     return (
         <div className={logosCustomMarkdownLanguages.ascii}
              style={{opacity: ready ? 1 : 0}}
              ref={ref}
         >
             <span style={{position: "fixed", opacity: 0, zIndex: -1}} ref={measureCharRef}>-</span>
-            {children}
+            <p>{children}</p>
         </div>
     )
 }

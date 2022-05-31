@@ -1,16 +1,20 @@
-import {createContext, FC, PropsWithChildren, useContext} from 'react'
+import {createContext, CSSProperties, FC, PropsWithChildren, useContext} from 'react'
 import {INavigationItemProps, ISiteConfigs} from "../types/data.types";
 
 import {siteConfig, sitemapFlat} from "../configs/siteconfigs";
 
+const codeBlockStyle = require("/public/compiled/codeblock-style.json");
+
 interface ISiteProviderContext{
     config: ISiteConfigs;
-    sitemap: INavigationItemProps[]
+    sitemap: INavigationItemProps[];
+    codeBlockStyle: { [key: string]: CSSProperties }
 }
 
 const defaultSiteState: ISiteProviderContext = {
     config: siteConfig,
-    sitemap: sitemapFlat
+    sitemap: sitemapFlat,
+    codeBlockStyle: codeBlockStyle
 }
 
 const logosSiteContext = createContext<ISiteProviderContext>(defaultSiteState)

@@ -7,7 +7,6 @@ const THEME_STYLE_PATH = join(COMPILED_DIR, "theme.css");
 module.exports = async (siteConfigs) => {
     const {theme: {palettes, fontFamily, codeTheme = "github-dark.css"}} = siteConfigs;
     const css = `
-        @import "highlight.js/styles/${codeTheme}";
         :root{
             --dark-background-color: ${palettes.dark.background};
             --dark-text-color: ${palettes.dark.text};

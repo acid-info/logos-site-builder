@@ -11,7 +11,7 @@ export const AsciiWrapper: FC<PropsWithChildren<IProps>> = (props) => {
     const [enlarge, setEnlarge] = useState(false);
 
     return (
-        <div className={`logos-ascii-wrapper`}>
+        <>
             <Ascii>
                 {children}
             </Ascii>
@@ -32,6 +32,6 @@ export const AsciiWrapper: FC<PropsWithChildren<IProps>> = (props) => {
                     </Ascii>
                 </Dialog>
             }
-        </div>
+        </>
     )
 }

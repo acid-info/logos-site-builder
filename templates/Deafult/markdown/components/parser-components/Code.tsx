@@ -1,9 +1,8 @@
-import ReactMarkdown from "react-markdown";
-import {CodeComponent} from "react-markdown/lib/ast-to-react";
-import {hljsLangClassnames, logosCustomMarkdownLanguages} from "../../configs";
-import {CopyToClipboard} from "../../../../../components/CopyToClipboard";
-import {FC, PropsWithChildren, useRef, useState} from "react";
+import {FC, memo, PropsWithChildren, useRef, useState} from "react";
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 
+import {CopyToClipboard} from "../../../../../components/CopyToClipboard";
+import {useLogosSite} from "../../../../../context/SiteProvider";
 
 interface ICodeProps{
     hastProps: {};
@@ -11,9 +10,8 @@ interface ICodeProps{
 }
 
 const Code: FC<PropsWithChildren<ICodeProps>> = ({className, hastProps, children}) => {
-    const ref = useRef<HTMLElement>(null);
+    const ref = useRef<HTMLDivElement>(null);
     const [hovered, setHovered] = useState(false)
-    console.log("className", className)
 
     const onEnter = () => {
         setHovered(true)
@@ -24,39 +22,42 @@ const Code: FC<PropsWithChildren<ICodeProps>> = ({className, hastProps, children
     }
 
     return (
-        <code className={className}
-              {...hastProps}
+        <div className={`codeblock`}
               ref={ref}
               onMouseEnter={onEnter}
               onMouseLeave={onExit}
         >
             <CopyToClipboard target={ref}
                              visible={hovered}
-                             onCopy={() => console.log("yayyyy")}
+                             onCopy={() => {}}
             />
             {children}
-        </code>
+        </div>
     )
 }
 
-export const CustomMarkdownCode: CodeComponent = ({node, inline, className = "", children, ..._props}) => {
-    const match = hljsLangClassnames.find(l => (className||"").includes(l));
-    const isAscii = className.includes(`language-${logosCustomMarkdownLanguages.ascii}`);
+export const CodeWrapper = memo(({node, inline, className, children, ...props}: any) => {
+    const match = /language-(\w+)/.exec(className || '');
+    const {codeBlockStyle} = useLogosSite();
 
-    return !!match?
-        (
-            isAscii?
-                <p>{String(children)}</p>
-                :
-            <>
-                <ReactMarkdown>
-                    {String(children)}
-                </ReactMarkdown>
-            </>
-        )
-        :
-    <Code className={className} hastProps={_props}>
-        {children}
-    </Code>
-
-}
+    return match ? (
+        <Code hastProps={props} className={className}>
+            <SyntaxHighlighter
+                style={codeBlockStyle}
+                language={match[1]}
+                PreTag="div"
+                className="codeStyle"
+                showLineNumbers={false}
+                wrapLines={false}
+                useInlineStyles={true}
+                {...props}
+            >
+                {String(children)}
+            </SyntaxHighlighter>
+        </Code>
+    ) : (
+        <code className={className} {...props}>
+            {String(children)}
+        </code>
+    );
+})

@@ -21,7 +21,8 @@ export const CopyToClipboard: FC<ICopyToClipboard> = (props) => {
     const onCopyHandler = () => {
         setCopied(false)
         if (target.current !== null && target.current.textContent !== null){
-            const value = target.current.textContent;
+            const codeBlock = target.current.children[1];
+            const value = codeBlock.textContent;
             navigator.clipboard.writeText(value)
                 .then(() => {
                     setCopied(true)

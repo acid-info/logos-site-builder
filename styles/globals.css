@@ -90,12 +90,13 @@ h1,h2,h3,h4,h5,h6{
 
 pre{
     overflow-x: auto;
-    padding: 0 1em;
+    padding: 0;
+}
 
-    background: var(--bg-color) !important;
-    color: var(--txt-color);
+pre:not(.logos-block-ascii),
+pre:not(.logos-block-mermaid),
+pre:not(.logos-block-mermaid-ascii){
     border: 1px dashed var(--txt-color);
-    box-sizing: content-box;
 }
 
 img{
@@ -119,23 +120,23 @@ img:hover{
 /**********/
 /*MARKDOWN*/
 
+
 /*CODE highlights*/
-pre:not(:hover) .hljs {
-    display: block;
-    background: transparent !important;
+.codeStyle{
+    margin: 0 !important;
+    border-radius: 0 !important;
+}
+pre{
+    padding: var(--lh);
 }
 
-pre:not(:hover) .hljs-doctag,
-pre:not(:hover) .hljs-formula,
-pre:not(:hover) .hljs-keyword {
-    color: var(--hla-color);
+pre:not(:hover) > *{
+    background: transparent !important;
+    filter: grayscale(1);
 }
-pre:not(:hover) .hljs-addition,
-pre:not(:hover) .hljs-attribute,
-pre:not(:hover) .hljs-meta .hljs-string,
-pre:not(:hover) .hljs-regexp,
-pre:not(:hover) .hljs-string{
-    color: var(--hlm-color);
+
+.logos-ascii{
+    white-space: pre;
 }
 
 .copy-left{

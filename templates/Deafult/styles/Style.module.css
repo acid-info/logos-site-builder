@@ -90,7 +90,6 @@
     padding-top: 0;
 }
 
-
 .content >*:first-child{
     margin-top: 0;
 }
@@ -110,10 +109,13 @@
     text-decoration: none;
 }
 
-.container :global(pre){
-    margin: var(--lh) 0 !important;
-    padding-top: calc(var(--lh) / 2) !important;
-    padding-bottom: calc(var(--lh) / 2) !important;
+.container :global(.codeblock){
+    position: relative;
+}
+.container :global(.copy-to-clipboard){
+    position: absolute;
+    top: var(--lh);
+    right: var(--column-gap);
 }
 
 @media (min-width:600px){

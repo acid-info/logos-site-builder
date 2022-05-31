@@ -1,10 +1,8 @@
-import {CustomMarkdownCode} from "./parser-components/Code";
-import {CustomMarkdownPre} from "./parser-components/Pre";
+import {CodeWrapper} from "./parser-components/Code";
 import {CustomMarkdownH} from "./parser-components/H";
 
 export const logosReactMarkdownComponents = {
-    code: CustomMarkdownCode,
-    pre: CustomMarkdownPre,
+    code: CodeWrapper,
     h1: CustomMarkdownH,
     h2: CustomMarkdownH,
     h3: CustomMarkdownH,
