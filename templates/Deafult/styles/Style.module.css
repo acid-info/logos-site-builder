@@ -7,7 +7,6 @@
     grid-template-areas: "header" "banner" "search" "main" "footer";
     padding-top: pagePaddingT;
     position: relative;
-    min-height: calc(100vh - bannerHeight);
 }
 
 .banner{}
@@ -22,6 +21,7 @@
 .main{
     grid-area: main;
     padding-bottom: footerHeight;
+    min-height: calc(100vh - bannerHeight);
 }
 
 .container > * {
