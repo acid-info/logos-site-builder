@@ -5,7 +5,7 @@ const {readdir, rm, copyFile, mkdir} = require("fs/promises");
 const {STATIC_CONTENT_DIR_TARGET,LOCAL_CONTENT_DIST, supportedStaticFilesExtension} = require("./configs");
 
 module.exports = async (siteConfig) => {
-    const {static_assets_folder} = siteConfig;
+    const {static_assets_folder =  "static-assets"} = siteConfig;
     const staticSourceDir = join(LOCAL_CONTENT_DIST, static_assets_folder);
 
     if(!existsSync(staticSourceDir)){
