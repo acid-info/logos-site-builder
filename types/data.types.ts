@@ -61,13 +61,22 @@ export interface ISiteSeoSocialMedia{
     provider: string;
 }
 
+
+export interface ISiteConfigExternalLink{
+    text: string;
+    url: string;
+    category: string;
+}
+
 export interface ISiteConfigs{
     ds_id: ELogosDesignSystemID;
     theme: Theme;
     template: ESiteTemplateNames;
     navigation: {
         home: string;
-        homeTitle: string;
+        fileOrdersInSidenav: string[],
+        folderOrdersInSidenav: string[],
+        external_links: ISiteConfigExternalLink[];
     }
     seo: {
         title: string;

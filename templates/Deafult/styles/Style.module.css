@@ -73,6 +73,17 @@
     padding-left: calc(2 * var(--column-gap));
 }
 
+.container article h2:not(:first-child){
+    margin-top: calc(5 * var(--lh));
+}
+.container article h2:not(:first-child){
+    margin-top: calc(4 * var(--lh));
+}
+
+.container article h3:not(:first-child){
+    margin-top: calc(3 * var(--lh));
+}
+
 .container :global(.logos-ascii-wrapper){
     position: relative;
 }
@@ -132,6 +143,12 @@
     position: absolute;
     top: var(--lh);
     right: var(--column-gap);
+}
+
+.container :global(blockquote){
+    font-family: serif;
+    line-height: var(--lh);
+    font-weight: bold;
 }
 
 @media (min-width:600px){

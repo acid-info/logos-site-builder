@@ -152,6 +152,12 @@ pre:not(:hover) > *{
     transform: scaleX(-1);
 }
 
+table, th, td {
+    border: 1px solid;
+}
+table {
+    width: 100%;
+}
 ::-webkit-scrollbar {
     width: var(--scrollbar-width);
     height: var(--scrollbar-height);

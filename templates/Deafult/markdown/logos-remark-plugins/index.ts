@@ -1,6 +1,6 @@
 import {PluggableList} from "react-markdown/lib/react-markdown";
-// const mermaid = require('remark-mermaid');
+import remarkGfm from 'remark-gfm'
 
 export const logosRemarkPlugins: PluggableList = [
-
+    remarkGfm
 ]
