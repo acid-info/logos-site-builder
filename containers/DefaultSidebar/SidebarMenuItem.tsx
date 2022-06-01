@@ -23,7 +23,9 @@ export const DefaultSidebarMenuItem: FC<PropsWithChildren<IMenuItemProps>> = (pr
                         </span>
                         :
                         <Link href={`/${item.path.join("/")}`} scroll={false}>
-                            <a className={isActive ? "active" : ""}>
+                            <a className={isActive ? "active" : ""}
+                               title={item.title}
+                            >
                                 <span>{item.title}</span>
                             </a>
                         </Link>

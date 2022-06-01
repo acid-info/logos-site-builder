@@ -71,6 +71,10 @@ nav a:hover{
     text-transform: capitalize;
 }
 
+a:hover{
+    text-decoration: underline !important;
+}
+
 nav a.active{
     text-decoration: underline;
 }

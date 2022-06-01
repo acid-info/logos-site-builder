@@ -6,3 +6,10 @@
 
 .menuItem{
 }
+
+.menuItem :global(.menuitem-title){
+    max-width: 150px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

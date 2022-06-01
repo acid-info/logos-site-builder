@@ -1,6 +1,6 @@
 const {existsSync} = require("fs");
 const fsp = require('fs').promises;
-const {downloadRepo} = require("./utils");
+const {downloadSource} = require("./utils");
 
 const {LOCAL_CONTENT_DIST, SITE_CONFIG_JSON_PATH_SOURCE} = require("./configs");
 const {CONTENT_SOURCE_URL, CONTENT_SOURCE_TYPE} = process.env;
@@ -19,7 +19,7 @@ module.exports = async () => {
             await fsp.rm(LOCAL_CONTENT_DIST, { recursive: true, force: true});
         }
         await fsp.mkdir(LOCAL_CONTENT_DIST);
-        await downloadRepo(CONTENT_SOURCE_URL, LOCAL_CONTENT_DIST);
+        await downloadSource(CONTENT_SOURCE_URL, LOCAL_CONTENT_DIST);
     }catch (e){
         console.log("Error downloading content from source, ", CONTENT_SOURCE_URL);
         console.error(e);

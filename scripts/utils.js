@@ -1,19 +1,63 @@
-const download = require("download-git-repo");
-const {readdirSync, statSync} = require("fs");
-const {readFile} = require("fs").promises;
+const downloadGit = require("download-git-repo");
+const {readdirSync, statSync, existsSync} = require("fs");
+const {tmpdir} = require("os");
+const {readFile, mkdtemp, rm, readdir} = require("fs").promises;
 const {extname, relative, sep, basename, join} = require("path");
 const matter = require("gray-matter");
 const slug = require("url-slug");
+const {copy} = require("fs-extra");
+const {LOCAL_CONTENT_DIST} = require("./configs");
+
+const isValidSourceUrl = (url) => !(!url || typeof url !== "string" || !url.endsWith(".zip"));
 
 const downloadRepo = (url, dist) => {
+    if (!isValidSourceUrl(url)) {
+        return Promise.reject(`Invalid url for remote source: ${url}`);
+    }
     return new Promise((resolve, reject) => {
-        download(`direct:${url}`, dist, {}, (err) => {
+        downloadGit(`direct:${url}`, dist, {}, (err) => {
             if(err){
                 return reject(err)
             }
             return resolve();
         })
     })
+}
+
+
+
+const downloadSource = async (url, dist) => {
+    return downloadRepo(url, dist)
+}
+
+
+const downloadExternalSource = async (url, sourceSubFolderPath = null, targetSubFolderName = null) => {
+    let tmpDir;
+    try {
+        tmpDir = await mkdtemp(tmpdir());
+        await downloadRepo(url, tmpDir);
+        const folderPath = join(tmpDir, sourceSubFolderPath);
+
+        if(!existsSync(folderPath)){
+            throw new Error(`Error: downloading external source; Could not find ${sourceSubFolderPath} in ${url}`);
+        }
+
+        const folderPathDist = join(LOCAL_CONTENT_DIST, targetSubFolderName||sourceSubFolderPath);
+        await copy(folderPath, folderPathDist);
+
+    } catch (e) {
+        console.log(e);
+    } finally {
+        try {
+            if (tmpDir) {
+                console.log("removing");
+                await rm(tmpDir, {recursive: true, force: true});
+            }
+        } catch (e) {
+            console.error(`An error has occurred while removing the temp folder at ${tmpDir}. Please remove it manually. Error: ${e}`);
+        }
+    }
+
 }
 
 class TreeNodeMarkdown {
@@ -107,6 +151,8 @@ async function buildSitemapForMarkdownDirectory(rootPath, siteConfigs) {
 }
 
 module.exports= {
-    downloadRepo,
-    buildSitemapForMarkdownDirectory
+    downloadSource,
+    downloadExternalSource,
+    buildSitemapForMarkdownDirectory,
+    isValidSourceUrl
 }
