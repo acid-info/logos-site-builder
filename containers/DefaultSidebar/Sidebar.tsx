@@ -15,7 +15,7 @@ interface ISidebarProps{
 
 export const DefaultSidebar: FC<ISidebarProps> = (props) => {
     const {className = "", onClose = ()=>{}, onOpen = () => {}} = props;
-    const {config: {navigation: {external_links}}} = useLogosSite();
+    const {config: {navigation: {external_links = []}}} = useLogosSite();
     const mainItems = sidebar.children.filter((c) => c.children.length===0)
     const subItems = sidebar.children.filter((c) => c.children.length!==0);
 
