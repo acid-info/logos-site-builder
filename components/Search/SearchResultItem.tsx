@@ -22,7 +22,7 @@ export const SearchResultItem: FC<IProps> = (props) => {
         Math.min(item.content.length, posIndex+q.length+searchResultSnippedTextLengthPost)
     );
     const previewText = snippedText.replace(new RegExp(q, "gi"), (match) => `<mark>${match}</mark>`);
-    const p = item.id=== siteConfigs.navigation.homeTitle? "/":item.id;
+    const p = item.id=== siteConfigs.navigation.home? "/":item.id;
 
     return (
         <div className={"search-result-item"}>
