@@ -3,7 +3,7 @@ const {CONTENT_SOURCE_URL} = process.env;
 
 module.exports = async (siteConfigs) => {
     try {
-        const {external_sources} = siteConfigs;
+        const {external_sources = []} = siteConfigs;
 
         for await (const externalSource of external_sources){
             if(!isValidSourceUrl(externalSource.url)){
