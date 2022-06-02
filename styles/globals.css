@@ -100,7 +100,7 @@ pre{
 pre:not(.logos-block-ascii),
 pre:not(.logos-block-mermaid),
 pre:not(.logos-block-mermaid-ascii){
-    border: 1px dashed var(--txt-color);
+    border: 2px solid var(--hlm-color);
 }
 
 img{

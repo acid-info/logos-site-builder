@@ -6,4 +6,5 @@
     top: 0;
     background: var(--bg-color);
     z-index: 999;
+    overflow-y: auto;
 }

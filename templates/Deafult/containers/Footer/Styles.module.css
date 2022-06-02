@@ -11,6 +11,12 @@
     padding-top: var(--lh)
 }
 
+.container .socialMedia{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+}
 @media (min-width:600px) {
     .container{
         text-align: center;
@@ -24,8 +30,8 @@
     }
 
     .container .socialMedia{
-        display: flex;
         gap: 5px;
+        justify-content: flex-start;
     }
 
     .container .socialMedia a svg{

@@ -5,7 +5,6 @@ import {DefaultSidebarMenuItem} from "./SidebarMenuItem";
 import {INavigationItemProps} from "../../types/data.types";
 
 import styles from "./Styles.module.css";
-import {PlusIcon} from "../../components/design-system/html-icons";
 
 interface IMenuProps{
     items: INavigationItemProps[]
@@ -26,7 +25,6 @@ export const DefaultSidebarMenu: FC<IMenuProps> = (props) => {
         if((item.path[0]||"").length===0) return asPath === "" || asPath === "/";
         return asPath.indexOf(item.path.join("/")) > -1;
     }
-
 
     return(
         <ul className={`sidebar-menu ${cname} ${styles.menu}`}>

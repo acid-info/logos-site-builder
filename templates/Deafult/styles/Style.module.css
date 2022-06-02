@@ -177,6 +177,7 @@
 
     .footer :global(.footer-content-container){
         grid-column: 2/5;
+        width: calc(100% - var(--column-gap));
     }
 
     .toc ul{
