@@ -11,10 +11,10 @@ interface IProps{
 
 export const Toc: FC<IProps> = ({className="", toc}) => {
     return (
-        <div className={`${style.container} ${className}`}>
+        <aside className={`${style.container} ${className}`}>
             <MarkdownToc toc={toc}
                          className={style.tocComponent}
             />
-        </div>
+        </aside>
     )
 }

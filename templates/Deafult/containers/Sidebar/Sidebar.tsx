@@ -34,7 +34,7 @@ export const Sidebar: FC<IProps> = ({className}) => {
     }
 
     return (
-        <div className={`${styles.container} ${className}`}>
+        <aside className={`${styles.container} ${className}`}>
             <SidebarToggleButton onClick={toggle} />
             {
                 mobileShow&&
@@ -47,6 +47,6 @@ export const Sidebar: FC<IProps> = ({className}) => {
                 <DefaultSidebar className={`${styles.desktop}`}/>
             }
 
-        </div>
+        </aside>
     )
 }

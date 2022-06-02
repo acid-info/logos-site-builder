@@ -132,9 +132,10 @@ img:hover{
 }
 pre{
     padding: var(--lh);
+    overflow-y: hidden;
 }
 
-pre:not(:hover) > *{
+pre:not(:hover){
     background: transparent !important;
     filter: grayscale(1);
 }

@@ -18,15 +18,15 @@ export default function rehypeLogos(options: any) {
 
                     switch (blockName){
                         case ECustomBlockNames.ASCII:{
-                            parent.children[index] = {
+                            parent.properties.className = `logos-${blockName}-wrapper`
+                            parent.children = [{
                                 "type": "element",
                                 "tagName": "div",
                                 "properties": {
-                                    "children": <AsciiWrapper>{node.children.map((c: any) => String(c.value))}</AsciiWrapper>,
-                                    className: `logos-${blockName}`
+                                    "children": <AsciiWrapper>{node.children.map((c: any) => String(c.value))}</AsciiWrapper>
                                 },
                                 "children": []
-                            }
+                            }]
                             return;
                         }
 

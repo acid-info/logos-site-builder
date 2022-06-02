@@ -24,11 +24,11 @@ export const DefaultTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => {
             <Header className={style.header}/>
             <Banner className={style.banner}/>
             <SearchBox className={style.search}/>
-            <div className={style.main}>
+            <main className={style.main}>
                 <Sidebar className={style.sidebar}/>
                 <Content className={style.content} content={markdown.content} />
                 <Toc className={style.toc} toc={markdown.toc}/>
-            </div>
+            </main>
             <Footer className={style.footer}/>
         </div>
     )

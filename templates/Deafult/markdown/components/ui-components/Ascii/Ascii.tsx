@@ -3,11 +3,14 @@ import {logosCustomMarkdownLanguages} from "../../../configs";
 interface IProps {
 }
 
+import style from "./Style.module.css";
+
 export const Ascii: FC<PropsWithChildren<IProps>> = (props) => {
     const {children} = props;
     const ref = useRef<HTMLDivElement>(null);
     const measureCharRef = useRef<HTMLSpanElement>(null);
     const [ready, setReady] = useState(false);
+    const [rClass, setRClass] = useState<string|undefined>(undefined);
 
     const adjustScale = (cb: () => void = () => {}) => {
         if (ref.current && ref.current.parentElement && measureCharRef.current) {
@@ -21,10 +24,20 @@ export const Ascii: FC<PropsWithChildren<IProps>> = (props) => {
                 const lines = asciiContainer.innerText.trim().split("\n")
                 const targetLine = lines.sort((a,b) => b.length-a.length)[0];
                 const glyphsPerTargetLine = targetLine.length;
-                const scale = maxGlyphsPerLine / glyphsPerTargetLine;
+                let scale = maxGlyphsPerLine / glyphsPerTargetLine;
+
+                if(
+                    containerBox.width*scale > (window.innerWidth*0.8)
+                    ||
+                    containerBox.height*scale > (window.innerHeight*0.8)
+                ){
+                    scale = 1;
+                }
                 asciiContainer.style.transform = `scale(${scale})`;
                 asciiContainer.style.transformOrigin = `top left`
                 ref.current.style.height = `calc(2em + ${asciiContainer.getBoundingClientRect().height}px)`
+                console.log(containerBox)
+                setRClass(containerBox.height>containerBox.width? "vertical": "horizontal")
                 cb();
             }
         }
@@ -36,7 +49,7 @@ export const Ascii: FC<PropsWithChildren<IProps>> = (props) => {
         return () => window.removeEventListener("resize", () => adjustScale());
     }, []);
     return (
-        <div className={logosCustomMarkdownLanguages.ascii}
+        <div className={`${style.asciiContainer} ${logosCustomMarkdownLanguages.ascii} ${rClass&&rClass}`}
              style={{opacity: ready ? 1 : 0}}
              ref={ref}
         >

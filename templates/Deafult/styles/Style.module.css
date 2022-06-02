@@ -24,6 +24,11 @@
     min-height: calc(100vh - bannerHeight);
 }
 
+.main > * {
+    overflow: hidden;  /* NEW */
+    min-width: 0;      /* NEW; needed for Firefox */
+}
+
 .container > * {
     margin-bottom: pagePaddingT;
 }
@@ -149,6 +154,10 @@
     font-family: serif;
     line-height: var(--lh);
     font-weight: bold;
+}
+
+.container :global(.logos-ascii-wrapper){
+    position: relative;
 }
 
 @media (min-width:600px){

@@ -1,0 +1,15 @@
+.fullscreenButton {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: xx-large;
+}
+
+.asciiContainer{
+    max-width: 80vw !important;
+    max-height: 80vh !important;
+}
+
+.asciiContainer :global(.vertical){
+
+}

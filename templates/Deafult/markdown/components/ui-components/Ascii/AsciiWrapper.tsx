@@ -6,6 +6,8 @@ import {Ascii} from "./Ascii";
 interface IProps {
 }
 
+import style from "./Style.module.css";
+
 export const AsciiWrapper: FC<PropsWithChildren<IProps>> = (props) => {
     const {children} = props;
     const [enlarge, setEnlarge] = useState(false);
@@ -16,13 +18,7 @@ export const AsciiWrapper: FC<PropsWithChildren<IProps>> = (props) => {
                 {children}
             </Ascii>
             <FullScreenIcon onClick={() => setEnlarge(true)}
-                            style={{
-                                position: 'absolute',
-                                bottom: `1em`,
-                                right: 0,
-                                fontSize: "xx-large"
-                            }}
-                            className={"button"}
+                            className={`${style.fullscreenButton} button`}
             />
             {
                 enlarge&&
