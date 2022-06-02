@@ -1,7 +1,7 @@
 const downloadGit = require("download-git-repo");
 const {readdirSync, statSync, existsSync} = require("fs");
 const {tmpdir} = require("os");
-const {readFile, mkdtemp, rm, readdir} = require("fs").promises;
+const {readFile, mkdtemp, rm, readdir, stat} = require("fs").promises;
 const {extname, relative, sep, basename, join} = require("path");
 const matter = require("gray-matter");
 const slug = require("url-slug");
@@ -34,17 +34,22 @@ const downloadSource = async (url, dist) => {
 const downloadExternalSource = async (url, sourceSubFolderPath = null, targetSubFolderName = null) => {
     let tmpDir;
     try {
-        tmpDir = await mkdtemp(tmpdir());
-        await downloadRepo(url, tmpDir);
-        const folderPath = join(tmpDir, sourceSubFolderPath);
+        if(sourceSubFolderPath){
+            tmpDir = await mkdtemp(tmpdir());
+            await downloadRepo(url, tmpDir);
+            const folderPath = join(tmpDir, sourceSubFolderPath);
 
-        if(!existsSync(folderPath)){
-            throw new Error(`Error: downloading external source; Could not find ${sourceSubFolderPath} in ${url}`);
+            if(!existsSync(folderPath)){
+                throw new Error(`Error: downloading external source; Could not find ${sourceSubFolderPath} in ${url}`);
+            }
+
+            const folderPathDist = join(LOCAL_CONTENT_DIST, targetSubFolderName||sourceSubFolderPath);
+            await copy(folderPath, folderPathDist);
+        }else{
+            const name = targetSubFolderName || url.split("/")[4];
+            const folderPathDist = join(LOCAL_CONTENT_DIST, name);
+            await downloadRepo(url, folderPathDist);
         }
-
-        const folderPathDist = join(LOCAL_CONTENT_DIST, targetSubFolderName||sourceSubFolderPath);
-        await copy(folderPath, folderPathDist);
-
     } catch (e) {
         console.log(e);
     } finally {
@@ -66,6 +71,7 @@ class TreeNodeMarkdown {
     localPath;
     path;
     children;
+    isDir;
     constructor(path, rootPath) {
         this.localPath = relative(rootPath, path);
         // this.localPath = path;
@@ -92,6 +98,20 @@ class TreeNodeMarkdown {
     }
 }
 
+async function walkDir(dir, cb = () => {}) {
+    let files = await readdir(dir);
+    return await Promise.all(files.map(async file => {
+        const filePath = join(dir, file);
+        const stats = await stat(filePath);
+        if (stats.isDirectory()) {
+            cb(filePath)
+            return walkDir(filePath);
+        }
+        // else if(stats.isFile()) return filePath;
+    }));
+    // return files.reduce((all, folderContents) => all.concat(folderContents), []);
+}
+
 async function buildSitemapForMarkdownDirectory(rootPath, siteConfigs) {
     const {navigation = {}, static_assets_folder} = siteConfigs;
     const {fileOrdersInSidenav = [], folderOrdersInSidenav = []} = navigation;
@@ -112,20 +132,29 @@ async function buildSitemapForMarkdownDirectory(rootPath, siteConfigs) {
             for await (let child of children) {
                 const childPath = join(currentNodeLocalPathAbs, child);
                 const childNode = new TreeNodeMarkdown(childPath, rootPath);
-                const isDirectory = statSync(join(rootPath, childNode.localPath)).isDirectory();
+                childNode.isDir = statSync(join(rootPath, childNode.localPath)).isDirectory();
                 const extension = extname(childNode.localPath);
                 const isAllowed = ALLOWED_EXTENSIONS.includes(extension) && basename(childNode.localPath, extension).toLowerCase() !== "readme";
 
                 if (isAllowed) {
                     await childNode.attachMetadata(rootPath);
-                    currentNode.children.push(childNode);
-                    flatmap.push(childNode);
-                    childNode.setOrder(fileOrdersInSidenav.indexOf(childNode.localPath))
+
+                    if(childNode.localPath.endsWith("index.md")){
+                        currentNode.title = childNode.title!=="index"? childNode.title :  currentNode.title;
+                        currentNode.localPath = childNode.localPath;
+                        flatmap.push({
+                            ...currentNode,
+                            children: []
+                        });
+                    }else{
+                        currentNode.children.push(childNode);
+                        flatmap.push(childNode);
+                        childNode.setOrder(fileOrdersInSidenav.indexOf(childNode.localPath))
+                    }
                 }
 
-
                 if (
-                    isDirectory
+                    childNode.isDir
                     && !childNode.localPath.startsWith(".")
                     && childNode.localPath!==static_assets_folder
                 ) {
@@ -154,5 +183,6 @@ module.exports= {
     downloadSource,
     downloadExternalSource,
     buildSitemapForMarkdownDirectory,
-    isValidSourceUrl
+    isValidSourceUrl,
+    walkDir
 }

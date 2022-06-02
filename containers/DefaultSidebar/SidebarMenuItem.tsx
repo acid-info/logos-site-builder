@@ -13,11 +13,13 @@ interface IMenuItemProps {
 
 export const DefaultSidebarMenuItem: FC<PropsWithChildren<IMenuItemProps>> = (props) => {
     const {level, item, children, isActive = false} = props;
+    const isPage = item.localPath.endsWith(".md");
+
     return (
         <li className={`${styles.menuItem} menuitem level-${level}`}>
             <div className={"menuitem-title"}>
                 {
-                    item.children.length ?
+                    !isPage ?
                         <span className={"cap"}>
                             {item.title}
                         </span>

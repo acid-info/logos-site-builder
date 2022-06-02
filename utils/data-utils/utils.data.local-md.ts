@@ -31,8 +31,21 @@ export const getStaticPropsFromFolder = <O extends PreviewData>() => async(conte
     }
 
     const rawMD = readFileSync(join(process.cwd(), "docs", navProps.localPath), 'utf-8');
-    const {data: metadata, content} = matter(rawMD);
+    let {data: metadata, content} = matter(rawMD);
     const _toc = toc(content).json
+
+    if(navProps.isDir){
+        const children = sidebar.filter((c) => {
+            return (
+                //if the path of children is inside the directory
+                !!c.path.find((p) => navProps.path.indexOf(p) > -1)
+                &&
+                //it is not the index file of the dir
+                c.localPath!==navProps.localPath
+            )
+        });
+        content += children.map((c) => `* [${c.title}](${c.path.join("/")})`).join(`\n`);
+    }
 
     return {
         props: {

@@ -1,4 +1,4 @@
-const {downloadExternalSource, isValidSourceUrl} = require("./utils");
+const {downloadExternalSource, isValidSourceUrl, downloadSource} = require("./utils");
 const {CONTENT_SOURCE_URL} = process.env;
 
 module.exports = async (siteConfigs) => {

@@ -28,6 +28,7 @@ export interface INavigationItemProps{
     localPath: string;
     path: string[];
     title: string;
+    isDir: boolean;
     children: INavigationItemProps[]
 }
 
