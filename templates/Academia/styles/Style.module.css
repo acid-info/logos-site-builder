@@ -170,6 +170,11 @@
     position: relative;
 }
 
+.container figcaption{
+    font-size: small;
+
+}
+
 @media (min-width:600px){
     .container{
         max-width: maxWidth;

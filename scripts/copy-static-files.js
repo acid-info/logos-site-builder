@@ -1,6 +1,8 @@
-const {extname, join} = require("path");
-const {existsSync, fsp} = require("fs");
-const {readdir, rm, copyFile, mkdir} = require("fs/promises");
+const {join} = require("path");
+const {existsSync} = require("fs");
+const glob = require("fast-glob");
+const {rm, mkdir, copy} = require('fs-extra')
+
 
 const {STATIC_CONTENT_DIR_TARGET,LOCAL_CONTENT_DIST, supportedStaticFilesExtension} = require("./configs");
 
@@ -18,14 +20,16 @@ module.exports = async (siteConfig) => {
     }
 
     await mkdir(STATIC_CONTENT_DIR_TARGET);
+    await copy(staticSourceDir, STATIC_CONTENT_DIR_TARGET);
 
-    const supportedFiles = await readdir(staticSourceDir).then((files) => files.filter(f => {
-        const ext = extname(f);
-        return supportedStaticFilesExtension.indexOf(ext.toLowerCase()) > -1;
-    }))
-
-    for await (const f of supportedFiles){
-        console.log(f)
-        await copyFile(join(staticSourceDir, f), join(STATIC_CONTENT_DIR_TARGET, f));
-    }
+    // console.log(`${staticSourceDir}/**/*.{${supportedStaticFilesExtension.join(",")}}`)
+    // const supportedFiles = await glob(`${staticSourceDir}/**/*{${supportedStaticFilesExtension.join(",")}}`);
+    // console.log("supportedFiles", supportedFiles, staticSourceDir);
+    //
+    // for await (const f of supportedFiles){
+    //     console.log(f)
+    //     const relPath = f.replace(staticSourceDir, "")
+    //     console.log(relPath)
+    //     await copyFile(f, join(STATIC_CONTENT_DIR_TARGET, relPath));
+    // }
 }

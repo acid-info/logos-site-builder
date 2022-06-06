@@ -6,10 +6,8 @@ import {Header} from "./containers/Header/Header";
 import style from "./styles/Style.module.css";
 
 import {Footer} from "./containers/Footer/Footer";
-import {Banner} from "./containers/Banner/Banner";
 import {Content} from "./containers/Content/Content";
 import {Sidebar} from "./containers/Sidebar/Sidebar";
-import {SearchBox} from "./containers/Search/SearchBox";
 import {Toc} from "./containers/Toc/Toc";
 
 interface IProps {

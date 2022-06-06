@@ -8,10 +8,9 @@ interface IProps{
 
 import styles from "./Styles.module.css";
 import ReactMarkdown from "react-markdown";
-import {logosRehypePlugins} from "../../markdown/logos-rehype-plugins";
-import {logosRemarkPlugins} from "../../markdown/logos-remark-plugins";
-import {logosReactMarkdownComponents} from "../../markdown/components";
-import {transformImageUri} from "../../markdown/logos-react-md-transformers/image-uri";
+import {markdownCommonConfigs} from "../../../common/markdown/configs";
+
+
 
 export const Content: FC<PropsWithChildren<IProps>> = (props) => {
     const {className="", children, content, append = true} = props;
@@ -19,10 +18,10 @@ export const Content: FC<PropsWithChildren<IProps>> = (props) => {
         <article className={`${styles.container} ${className}`}>
             {!append && children}
             <ReactMarkdown
-                rehypePlugins={logosRehypePlugins}
-                remarkPlugins={logosRemarkPlugins}
-                components={logosReactMarkdownComponents}
-                transformImageUri={transformImageUri}
+                rehypePlugins={markdownCommonConfigs.rehypePlugins}
+                remarkPlugins={markdownCommonConfigs.remarkPlugins}
+                components={markdownCommonConfigs.logosReactMarkdownComponents}
+                transformImageUri={markdownCommonConfigs.transformImageUri}
             >
                 {content}
             </ReactMarkdown>

@@ -37,7 +37,6 @@ export const Ascii: FC<PropsWithChildren<IProps>> = (props) => {
                 asciiContainer.style.transform = `scale(${scale})`;
                 asciiContainer.style.transformOrigin = `top left`
                 ref.current.style.height = `calc(2em + ${asciiContainer.getBoundingClientRect().height}px)`
-                console.log(containerBox)
                 setRClass(containerBox.height>containerBox.width? "vertical": "horizontal")
                 cb();
             }
