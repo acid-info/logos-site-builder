@@ -101,6 +101,7 @@ pre:not(.logos-block-mermaid-ascii){
 img{
     -webkit-filter: url(#colored) grayscale(50%);
     filter: url(#colored) grayscale(50%);
+    width: 100%;
 }
 
 img:hover{
