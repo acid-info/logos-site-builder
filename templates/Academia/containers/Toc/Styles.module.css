@@ -1,0 +1,12 @@
+@value vars: "../../styles/vars.css";
+@value pagePaddingT from vars;
+
+.container{
+    grid-area: toc;
+    font-size: 12px;
+}
+.tocComponent{
+}
+
+@media (min-width:600px) {
+}

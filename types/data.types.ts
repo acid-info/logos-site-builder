@@ -37,7 +37,8 @@ export interface ISitemap{
 }
 
 export enum ESiteTemplateNames{
-    DEFAULT="default"
+    DEFAULT="default",
+    ACADEMIA="academia"
 }
 
 export interface ITemplateUiConfig{
@@ -45,8 +46,8 @@ export interface ITemplateUiConfig{
     searchResultSnippedTextLengthPost: number;
 }
 
-export interface ITemplateUiConfigs{
-    [ESiteTemplateNames.DEFAULT]: ITemplateUiConfig;
+export type ITemplateUiConfigs = {
+    [key in ESiteTemplateNames]: ITemplateUiConfig;
 }
 
 export enum ELogosDesignSystemID{

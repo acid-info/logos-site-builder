@@ -156,6 +156,7 @@ async function buildSitemapForMarkdownDirectory(rootPath, siteConfigs) {
                 if (
                     childNode.isDir
                     && !childNode.localPath.startsWith(".")
+                    && !childNode.localPath.startsWith("_")
                     && childNode.localPath!==static_assets_folder
                 ) {
                     currentNode.children.push(childNode);

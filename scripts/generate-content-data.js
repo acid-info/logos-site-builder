@@ -10,9 +10,11 @@ module.exports = async (siteConfigs) => {
 
         //ensuring tha index.md for each directory exists
         await walkDir(LOCAL_CONTENT_DIST, (f) => {
-            const indexMD = join(f, "index.md");
-            if(!existsSync(indexMD)){
-                writeFileSync(indexMD, "", "utf8");
+            if(!f.startsWith("_")){
+                const indexMD = join(f, "index.md");
+                if(!existsSync(indexMD)){
+                    writeFileSync(indexMD, "", "utf8");
+                }
             }
         })
 

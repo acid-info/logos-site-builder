@@ -1,0 +1,47 @@
+@value vars: "../../styles/vars.css";
+@value pagePaddingT, maxWidth from vars;
+
+.container{
+    grid-area: header;
+    padding: var(--column-gap);
+    align-items: center;
+}
+
+.container :global(.logo-holder){
+    display: none !important;
+}
+
+.searchBox{
+    width: calc(100% - calc(var(--column-gap) * 2));
+}
+
+.container :global(.logo-holder){
+    width: 25px;
+    overflow: hidden;
+}
+
+.container :global(.logo-holder) svg{
+    width: 100%;
+}
+
+@media (min-width:600px){
+
+    .container{
+        display: grid;
+        grid-template-columns: 30px auto;
+        grid-column-gap: var(--column-gap);
+        padding: 0 calc(calc(100vw - maxWidth) / 2);
+        align-items: center;
+    }
+
+    .container :global(.logo-holder){
+        display: block !important;
+        transform: translateY(4px);
+    }
+    /*.container > div{*/
+
+    /*}*/
+    /*.search{*/
+    /*    grid-column: 4/6;*/
+    /*}*/
+}

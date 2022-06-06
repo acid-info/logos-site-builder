@@ -1,0 +1,58 @@
+import {DefaultSidebar} from "../../../../containers/DefaultSidebar/Sidebar";
+import {FC, useEffect, useState} from "react";
+
+import styles from "./Styles.module.css";
+import {Dialog} from "../../../../components/design-system/Dialog/Dialog";
+import {SidebarToggleButton} from "../../../../components/SidebarToggleButton";
+import {useRouter} from "next/router";
+import {Logo} from "../../../../components/design-system/logos";
+import {useLogosTheme} from "../../../../context/ThemeProvider";
+import {useLogosSite} from "../../../../context/SiteProvider";
+
+interface IProps{
+    className?: string;
+}
+
+export const Sidebar: FC<IProps> = ({className}) => {
+    const [mobileShow, setMobileShow] = useState(false);
+    const [desktopShow, setDesktopShow] = useState(true);
+    const {toggleMode} = useLogosTheme();
+    const {config} = useLogosSite();
+
+    const {asPath} = useRouter();
+
+    useEffect(() => {
+        setMobileShow(false);
+    }, [asPath]);
+
+
+    const handleClose = () => {
+        setMobileShow(false);
+    }
+
+    const toggle = () => {
+        if(window.innerWidth <=600){
+            setMobileShow(!mobileShow);
+        }else{
+            setDesktopShow(!desktopShow);
+        }
+    }
+
+    return (
+        <aside className={`${styles.container} ${className}`}>
+            <SidebarToggleButton onClick={toggle} />
+            {
+                mobileShow&&
+                <Dialog onClose={handleClose} className={styles.mobile}>
+                    <Logo dsid={config.ds_id} onClick={toggleMode}/>
+                    <DefaultSidebar/>
+                </Dialog>
+            }
+            {
+                desktopShow&&
+                <DefaultSidebar className={`${styles.desktop}`}/>
+            }
+
+        </aside>
+    )
+}

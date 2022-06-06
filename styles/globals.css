@@ -5,7 +5,7 @@
     --hlm-color: var(--dark-accent-mute-color);
     --ff: var(--fontFamily);
     --lh: 1.6em;
-    --column-gap: 2.2vw;
+    --column-gap: 17px;
     --scrollbar-width: 8px;
     --scrollbar-height: 3px;
 }
@@ -40,16 +40,11 @@ a, a:visited, a:hover, .text_column code{
 
 :not(.vac).logo-holder svg,
 :not(.vac).logo-holder svg *,
-.icon svg, .icon svg *,
-.button svg, .button svg *{
+.icon svg,
+.icon svg *,
+.button svg,
+.button svg *{
     fill: var(--txt-color);
-}
-
-input[type="text"]{
-    background: var(--bg-color);
-    color: var(--txt-color);
-    padding: 0.5em;
-    border: 1px solid;
 }
 
 ::placeholder,
@@ -135,7 +130,7 @@ pre{
     overflow-y: hidden;
 }
 
-pre:not(:hover){
+pre:not(:hover) > *{
     background: transparent !important;
     filter: grayscale(1);
 }
@@ -173,3 +168,10 @@ table {
 }
 ::-webkit-scrollbar-corner { background-color: var(--hlm-color)}
 ::-webkit-resizer { background-color: var(--hlm-color)}
+
+
+@media (min-width:600px) {
+    :root{
+        --column-gap: 2.2vw;
+    }
+}

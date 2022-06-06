@@ -1,6 +1,18 @@
 @value vars: "vars.css";
 @value pagePaddingT, footerHeight, bannerHeight, maxWidth from vars;
 
+/*USING desktop*/
+.header{
+    position: fixed;
+    background: var(--hlm-color);
+    left: 0;
+    top: 0;
+    width: 100vw;
+    z-index: 99999;
+}
+
+
+/*USING*/
 .container{
     display: grid;
     grid-template-columns: 100%;
@@ -10,13 +22,6 @@
 }
 
 .banner{}
-
-.search{
-    position: sticky;
-    display: block;
-    top: 0;
-    z-index: 9;
-}
 
 .main{
     grid-area: main;
@@ -56,37 +61,34 @@
 .container a:global(.anchor){
     display: block;
     position: relative;
-    top: calc(-1 * calc(4 *  var(--lh)));
+    top: calc(-1 * calc(6 *  var(--lh)));
 }
 
 /*TYPOGRAPHY sizing*/
-.container p{
-    text-align: justify;
-}
 
 /*TYPOGRAPHY SPACING*/
 .toc :global(.h-1){
     margin-top: calc(2 * var(--lh));
 }
-.toc :global(.h-2+.h-2){
+.toc :global(.h-2+.h-2) > *:last-child{
     margin-top: var(--lh);
 }
-.toc :global(.h-3){
+.toc :global(.h-3) > *:last-child{
     padding-left: var(--column-gap);
 }
-.toc :global(.h-4){
+.toc :global(.h-4) > *:last-child{
     padding-left: calc(2 * var(--column-gap));
 }
 
 .container article h2:not(:first-child){
-    margin-top: calc(5 * var(--lh));
+    margin-top: calc(3 * var(--lh));
 }
 .container article h2:not(:first-child){
-    margin-top: calc(4 * var(--lh));
+    margin-top: calc(2 * var(--lh));
 }
 
 .container article h3:not(:first-child){
-    margin-top: calc(3 * var(--lh));
+    margin-top: calc(1 * var(--lh));
 }
 
 .container :global(.logos-ascii-wrapper){
@@ -135,6 +137,14 @@
 }
 
 /*STYLE*/
+
+.container input[type="text"]{
+    background: var(--bg-color);
+    color: var(--txt-color);
+    padding: 0.5em;
+    border: none;
+}
+
 .container a:global(.ha){
     font-size: inherit;
     color: inherit;
@@ -160,26 +170,10 @@
     position: relative;
 }
 
-.container input[type="text"]{
-    background: var(--bg-color);
-    color: var(--txt-color);
-    padding: 0.5em;
-    border: 1px solid;
-}
-
-
 @media (min-width:600px){
     .container{
         max-width: maxWidth;
         margin: auto;
-        grid-template-columns: repeat(5, 1fr);
-        grid-column-gap: calc(var(--column-gap) * 2);
-        grid-template-areas:
-      "header header header header header"
-      "banner banner banner banner banner"
-      ". search search search ."
-      "main main main main main"
-      "footer footer footer footer footer";
     }
 
     .main, .footer{
@@ -188,13 +182,22 @@
         grid-column-gap: calc(var(--column-gap) * 2);
     }
 
+    .content{
+        max-width: 700px;
+    }
+
     .main{
         grid-template-areas: "sidebar content content content toc";
+    }
+
+    .main article{
+        padding-left: var(--column-gap);
     }
 
     .footer :global(.footer-content-container){
         grid-column: 2/5;
         width: calc(100% - var(--column-gap));
+        max-width: 700px;
     }
 
     .toc ul{
@@ -208,11 +211,8 @@
         top: pagePaddingT;
         width: auto;
         height: fit-content;
-    }
-
-    .search{
-        top: pagePaddingT;
-        padding-right: var(--column-gap);
+        /*max-height: calc(40 * var(--lh));*/
+        overflow-y: auto;
     }
 
     .content{

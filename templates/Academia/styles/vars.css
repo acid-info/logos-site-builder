@@ -1,0 +1,4 @@
+@value pagePaddingT: calc(8 * var(--lh));
+@value maxWidth: 1300px;
+@value footerHeight: calc(6 * var(--lh));
+@value bannerHeight: calc(8 * var(--lh));

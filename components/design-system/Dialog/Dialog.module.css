@@ -5,6 +5,6 @@
     left: 0;
     top: 0;
     background: var(--bg-color);
-    z-index: 999;
+    z-index: 99999999999;
     overflow-y: auto;
 }

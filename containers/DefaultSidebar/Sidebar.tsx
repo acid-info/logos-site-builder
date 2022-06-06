@@ -38,11 +38,11 @@ export const DefaultSidebar: FC<ISidebarProps> = (props) => {
                 <br/>
                 <br/>
                 <DefaultSidebarMenu items={subItems} className={"subMenu"}/>
-                <div>
+                <div className={"external_links"}>
                     {
                         Object.entries(groups).map(([g, val]) => (
                                 <div key={g}>
-                                    <div>
+                                    <div className={"menuitem-title"}>
                                         <span className={"cap"}>{g}</span>
                                     </div>
                                     <ul>
