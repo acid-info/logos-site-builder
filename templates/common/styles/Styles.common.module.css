@@ -163,6 +163,7 @@
 
 .container nav ul li:not(:global(.level-0)){
     display: flex;
+    flex-wrap: wrap;
 }
 
 .container nav ul li:not(:global(.level-0)) a{

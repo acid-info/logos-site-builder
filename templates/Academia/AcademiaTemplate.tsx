@@ -36,6 +36,7 @@ export const AcademiaTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => 
                 <Content className={`${style.content} ${commonStyle.content}`}
                          content={markdown.content}
                          config={markdownCommonConfigs}
+                         append={false}
                 />
                 <Toc className={`${style.toc} ${commonStyle.toc} hidden-scroll`} toc={markdown.toc}/>
             </main>

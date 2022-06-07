@@ -8,5 +8,15 @@ export const logosReactMarkdownComponents = {
     h3: CustomMarkdownH,
     h4: CustomMarkdownH,
     h5: CustomMarkdownH,
-    h6: CustomMarkdownH
+    h6: CustomMarkdownH,
+    // sup: ({node, children, ..._props}) => {
+    //     return 'sup'
+    //     // return node;
+    //     return (
+    //         <sup>
+    //             <a className={"anchor"} id={_props.id}/>
+    //             <a className={"ha"} href={`#${_props.id}`}>{children}</a>
+    //         </sup>
+    //     )
+    // }
 }

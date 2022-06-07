@@ -14,6 +14,7 @@ import {IMarkdownConfig} from "../../markdown/configs";
 
 export const Content: FC<PropsWithChildren<IProps>> = (props) => {
     const {className="", children, content, append = true, config} = props;
+
     return (
         <article className={`${styles.container} ${className}`}>
             {!append && children}

@@ -11,9 +11,10 @@ export default function rehypeLogos(options: any) {
         visit(tree, "element", (node: any, index: any, parent: any) => {
             if (hasProperty(node, "className")) {
                 const {className} = node.properties;
-                const match = /language-(\w+)/.exec(className || '')
-                if(match){
-                    const blockName = match[1] as ECustomBlockNames;
+                const isCodeBlock = /language-(\w+)/.exec(className || '');
+
+                if(isCodeBlock){
+                    const blockName = isCodeBlock[1] as ECustomBlockNames;
                     switch (blockName){
                         case ECustomBlockNames.ASCII:{
                             parent.properties.className = `logos-${blockName}-wrapper`
@@ -74,7 +75,6 @@ export default function rehypeLogos(options: any) {
                         }
                     }
                 }
-
             }
         })
     }
