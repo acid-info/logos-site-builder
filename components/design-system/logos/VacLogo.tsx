@@ -4,7 +4,9 @@ import {ELogosDesignSystemID} from "../../../types/data.types";
 
 export const VacsLogo: FC<PropsWithChildren<any>> = ({onClick}) => (
     <LogoHolder onClick={onClick} className={ELogosDesignSystemID.VAC}>
-        <svg width="45" height="43" viewBox="0 0 35 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="45" height="43" viewBox="0 0 35 43" fill="none" xmlns="http://www.w3.org/2000/svg"
+             className={"vac-logo"}
+        >
             <g clipPath="url(#clip0_917_3082)">
                 <path d="M24.9034 14.8217C24.6824 11.2666 23.5308 7.8298 21.5623 4.84994C22.543 4.19721 23.7374 3.93844 24.9034 4.12603C25.492 4.23064 26.0472 4.4722 26.5233 4.83086C26.9994 5.18951 27.3828 5.65504 27.6421 6.18916C28.0141 7.1512 28.1335 8.19117 27.989 9.21147C27.9754 9.6728 27.8955 10.1299 27.7516 10.5688C27.6613 10.8504 27.5322 11.1183 27.3682 11.3651C27.166 11.69 26.9466 12.0041 26.7109 12.3062C26.1084 13.1206 25.5607 14.0073 24.9034 14.8217Z" fill="#999999"/>
                 <path d="M16.7058 7.58268C15.8382 5.99003 14.5344 4.67263 12.9447 3.78217L10.9546 2.69631C10.9546 2.69631 13.2551 -0.778436 16.1945 0.162641C19.134 1.10372 18.1846 7.4017 17.5821 9.80869" fill="#4D4D4D"/>

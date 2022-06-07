@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {CodeWrapper} from "./parser-components/Code";
 import {CustomMarkdownH} from "./parser-components/H";
 
@@ -9,14 +10,15 @@ export const logosReactMarkdownComponents = {
     h4: CustomMarkdownH,
     h5: CustomMarkdownH,
     h6: CustomMarkdownH,
-    // sup: ({node, children, ..._props}) => {
-    //     return 'sup'
-    //     // return node;
-    //     return (
-    //         <sup>
-    //             <a className={"anchor"} id={_props.id}/>
-    //             <a className={"ha"} href={`#${_props.id}`}>{children}</a>
-    //         </sup>
-    //     )
-    // }
+    //@ts-ignore
+    a: ({node, children, href = "", ..._props}) => {
+        if (href.indexOf('http://') === 0 || href.indexOf('https://') === 0){
+            return <a {..._props} href={href}>{children}</a>
+        }
+        return (
+            <Link href={href}>
+                <a {..._props}>{children}</a>
+            </Link>
+        )
+    }
 }

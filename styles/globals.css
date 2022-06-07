@@ -38,12 +38,12 @@ a, a:visited, a:hover, .text_column code{
     color: var(--hla-color);
 }
 
-:not(.vac).logo-holder svg,
-:not(.vac).logo-holder svg *,
-.icon svg,
-.icon svg *,
-.button svg,
-.button svg *{
+.logo-holder svg:not(.vac-logo),
+.logo-holder svg:not(.vac-logo) *,
+.icon svg:not(.vac-logo),
+.icon svg:not(.vac-logo) *,
+.button svg:not(.vac-logo),
+.button svg:not(.vac-logo) *{
     fill: var(--txt-color);
 }
 
