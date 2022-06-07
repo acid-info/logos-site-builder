@@ -16,16 +16,21 @@ interface IProps{
 
 
 export const Footer: FC<IProps> = ({className=""}) => {
-    const {config: {seo, ds_id}} = useLogosSite();
+    const {config: {seo}} = useLogosSite();
 
     return (
         <footer className={`${styles.container} ${className}`}>
             <div className={`footer-content-container ${styles.content}`}>
                 <div>
                     <p>
-                        <span className={"copy-left"}>©</span><span>{new Date().getFullYear()}</span><span> Logos DAO</span>
-                        <span>-</span>
-                        This page is available under the Creative Commons Attribution-ShareAlike
+                        <span className={"copy-left"}>©</span><span>{new Date().getFullYear()}</span><span>{` ${seo.title}`}</span>
+                        <span> - </span>
+                        {
+                            seo.cc?
+                                <span>{seo.cc}</span>
+                                :
+                                <span>This page is available under the Creative Commons Attribution-ShareAlike</span>
+                        }
                     </p>
                 </div>
                 <div className={styles.bottomPart}>

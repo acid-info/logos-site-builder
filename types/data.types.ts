@@ -86,5 +86,6 @@ export interface ISiteConfigs{
         image: string;
         url: string;
         social_media: ISiteSeoSocialMedia[]
+        cc?: string
     }
 }
