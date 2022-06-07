@@ -34,11 +34,13 @@
     "rehype-attr": "^2.0.8",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-figure": "^1.0.1",
+    "rehype-mathjax": "^4.0.2",
     "rehype-slug": "^5.0.1",
     "rehype-stringify": "^9.0.3",
     "remark-attr": "^0.11.1",
     "remark-custom-blocks": "^2.6.0",
     "remark-gfm": "^3.0.1",
+    "remark-math": "^5.1.1",
     "remark-toc": "^8.0.1",
     "traverse": "^0.6.6",
     "unist-util-visit": "^4.1.0",
@@ -55,7 +57,6 @@
     "@types/uuid": "^8.3.4",
     "eslint": "8.13.0",
     "eslint-config-next": "12.1.4",
-    "sass": "^1.52.2",
     "typescript": "4.6.3"
   }
 }
