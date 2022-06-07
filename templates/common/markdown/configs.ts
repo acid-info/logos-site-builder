@@ -2,6 +2,8 @@ import {logosRehypePlugins} from "./logos-rehype-plugins";
 import {logosRemarkPlugins} from "./logos-remark-plugins";
 import {transformImageUri} from "./logos-react-md-transformers/image-uri";
 import {logosReactMarkdownComponents} from "./components";
+import {PluggableList} from "react-markdown/lib/react-markdown";
+import {TransformImage} from "react-markdown/lib/ast-to-react";
 
 export const logosCustomMarkdownLanguages = {
     default: "logos",
@@ -22,7 +24,14 @@ export const logosCustomBlockLanguages: Array<ECustomBlockNames> = [
     ECustomBlockNames.MERMAID
 ]
 
-export const markdownCommonConfigs = {
+export interface IMarkdownConfig{
+    rehypePlugins: PluggableList;
+    remarkPlugins: PluggableList;
+    transformImageUri: TransformImage
+    logosReactMarkdownComponents: any;
+}
+
+export const markdownCommonConfigs: IMarkdownConfig = {
     rehypePlugins: logosRehypePlugins,
     remarkPlugins: logosRemarkPlugins,
     transformImageUri,

@@ -1,0 +1,4 @@
+.container{
+    height: var(--banner-height);
+    grid-area: banner;
+}

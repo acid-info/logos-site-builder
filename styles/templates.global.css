@@ -1,0 +1,6 @@
+:root{
+    --page-padding-top: calc(8 * var(--lh));
+    --max-width: 1300px;
+    --footer-height: calc(6 * var(--lh));
+    --banner-height: calc(8 * var(--lh));
+}

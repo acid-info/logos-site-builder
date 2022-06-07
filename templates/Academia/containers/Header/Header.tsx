@@ -8,7 +8,7 @@ interface IProps{
 }
 
 import styles from "./Styles.module.css";
-import {SearchBox} from "../Search/SearchBox";
+import {SearchBox} from "../../../common/containers/Search/SearchBox";
 
 export const Header: FC<PropsWithChildren<IProps>> = ({className="", children}) => {
     const {toggleMode} = useLogosTheme();

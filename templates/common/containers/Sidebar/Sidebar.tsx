@@ -1,23 +1,19 @@
 import {DefaultSidebar} from "../../../../containers/DefaultSidebar/Sidebar";
-import {FC, useEffect, useState} from "react";
+import {FC, PropsWithChildren, useEffect, useState} from "react";
 
 import styles from "./Styles.module.css";
 import {Dialog} from "../../../../components/design-system/Dialog/Dialog";
 import {SidebarToggleButton} from "../../../../components/SidebarToggleButton";
 import {useRouter} from "next/router";
-import {Logo} from "../../../../components/design-system/logos";
-import {useLogosTheme} from "../../../../context/ThemeProvider";
-import {useLogosSite} from "../../../../context/SiteProvider";
 
 interface IProps{
     className?: string;
+    append?: boolean;
 }
 
-export const Sidebar: FC<IProps> = ({className}) => {
+export const Sidebar: FC<PropsWithChildren<IProps>> = ({className, children, append=true}) => {
     const [mobileShow, setMobileShow] = useState(false);
     const [desktopShow, setDesktopShow] = useState(true);
-    const {toggleMode} = useLogosTheme();
-    const {config} = useLogosSite();
 
     const {asPath} = useRouter();
 
@@ -44,15 +40,19 @@ export const Sidebar: FC<IProps> = ({className}) => {
             {
                 mobileShow&&
                 <Dialog onClose={handleClose} className={styles.mobile}>
-                    <Logo dsid={config.ds_id} onClick={toggleMode}/>
+                    {append?children:null}
                     <DefaultSidebar/>
+                    {!append?children:null}
                 </Dialog>
             }
             {
                 desktopShow&&
-                <DefaultSidebar className={`${styles.desktop}`}/>
+                <>
+                    {append?children:null}
+                    <DefaultSidebar className={`${styles.desktop}`}/>
+                    {!append?children:null}
+                </>
             }
-
         </aside>
     )
 }

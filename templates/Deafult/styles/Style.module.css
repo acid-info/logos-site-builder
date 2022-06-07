@@ -1,15 +1,6 @@
-@value vars: "vars.css";
-@value pagePaddingT, footerHeight, bannerHeight, maxWidth from vars;
-
 .container{
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-areas: "header" "banner" "search" "main" "footer";
-    padding-top: pagePaddingT;
-    position: relative;
+    --page-padding-top: calc(2 * var(--lh))
 }
-
-.banner{}
 
 .search{
     position: sticky;
@@ -18,159 +9,20 @@
     z-index: 9;
 }
 
-.main{
-    grid-area: main;
-    padding-bottom: footerHeight;
-    min-height: calc(100vh - bannerHeight);
-}
-
-.main > * {
-    overflow: hidden;  /* NEW */
-    min-width: 0;      /* NEW; needed for Firefox */
-}
-
-.container > * {
-    margin-bottom: pagePaddingT;
-}
-
-.toc {
-    display: none;
-}
-
-.footer{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: calc(footerHeight - pagePaddingT);
-    padding-top: pagePaddingT;
-}
-
-.container nav ul{
-    list-style: none;
-    margin: 0;
-    padding-top: 0;
-}
-
-
-/*LAYOUT SPACING*/
-.container a:global(.anchor){
-    display: block;
-    position: relative;
-    top: calc(-1 * calc(4 *  var(--lh)));
-}
-
-/*TYPOGRAPHY sizing*/
-.container p{
-    text-align: justify;
-}
-
-/*TYPOGRAPHY SPACING*/
-.toc :global(.h-1){
-    margin-top: calc(2 * var(--lh));
-}
-.toc :global(.h-2+.h-2){
-    margin-top: var(--lh);
-}
-.toc :global(.h-3){
-    padding-left: var(--column-gap);
-}
-.toc :global(.h-4){
-    padding-left: calc(2 * var(--column-gap));
-}
-
-.container article h2:not(:first-child){
-    margin-top: calc(5 * var(--lh));
-}
-.container article h2:not(:first-child){
-    margin-top: calc(4 * var(--lh));
-}
-
-.container article h3:not(:first-child){
-    margin-top: calc(3 * var(--lh));
-}
-
-.container :global(.logos-ascii-wrapper){
-    position: relative;
-}
-.container :global(.logos-ascii){
-    overflow: hidden;
-}
-
-.container :global(.logos-ascii) p{
-    white-space: pre;
-}
-
-.container :global(.logos-paragraph){
-    column-gap: var(--column-gap);
-}
-
-.container :global(.logos-paragraph.x){
-    column-count: 1;
-}
-.container :global(.logos-paragraph.xx){
-    column-count: 2;
-}
-.container :global(.logos-paragraph.xxx){
-    column-count: 3;
-}
-.container :global(.logos-paragraph.xxxx){
-    column-count: 4;
-}
-
-.container p{
-    margin-top: 0;
-    padding-top: 0;
-}
-
-.content >*:first-child{
-    margin-top: 0;
-}
-.sidebar :global(.sidebar-menu) ul:first-child{
-    padding-left: 0;
-}
-.container nav > ul{
-    padding-left: 0;
-    padding-top: 0;
-    margin: 0;
-}
-
-/*STYLE*/
-.container a:global(.ha){
-    font-size: inherit;
-    color: inherit;
-    text-decoration: none;
-}
-
-.container :global(.codeblock){
-    position: relative;
-}
-.container :global(.copy-to-clipboard){
-    position: absolute;
-    top: var(--lh);
-    right: var(--column-gap);
-}
-
-.container :global(blockquote){
-    font-family: serif;
-    line-height: var(--lh);
-    font-weight: bold;
-}
-
-.container :global(.logos-ascii-wrapper){
-    position: relative;
-}
-
-.container input[type="text"]{
+.search input[type=text]{
     background: var(--bg-color);
     color: var(--txt-color);
     padding: 0.5em;
     border: 1px solid;
 }
 
+.container p{
+    text-align: justify;
+}
 
 @media (min-width:600px){
     .container{
-        max-width: maxWidth;
+        max-width: var(--max-width);
         margin: auto;
         grid-template-columns: repeat(5, 1fr);
         grid-column-gap: calc(var(--column-gap) * 2);
@@ -182,40 +34,8 @@
       "footer footer footer footer footer";
     }
 
-    .main, .footer{
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        grid-column-gap: calc(var(--column-gap) * 2);
-    }
-
-    .main{
-        grid-template-areas: "sidebar content content content toc";
-    }
-
-    .footer :global(.footer-content-container){
-        grid-column: 2/5;
-        width: calc(100% - var(--column-gap));
-    }
-
-    .toc ul{
-        border-left: 1px solid;
-        padding-left: var(--column-gap) !important;
-    }
-
-    .sidebar, .toc{
-        display: block;
-        position: sticky;
-        top: pagePaddingT;
-        width: auto;
-        height: fit-content;
-    }
-
     .search{
-        top: pagePaddingT;
-        padding-right: var(--column-gap);
-    }
-
-    .content{
+        top: var(--page-padding-top);
         padding-right: var(--column-gap);
     }
 }

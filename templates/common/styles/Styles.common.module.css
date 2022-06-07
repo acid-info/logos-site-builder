@@ -1,0 +1,212 @@
+.container{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-areas: "header" "banner" "search" "main" "footer";
+    padding-top: var(--page-padding-top);
+    position: relative;
+}
+
+
+.banner{}
+
+.main{
+    grid-area: main;
+    padding-bottom: var(--footer-height);
+    min-height: calc(100vh - var(--bannerHeight));
+}
+
+.main > * {
+    overflow: hidden;
+    min-width: 0;
+}
+
+.container > * {
+    margin-bottom: var(--page-padding-top);
+}
+
+.toc {
+    display: none;
+}
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: calc(var(--footer-height) - var(--page-padding-top));
+    padding-top: var(--page-padding-top);
+}
+
+.container nav ul{
+    list-style: none;
+    margin: 0;
+    padding-top: 0;
+}
+
+
+/*LAYOUT SPACING*/
+.container a:global(.anchor){
+    display: block;
+    position: relative;
+    top: calc(-1 * calc(6 *  var(--lh)));
+}
+
+/*TYPOGRAPHY sizing*/
+
+/*TYPOGRAPHY SPACING*/
+.toc :global(.h-1){
+    margin-top: calc(2 * var(--lh));
+}
+.toc :global(.h-2+.h-2) > *:last-child{
+    margin-top: var(--lh);
+}
+.toc :global(.h-3) > *:last-child{
+    padding-left: var(--column-gap);
+}
+.toc :global(.h-4) > *:last-child{
+    padding-left: calc(2 * var(--column-gap));
+}
+
+.container article h2:not(:first-child){
+    margin-top: calc(3 * var(--lh));
+}
+.container article h2:not(:first-child){
+    margin-top: calc(2 * var(--lh));
+}
+
+.container article h3:not(:first-child){
+    margin-top: calc(1 * var(--lh));
+}
+
+.container :global(.logos-ascii-wrapper){
+    position: relative;
+}
+.container :global(.logos-ascii){
+    overflow: hidden;
+}
+
+.container :global(.logos-ascii) p{
+    white-space: pre;
+}
+
+.container :global(.logos-paragraph){
+    column-gap: var(--column-gap);
+}
+
+.container :global(.logos-paragraph.x){
+    column-count: 1;
+}
+.container :global(.logos-paragraph.xx){
+    column-count: 2;
+}
+.container :global(.logos-paragraph.xxx){
+    column-count: 3;
+}
+.container :global(.logos-paragraph.xxxx){
+    column-count: 4;
+}
+
+.container p{
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.content >*:first-child{
+    margin-top: 0;
+}
+.sidebar :global(.sidebar-menu) ul:first-child{
+    padding-left: 0;
+}
+.container nav > ul{
+    padding-left: 0;
+    padding-top: 0;
+    margin: 0;
+}
+
+/*STYLE*/
+
+.container input[type="text"]{
+    background: var(--bg-color);
+    color: var(--txt-color);
+    padding: 0.5em;
+    border: none;
+}
+
+.container a:global(.ha){
+    font-size: inherit;
+    color: inherit;
+    text-decoration: none;
+}
+
+.container :global(.codeblock){
+    position: relative;
+}
+.container :global(.copy-to-clipboard){
+    position: absolute;
+    top: var(--lh);
+    right: var(--column-gap);
+}
+
+.container :global(blockquote){
+    font-family: serif;
+    line-height: var(--lh);
+    font-weight: bold;
+}
+
+.container :global(.logos-ascii-wrapper){
+    position: relative;
+}
+
+.container figcaption{
+    font-size: small;
+
+}
+
+@media (min-width:600px){
+    @value stickyTop: calc(2 * var(--lh));
+    @value stickyPaddingTop: calc(var(--page-padding-top) - stickyTop);
+
+    .container{
+        max-width: var(--max-width);
+        margin: auto;
+    }
+
+    .main, .footer{
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-column-gap: calc(var(--column-gap) * 2);
+    }
+
+    .content{
+        max-width: 700px;
+    }
+
+    .main{
+        grid-template-areas: "sidebar content content content toc";
+    }
+
+    .footer :global(.footer-content-container){
+        grid-column: 2/5;
+        width: calc(100% - var(--column-gap));
+        max-width: 700px;
+    }
+
+    .toc ul{
+        border-left: 1px solid;
+        padding-left: var(--column-gap) !important;
+    }
+
+    .sidebar, .toc{
+        display: block;
+        position: sticky;
+        top: stickyTop;
+        padding-top: stickyPaddingTop;
+        width: auto;
+        overflow-y: auto;
+        height: calc(100vh - var(--page-padding-top));
+        padding-bottom: var(--page-padding-top);
+    }
+
+    .content{
+        padding-right: var(--column-gap);
+    }
+}

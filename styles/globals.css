@@ -171,6 +171,17 @@ table {
 ::-webkit-resizer { background-color: var(--hlm-color)}
 
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hidden-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hidden-scroll{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
 @media (min-width:600px) {
     :root{
         --column-gap: 2.2vw;

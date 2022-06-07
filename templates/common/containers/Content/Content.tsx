@@ -4,24 +4,24 @@ interface IProps{
     className?: string;
     append?: boolean
     content: string
+    config: IMarkdownConfig;
 }
 
 import styles from "./Styles.module.css";
 import ReactMarkdown from "react-markdown";
-import {markdownCommonConfigs} from "../../../common/markdown/configs";
-
+import {IMarkdownConfig} from "../../markdown/configs";
 
 
 export const Content: FC<PropsWithChildren<IProps>> = (props) => {
-    const {className="", children, content, append = true} = props;
+    const {className="", children, content, append = true, config} = props;
     return (
         <article className={`${styles.container} ${className}`}>
             {!append && children}
             <ReactMarkdown
-                rehypePlugins={markdownCommonConfigs.rehypePlugins}
-                remarkPlugins={markdownCommonConfigs.remarkPlugins}
-                components={markdownCommonConfigs.logosReactMarkdownComponents}
-                transformImageUri={markdownCommonConfigs.transformImageUri}
+                rehypePlugins={config.rehypePlugins}
+                remarkPlugins={config.remarkPlugins}
+                components={config.logosReactMarkdownComponents}
+                transformImageUri={config.transformImageUri}
             >
                 {content}
             </ReactMarkdown>

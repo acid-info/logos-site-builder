@@ -1,6 +1,3 @@
-@value vars: "../../styles/vars.css";
-@value pagePaddingT from vars;
-
 .container{
     grid-area: toc;
 }
