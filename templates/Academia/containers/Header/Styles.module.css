@@ -1,6 +1,6 @@
 .container{
     grid-area: header;
-    padding: 0 var(--column-gap);
+    padding: 0 var(--column-gap) !important;
 }
 
 .container :global(.logo-holder){
