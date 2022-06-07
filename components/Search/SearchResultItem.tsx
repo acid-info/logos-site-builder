@@ -14,6 +14,7 @@ interface IProps{
 
 export const SearchResultItem: FC<IProps> = (props) => {
     const {q, item} = props;
+
     //TODO move all template configs to a context and provider
     const {searchResultSnippedTextLengthPost, searchResultSnippedTextLengthPre} = logosTemplatesUiConfig[defaultTemplateName];
     const posIndex = item.content.indexOf(q);
@@ -21,7 +22,9 @@ export const SearchResultItem: FC<IProps> = (props) => {
         Math.max(0, posIndex-searchResultSnippedTextLengthPre),
         Math.min(item.content.length, posIndex+q.length+searchResultSnippedTextLengthPost)
     );
-    const previewText = snippedText.replace(new RegExp(q, "gi"), (match) => `<mark>${match}</mark>`);
+
+    const qs = q.replace(/[^a-z0-9áéíóúñü,_-]/gim, " ");
+    const previewText = snippedText.replace(new RegExp(qs, "gi"), (match) => `<mark>${match}</mark>`);
     const p = item.id=== siteConfigs.navigation.home? "/":item.id;
 
     return (

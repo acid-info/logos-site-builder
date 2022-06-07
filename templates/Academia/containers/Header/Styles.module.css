@@ -1,7 +1,6 @@
 .container{
     grid-area: header;
-    padding: var(--column-gap);
-    align-items: center;
+    padding: 0 var(--column-gap);
 }
 
 .container :global(.logo-holder){
@@ -9,7 +8,7 @@
 }
 
 .searchBox{
-    width: calc(100% - calc(var(--column-gap) * 2));
+    /*width: calc(100% - calc(var(--column-gap) * 2));*/
 }
 
 .container :global(.logo-holder){
@@ -22,12 +21,18 @@
 }
 
 @media (min-width:600px){
-    .container{
+
+    .innerWrapper{
+        max-width: var(--max-width);
+        margin: auto;
         display: grid;
-        grid-template-columns: 30px auto;
-        grid-column-gap: var(--column-gap);
-        padding: 0 calc(calc(100vw - var(--max-width)) / 2);
+        grid-template-columns: repeat(5, 1fr);
+        grid-column-gap: calc(var(--column-gap) * 2);
         align-items: center;
+    }
+
+    .searchBox{
+        grid-column: 2/5;
     }
 
     .container :global(.logo-holder){

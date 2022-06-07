@@ -6,8 +6,13 @@
     width: 100%;
 }
 
+.searchBox{
+    position: relative;
+}
+
 .searchBox :global(.logos-search-box-results){
-    border: 1px solid;
+    border: 1px solid var(--hlm-color);
+    width: 100%;
     box-sizing: border-box;
     padding: var(--lh) var(--column-gap) var(--lh) 0;
     position: absolute;
@@ -17,6 +22,6 @@
 
 @media (min-width:600px) {
     .searchBox :global(.logos-search-box-results){
-        width: calc(100% - var(--column-gap));
+        /*width: calc(100% - var(--column-gap));*/
     }
 }

@@ -16,11 +16,13 @@ export const Header: FC<PropsWithChildren<IProps>> = ({className="", children}) 
 
     return (
         <header className={`${styles.container} ${className}`}>
-            <Logo dsid={config.ds_id} onClick={toggleMode}/>
-            <div className={styles.searchBox}>
-                <SearchBox className={styles.search}/>
+            <div className={styles.innerWrapper}>
+                <Logo dsid={config.ds_id} onClick={toggleMode}/>
+                <div className={styles.searchBox}>
+                    <SearchBox className={styles.search}/>
+                </div>
+                {children}
             </div>
-            {children}
         </header>
     )
 }

@@ -9,7 +9,7 @@ export const Head: FC<any> = () => {
 
     const pageNavItem = sitemap.find(n => `/${n.path.join("/")}` === asPath);
     const twitter = seo.social_media.find(s => s.provider === "twitter");
-    const pageTitle = pageNavItem? `${seo.title} | ${pageNavItem.title}` : seo.title;
+    const pageTitle = pageNavItem? `${seo.title} | ${pageNavItem.metadata.title}` : seo.title;
 
     return (
         <NextHead>
