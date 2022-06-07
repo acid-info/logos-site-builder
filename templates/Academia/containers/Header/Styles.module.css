@@ -33,6 +33,7 @@
 
     .searchBox{
         grid-column: 2/5;
+        max-width: calc(700px - var(--column-gap));
     }
 
     .container :global(.logo-holder){

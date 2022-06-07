@@ -212,15 +212,25 @@
         padding-left: var(--column-gap) !important;
     }
 
+    .toc{
+        display: contents;
+    }
+
     .sidebar, .toc{
-        display: block;
         position: sticky;
         top: stickyTop;
         padding-top: stickyPaddingTop;
         width: auto;
         overflow-y: auto;
-        height: calc(100vh - var(--page-padding-top));
+        height: calc(100vh - calc(var(--page-padding-top) * 2) - stickyPaddingTop - stickyTop);
         padding-bottom: var(--page-padding-top);
+    }
+
+    .toc{
+        display: flex;
+        /*margin: 0;*/
+        /*padding: 0 !important;*/
+        /*padding-top: calc(var(--lh) * 1) !important;*/
     }
 
     .content{

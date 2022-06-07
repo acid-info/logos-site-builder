@@ -4,6 +4,8 @@ import {hexTofeColorMatrix} from "../utils/utils.theme";
 import IThemeProviderProps = LogosTheme.IThemeProviderProps;
 import EThemeMode = LogosTheme.EThemeMode;
 import {useLogosSite} from "./SiteProvider";
+import NextNProgress from "nextjs-progressbar";
+import IThemePalette = LogosTheme.IThemePalette;
 
 interface IThemeProviderContext{
     mode: EThemeMode;
@@ -30,7 +32,8 @@ export const LogosThemeProvider: FC<PropsWithChildren<IThemeProviderProps>> = (p
         }
     }
 
-    const color = theme.palettes[EThemeMode.DARK].background.replace("#", "")
+    const palette: IThemePalette = theme.palettes[EThemeMode.DARK];
+    const color = palette.background.replace("#", "")
 
     return (
         <logosThemeContext.Provider
@@ -51,6 +54,16 @@ export const LogosThemeProvider: FC<PropsWithChildren<IThemeProviderProps>> = (p
                     </filter>
                 </defs>
             </svg>
+            <NextNProgress
+                color={palette.text}
+                startPosition={0.3}
+                stopDelayMs={200}
+                height={3}
+                showOnShallow={true}
+                options={{
+                }}
+                nonce={"logos"}
+            />
             {children}
         </logosThemeContext.Provider>
     )

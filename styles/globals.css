@@ -182,6 +182,10 @@ table {
     scrollbar-width: none;  /* Firefox */
 }
 
+#nprogress .bar{
+    z-index: 999999999 !important;
+}
+
 @media (min-width:600px) {
     :root{
         --column-gap: 2.2vw;
