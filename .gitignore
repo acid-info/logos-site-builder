@@ -40,6 +40,9 @@ yarn-error.log*
 .idea
 
 
+/public/sitemap-0.xml
+/public/sitemap.xml
+/public/sitemap*
 /public/compiled/*.*
 /public/compiled-assets/*.*
 /public/compiled-assets

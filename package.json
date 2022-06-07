@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "yarn build:data && next build && next export",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
     "build:data": "node scripts/index.js"
@@ -24,6 +25,7 @@
     "markdown-toc": "^1.2.0",
     "mermaid": "^9.1.1",
     "next": "12.1.4",
+    "next-sitemap": "^3.0.5",
     "nextjs-progressbar": "^0.0.14",
     "octokit": "^1.7.1",
     "react": "18.0.0",
