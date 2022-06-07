@@ -66,6 +66,10 @@
     padding-left: calc(2 * var(--column-gap));
 }
 
+.container article{
+    min-height: 100vh;
+}
+
 .container article h2:not(:first-child){
     margin-top: calc(3 * var(--lh));
 }
@@ -179,8 +183,8 @@
 }
 
 @media (min-width:600px){
-    @value stickyTop: calc(2 * var(--lh));
-    @value stickyPaddingTop: calc(var(--page-padding-top) - stickyTop);
+    /*@value stickyTop: calc(1 * var(--lh));*/
+    /*@value stickyPaddingTop: calc(var(--page-padding-top) - stickyTop);*/
 
     .container{
         max-width: var(--max-width);
@@ -218,11 +222,12 @@
 
     .sidebar, .toc{
         position: sticky;
-        top: stickyTop;
-        padding-top: stickyPaddingTop;
+        top: calc(2 * var(--lh));
+        /*padding-top: stickyPaddingTop;*/
         width: auto;
         overflow-y: auto;
-        height: calc(100vh - calc(var(--page-padding-top) * 2) - stickyPaddingTop - stickyTop);
+        height: fit-content;
+        /*height: calc(100vh - calc(var(--page-padding-top) * 2) - stickyPaddingTop - stickyTop);*/
         padding-bottom: var(--page-padding-top);
     }
 
