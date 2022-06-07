@@ -12,7 +12,7 @@ module.exports = async (siteConfigs) => {
                 ...siteConfigs,
                 navigation: {
                     ...siteConfigs.navigation,
-                    homeTitle: home.title
+                    homeTitle: home.metadata.title
                 }
             }
         }

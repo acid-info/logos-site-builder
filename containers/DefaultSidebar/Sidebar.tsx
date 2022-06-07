@@ -32,7 +32,7 @@ export const DefaultSidebar: FC<ISidebarProps> = (props) => {
     return (
         <div className={`${className} defaultSidebar ${styles.container}`}>
             <nav className={`sidebarNav`}>
-                <DefaultSidebarMenu items={[{...sidebar, title: "", children: mainItems}]}
+                <DefaultSidebarMenu items={[{...sidebar, metadata: {title: ""}, children: mainItems}]}
                       className={"mainMenu"}
                 />
                 <br/>

@@ -65,7 +65,7 @@ module.exports = async(siteConfig) => {
         let id = child.path.join("/");
 
         if(siteConfig.navigation.home && siteConfig.navigation.home===child.localPath){
-            id = child.title;
+            id = child.metadata.title;
         }
 
         //TODO this needs to be back to normal case

@@ -17,11 +17,11 @@ export const DefaultSidebarMenuItem: FC<PropsWithChildren<IMenuItemProps>> = (pr
     const {level, item, children, isActive = false} = props;
     const isPage = item.localPath.endsWith(".md");
 
-    const title = item.title.length <= 20 ?
-        item.title
-        :
-        // item.title
-        `${item.title.split(" ").slice(0, ~~(90/item.title.length)).join(" ")}..`
+    // const title = item.title.length <= 20 ?
+    //     item.title
+    //     :
+    //     // item.title
+    //     `${item.title.split(" ").slice(0, ~~(90/item.title.length)).join(" ")}..`
 
     return (
         <li className={`${styles.menuItem} menuitem level-${level}`}>
@@ -29,14 +29,14 @@ export const DefaultSidebarMenuItem: FC<PropsWithChildren<IMenuItemProps>> = (pr
                 {
                     !isPage ?
                         <span className={"cap"}>
-                            {item.title}
+                            {item.metadata.title}
                         </span>
                         :
                         <Link href={`/${item.path.join("/")}`} scroll={false}>
                             <a className={isActive ? "active" : ""}
-                               title={item.title}
+                               title={item.metadata.title}
                             >
-                                {item.title}
+                                {item.metadata.title}
                             </a>
                         </Link>
                 }

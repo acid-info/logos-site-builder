@@ -66,7 +66,7 @@ const downloadExternalSource = async (url, sourceSubFolderPath = null, targetSub
 }
 
 class TreeNodeMarkdown {
-    title;
+    metadata
     navOrder = -1;
     localPath;
     path;
@@ -74,26 +74,28 @@ class TreeNodeMarkdown {
     isDir;
     constructor(path, rootPath) {
         this.localPath = relative(rootPath, path);
-        // this.localPath = path;
         this.path = this.localPath.replace(".md", "").split(sep).map((s) => slug(s))
         this.children = [];
-        this.title = basename(path, ".md");
+        this.metadata = {};
+        this.metadata.title = basename(path, ".md");
     }
 
     async attachMetadata(rootPath){
         const localPathAbs = join(rootPath, this.localPath);
         const rawMD = await readFile(localPathAbs, 'utf-8');
         const {data: metadata = {}} = matter(rawMD);
-        if(metadata.title){
-            this.title = metadata.title
-        }
+        this.metadata = {
+            ...this.metadata,
+            ...metadata
+        };
     }
 
     setOrder(orderIndex){
-        if(orderIndex===-1){
-            this.navOrder = -1;
-        }else{
-            this.navOrder = 9999-orderIndex;
+        this.navOrder = -1;
+        if(this.metadata.date){
+            this.navOrder = new Date(this.metadata.date).getTime() / 1000;
+        }else if(orderIndex!==-1){
+            this.navOrder = (new Date().getTime()/1000)-(orderIndex);
         }
     }
 }
@@ -107,9 +109,7 @@ async function walkDir(dir, cb = () => {}) {
             cb(filePath)
             return walkDir(filePath);
         }
-        // else if(stats.isFile()) return filePath;
     }));
-    // return files.reduce((all, folderContents) => all.concat(folderContents), []);
 }
 
 async function buildSitemapForMarkdownDirectory(rootPath, siteConfigs) {
@@ -138,10 +138,13 @@ async function buildSitemapForMarkdownDirectory(rootPath, siteConfigs) {
 
                 if (isAllowed) {
                     await childNode.attachMetadata(rootPath);
-
                     if(childNode.localPath.endsWith("index.md")){
-                        currentNode.title = childNode.title!=="index"? childNode.title :  currentNode.title;
+                        currentNode.metadata = {
+                            ...childNode.metadata,
+                            title: childNode.metadata.title!=="index"? childNode.metadata.title :  currentNode.metadata.title
+                        };
                         currentNode.localPath = childNode.localPath;
+
                         flatmap.push({
                             ...currentNode,
                             children: []

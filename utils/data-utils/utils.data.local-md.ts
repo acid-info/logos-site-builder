@@ -44,7 +44,7 @@ export const getStaticPropsFromFolder = <O extends PreviewData>() => async(conte
                 c.localPath!==navProps.localPath
             )
         });
-        content += children.map((c) => `* [${c.title}](${c.path.join("/")})`).join(`\n`);
+        content += children.map((c) => `* [${c.metadata.title}](${c.path.join("/")})`).join(`\n`);
     }
 
     return {
