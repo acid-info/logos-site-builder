@@ -44,12 +44,25 @@
 }
 
 @media (min-width:600px) {
-    @value stickyTop: calc(2 * var(--lh));
-    @value stickyPaddingTop: calc(var(--page-padding-top) - stickyTop);
+    .container{
+        --page-padding-top: calc(5 * var(--lh));
+        padding-top: 0;
+    }
+
+    .container > *{
+        padding-top: var(--page-padding-top);
+    }
+
+    .content{
+        padding-top: calc(var(--page-padding-top) / 2.5);
+    }
+
+    .sidebar{
+    }
 
     .sidebar, .toc{
-        top: stickyTop;
-        padding-top: stickyPaddingTop;
+        top: calc(var(--page-padding-top) / 2);
+        padding-top: calc(var(--page-padding-top) / 2);
     }
 
     .main article{

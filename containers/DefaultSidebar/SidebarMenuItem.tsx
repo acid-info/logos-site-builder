@@ -25,7 +25,7 @@ export const DefaultSidebarMenuItem: FC<PropsWithChildren<IMenuItemProps>> = (pr
 
     return (
         <li className={`${styles.menuItem} menuitem level-${level}`}>
-            <div className={"menuitem-title"}>
+            <>
                 {
                     !isPage ?
                         <span className={"cap"}>
@@ -40,7 +40,7 @@ export const DefaultSidebarMenuItem: FC<PropsWithChildren<IMenuItemProps>> = (pr
                             </a>
                         </Link>
                 }
-            </div>
+            </>
             {
                 children
             }

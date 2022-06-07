@@ -170,7 +170,7 @@
     line-height: var(--lh)
 }
 
-.toc nav ul li{
+.container nav ul li{
     margin-bottom: calc(var(--lh) / 4);
 }
 
