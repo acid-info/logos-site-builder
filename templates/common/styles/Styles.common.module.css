@@ -161,6 +161,22 @@
 
 }
 
+.container nav ul li:not(:global(.level-0)){
+    display: flex;
+}
+
+.container nav ul li:not(:global(.level-0)) a{
+    line-height: var(--lh)
+}
+
+.toc nav ul li{
+    margin-bottom: calc(var(--lh) / 4);
+}
+
+.sidebar :global(.menuitem-title){
+    margin-bottom: calc(var(--lh) / 2);
+}
+
 @media (min-width:600px){
     @value stickyTop: calc(2 * var(--lh));
     @value stickyPaddingTop: calc(var(--page-padding-top) - stickyTop);

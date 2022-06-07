@@ -29,14 +29,14 @@ export const DefaultSidebarMenuItem: FC<PropsWithChildren<IMenuItemProps>> = (pr
                 {
                     !isPage ?
                         <span className={"cap"}>
-                            {title}
+                            {item.title}
                         </span>
                         :
                         <Link href={`/${item.path.join("/")}`} scroll={false}>
                             <a className={isActive ? "active" : ""}
                                title={item.title}
                             >
-                                <span>{title}</span>
+                                {item.title}
                             </a>
                         </Link>
                 }

@@ -5,7 +5,7 @@
 }
 
 .menuItem{
-    /*list-style: square;*/
+    line-height: var(--lh);
 }
 
 .menuItem :global(.menuitem-title){
