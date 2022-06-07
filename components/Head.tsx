@@ -10,6 +10,7 @@ export const Head: FC<any> = () => {
     const pageNavItem = sitemap.find(n => `/${n.path.join("/")}` === asPath);
     const twitter = seo.social_media.find(s => s.provider === "twitter");
     const pageTitle = pageNavItem? `${seo.title} | ${pageNavItem.metadata.title}` : seo.title;
+    const imageUrl = `${seo.url}/compiled-assets/${seo.image}`;
 
     return (
         <NextHead>
@@ -21,14 +22,18 @@ export const Head: FC<any> = () => {
             {
                 twitter&&
                 <>
-                    <meta name="twitter:card" content="summary" key="twcard" />
-                    <meta name="twitter:creator" content={twitter.handler} key="twhandle" />
+                    <meta name="twitter:card" content="summary_large_image"  />
+                    <meta name="twitter:creator" content={twitter.handler}  />
+                    <meta name="twitter:site" content={`@${twitter.handler}`}/>
+                    <meta name="twitter:title" content={pageTitle}/>
+                    <meta name="twitter:description" content={seo.description}/>
+                    <meta name="twitter:image" content={imageUrl}/>
                 </>
             }
 
             {/* Open Graph */}
             <meta property="og:url" content={`${seo.url}/${asPath}`} key="ogurl" />
-            <meta property="og:image" content={`${seo.url}/compiled-assets/${seo.image}`} key="ogimage" />
+            <meta property="og:image" content={imageUrl} key="ogimage" />
             <meta property="og:site_name" content={pageTitle} key="ogsitename" />
             <meta property="og:title" content={pageTitle} key="ogtitle" />
             <meta property="og:description" content={seo.description} key="ogdesc" />
