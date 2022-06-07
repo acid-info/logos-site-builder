@@ -22,16 +22,14 @@
 
 @media (min-width:600px){
     .container{
-        max-width: var(--max-width);
-        margin: auto;
-        grid-template-columns: repeat(5, 1fr);
-        grid-column-gap: calc(var(--column-gap) * 2);
+        grid-template-columns: repeat(5, 1fr) !important;
+        grid-column-gap: calc(var(--column-gap) * 2) !important;
         grid-template-areas:
       "header header header header header"
       "banner banner banner banner banner"
       ". search search search ."
       "main main main main main"
-      "footer footer footer footer footer";
+      "footer footer footer footer footer" !important;
     }
 
     .search{
