@@ -19,7 +19,7 @@ export const Youtube: FC<IProps> = ({url, title}) => {
         <span className={`${style.container} iframe`}>
             <span className={style.iframe}>
                 <iframe width="700px"
-                        src={`http://www.youtube.com/embed/${getYouTubeGetID(url)}`}
+                        src={`https://www.youtube.com/embed/${getYouTubeGetID(url)}`}
                         frameBorder="0"
                         allowFullScreen
                 />

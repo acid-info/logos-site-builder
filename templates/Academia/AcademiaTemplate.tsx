@@ -4,7 +4,7 @@ import {IMarkdown} from "../../types/data.types";
 
 
 import style from "./Style.module.css";
-import commonStyle from "../common/styles/Styles.common.module.css";
+import commonStyle from "../common/Styles.common.module.css";
 
 import {Header} from "./containers/Header/Header";
 

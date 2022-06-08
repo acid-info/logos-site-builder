@@ -3,7 +3,7 @@ import {TTemplateProps} from "../../types/ui.types";
 import {IMarkdown} from "../../types/data.types";
 
 
-import commonStyle from "../common/styles/Styles.common.module.css";
+import commonStyle from "../common/Styles.common.module.css";
 import style from "./styles/Style.module.css";
 
 import {Header} from "./containers/Header/Header";
