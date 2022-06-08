@@ -98,13 +98,13 @@ pre:not(.logos-block-mermaid-ascii){
     border: 2px solid var(--hlm-color);
 }
 
-img{
+img, iframe{
     -webkit-filter: url(#colored) grayscale(50%);
-    filter: url(#colored) grayscale(50%);
+    filter: url(#colored) grayscale(100%);
     width: 100%;
 }
 
-img:hover{
+img:hover, iframe:hover{
     -webkit-filter: grayscale(0);
     filter: grayscale(0);
 }

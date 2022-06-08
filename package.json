@@ -11,9 +11,8 @@
     "build:data": "node scripts/index.js"
   },
   "dependencies": {
-    "@sindresorhus/slugify": "^2.1.0",
+    "@agentofuser/remark-oembed": "^1.0.4",
     "@svgr/webpack": "^6.2.1",
-    "axios": "^0.27.2",
     "dotenv": "^16.0.1",
     "download-git-repo": "^3.0.2",
     "fast-glob": "^3.2.11",
@@ -27,7 +26,7 @@
     "next": "12.1.4",
     "next-sitemap": "^3.0.5",
     "nextjs-progressbar": "^0.0.14",
-    "octokit": "^1.7.1",
+    "node-fetch": "^3.2.5",
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-markdown": "^8.0.2",
@@ -42,6 +41,7 @@
     "remark-attr": "^0.11.1",
     "remark-custom-blocks": "^2.6.0",
     "remark-gfm": "^3.0.1",
+    "remark-iframes": "^4.0.5",
     "remark-math": "^5.1.1",
     "remark-toc": "^8.0.1",
     "traverse": "^0.6.6",

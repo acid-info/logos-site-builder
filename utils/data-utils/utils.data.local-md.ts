@@ -4,6 +4,8 @@ import {readFileSync} from "fs";
 import {join} from "path";
 import matter from "gray-matter";
 const toc = require('markdown-toc');
+import removeMarkdown from "markdown-to-text";
+const slug = require("url-slug");
 
 const sidebar: INavigationItemProps[] = require("../../public/compiled/sidebar.flat.json");
 
@@ -32,7 +34,15 @@ export const getStaticPropsFromFolder = <O extends PreviewData>() => async(conte
 
     const rawMD = readFileSync(join(process.cwd(), "docs", navProps.localPath), 'utf-8');
     let {data: metadata, content} = matter(rawMD);
-    const _toc = toc(content).json
+    const _toc = toc(content).json.map((t: any) => {
+        const content = removeMarkdown(t.content);
+        const _slug = slug(content);
+        return {
+            ...t,
+            content,
+            slug: _slug
+        }
+    })
 
     if(navProps.isDir){
         const children = sidebar.filter((c) => {

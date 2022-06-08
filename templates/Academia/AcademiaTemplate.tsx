@@ -3,7 +3,7 @@ import {TTemplateProps} from "../../types/ui.types";
 import {IMarkdown} from "../../types/data.types";
 
 
-import style from "./styles/Style.module.css";
+import style from "./Style.module.css";
 import commonStyle from "../common/styles/Styles.common.module.css";
 
 import {Header} from "./containers/Header/Header";
@@ -30,7 +30,9 @@ export const AcademiaTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => 
         <div className={`${style.container} ${commonStyle.container}`}>
             <Header className={`${style.header} ${commonStyle.header}`}/>
             <main className={`${style.main} ${commonStyle.main} ${commonStyle.main}`}>
-                <Sidebar className={`${style.sidebar} ${commonStyle.sidebar} hidden-scroll`}>
+                <Sidebar className={`${style.sidebar} ${commonStyle.sidebar} hidden-scroll`}
+                         initialDesktop={false}
+                >
                     <Logo dsid={config.ds_id} onClick={toggleMode}/>
                 </Sidebar>
                 <Content className={`${style.content} ${commonStyle.content}`}

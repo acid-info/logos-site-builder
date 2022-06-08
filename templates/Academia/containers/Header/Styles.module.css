@@ -1,6 +1,6 @@
 .container{
     grid-area: header;
-    padding: 0 var(--column-gap) !important;
+    padding: var(--column-gap) !important;
 }
 
 .container :global(.logo-holder){
@@ -8,7 +8,6 @@
 }
 
 .searchBox{
-    /*width: calc(100% - calc(var(--column-gap) * 2));*/
 }
 
 .container :global(.logo-holder){
@@ -21,6 +20,10 @@
 }
 
 @media (min-width:600px){
+
+    .container{
+        padding: 0 var(--column-gap) !important;
+    }
 
     .innerWrapper{
         max-width: var(--max-width);

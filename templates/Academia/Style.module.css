@@ -46,10 +46,6 @@
 
 @media (min-width:600px) {
 
-    .sidebar :global(.sidebar-toggle-button){
-        display: none;
-    }
-
     .container{
         --page-padding-top: calc(5 * var(--lh));
         padding-top: 0;
@@ -63,12 +59,18 @@
         padding-top: calc(var(--page-padding-top) / 2.5);
     }
 
-    .sidebar{
-    }
-
     .sidebar, .toc{
         top: calc(var(--page-padding-top) / 2);
         padding-top: calc(var(--page-padding-top) / 2);
     }
 
+    .sidebar :global(.sidebar-toggle-button){
+        display: block;
+        position: absolute;
+        top: calc(var(--page-padding-top) / 2);
+        left: 0 !important;
+        width: 30px;
+        margin-top: -2px;
+        /*padding-top: calc(var(--page-padding-top));*/
+    }
 }

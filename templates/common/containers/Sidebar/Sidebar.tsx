@@ -9,11 +9,14 @@ import {useRouter} from "next/router";
 interface IProps{
     className?: string;
     append?: boolean;
+    initialDesktop?: boolean;
+    initialMobile?: boolean;
 }
 
-export const Sidebar: FC<PropsWithChildren<IProps>> = ({className, children, append=true}) => {
-    const [mobileShow, setMobileShow] = useState(false);
-    const [desktopShow, setDesktopShow] = useState(true);
+export const Sidebar: FC<PropsWithChildren<IProps>> = (props) => {
+    const {className, children, append=true, initialDesktop = true, initialMobile = false} = props;
+    const [mobileShow, setMobileShow] = useState(initialMobile);
+    const [desktopShow, setDesktopShow] = useState(initialDesktop);
 
     const {asPath} = useRouter();
 
