@@ -100,3 +100,15 @@ export interface ISiteConfigs{
         cc?: string
     }
 }
+
+export interface ILogosAuthor{
+    short_name: string
+    name: string
+    twitter: string
+    github: string
+}
+
+export interface ILogosPublicDataEntry<D>{
+    data:D;
+    filename: string;
+}

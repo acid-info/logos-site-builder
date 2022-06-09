@@ -25,7 +25,7 @@ export const PageInfo: FC<IProps> = (props) => {
             <div className={"serif"}>
                 {
                     date &&
-                    <i>{formatDate(new Date(date), 'MMM dd LLLL')}</i>
+                    <i>{formatDate(new Date(date), 'MMM dd yyyy')}</i>
                 }
                 {
                     (date && author)
@@ -33,7 +33,7 @@ export const PageInfo: FC<IProps> = (props) => {
                 }
                 {
                     author &&
-                    <i>{author}</i>
+                    <span>by <i> {author}</i></span>
                 }
             </div>
         </div>

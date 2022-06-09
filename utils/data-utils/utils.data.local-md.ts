@@ -59,7 +59,11 @@ export const getStaticPropsFromFolder = <O extends PreviewData>() => async(conte
 
     return {
         props: {
-            markdown: {content, metadata, toc: _toc},
+            markdown: {
+                content,
+                metadata: JSON.parse(JSON.stringify(metadata)),
+                toc: _toc
+            },
             routeParams: params
         }
     };

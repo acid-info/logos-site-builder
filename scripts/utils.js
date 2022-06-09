@@ -65,6 +65,11 @@ const downloadExternalSource = async (url, sourceSubFolderPath = null, targetSub
 
 }
 
+const readMarkdown = async (p) => {
+    const rawMD = await readFile(p, 'utf-8');
+    return matter(rawMD);
+}
+
 class TreeNodeMarkdown {
     metadata
     navOrder = -1;
@@ -202,5 +207,6 @@ module.exports= {
     downloadExternalSource,
     buildSitemapForMarkdownDirectory,
     isValidSourceUrl,
-    walkDir
+    walkDir,
+    readMarkdown
 }

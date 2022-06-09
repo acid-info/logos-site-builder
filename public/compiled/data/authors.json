@@ -1,0 +1,91 @@
+[
+  {
+    "data": {
+      "layout": "author",
+      "short_name": "circe",
+      "name": "Circe",
+      "twitter": "vacp2p",
+      "github": "thecirce"
+    },
+    "filename": "circe.md"
+  },
+  {
+    "data": {
+      "layout": "author",
+      "short_name": "dean",
+      "name": "Dean",
+      "twitter": "DeanEigenmann",
+      "github": "decanus",
+      "website": "https://dean.eigenmann.me"
+    },
+    "filename": "dean.md"
+  },
+  {
+    "data": {
+      "layout": "author",
+      "short_name": "franck",
+      "name": "Franck",
+      "twitter": "dantounet",
+      "github": "d4nte"
+    },
+    "filename": "franck.md"
+  },
+  {
+    "data": {
+      "layout": "author",
+      "short_name": "hanno",
+      "name": "Hanno Cornelius",
+      "twitter": "4aelius",
+      "github": "jm-clius"
+    },
+    "filename": "hanno.md"
+  },
+  {
+    "data": {
+      "layout": "author",
+      "short_name": "kaiserd",
+      "name": "Daniel",
+      "github": "kaiserd"
+    },
+    "filename": "kaiserd.md"
+  },
+  {
+    "data": {
+      "layout": "author",
+      "short_name": "oskarth",
+      "name": "Oskar",
+      "twitter": "oskarth",
+      "github": "oskarth"
+    },
+    "filename": "oskarth.md"
+  },
+  {
+    "data": {
+      "layout": "author",
+      "short_name": "s1fr0",
+      "name": "s1fr0",
+      "github": "s1fr0"
+    },
+    "filename": "s1fr0.md"
+  },
+  {
+    "data": {
+      "layout": "author",
+      "short_name": "sanaz",
+      "name": "Sanaz",
+      "twitter": "sanaz2016",
+      "github": "staheri14"
+    },
+    "filename": "sanaz.md"
+  },
+  {
+    "data": {
+      "layout": "author",
+      "short_name": "sanaz",
+      "name": "Sanaz",
+      "twitter": "sanaz2016",
+      "github": "staheri14"
+    },
+    "filename": "sanaztaheri.md"
+  }
+]

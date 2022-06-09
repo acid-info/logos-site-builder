@@ -44,10 +44,6 @@
     position: absolute;
 }
 
-.container :global(.serif){
-    font-family: serif;
-}
-
 .container table{
     border-collapse:collapse;
     border: none;

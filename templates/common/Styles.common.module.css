@@ -149,6 +149,11 @@
     right: var(--column-gap);
 }
 
+
+.container :global(.serif){
+    font-family: serif;
+}
+
 .container :global(blockquote){
     font-family: serif;
     line-height: var(--lh);
