@@ -18,20 +18,21 @@ import {useLogosTheme} from "../../context/ThemeProvider";
 import {useLogosSite} from "../../context/SiteProvider";
 import {Logo} from "../../components/design-system/logos";
 import {PageInfo} from "./components/PageInfo/PageInfo";
+import {PagePrintInfo} from "../common/components/page-print-info/PagePrintInfo";
 
 interface IProps {
     markdown: IMarkdown<any>;
 }
 
 export const AcademiaTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => {
-    const {markdown} = props;
+    const {markdown, append, children} = props;
     const {toggleMode} = useLogosTheme();
     const {config} = useLogosSite();
 
     return (
-        <div className={`${style.container} ${commonStyle.container}`}>
+        <div className={`${style.container} ${commonStyle.container} template-container`}>
             <Header className={`${style.header} ${commonStyle.header}`}/>
-            <h1 style={{display: "none"}}>{config.seo.title}</h1>
+            <PagePrintInfo config={config}/>
             <main className={`${style.main} ${commonStyle.main} ${commonStyle.main}`}>
                 <Sidebar className={`${style.sidebar} ${commonStyle.sidebar} hidden-scroll`}
                          initialDesktop={false}
@@ -41,9 +42,12 @@ export const AcademiaTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => 
                 <Content className={`${style.content} ${commonStyle.content}`}
                          content={markdown.content}
                          config={markdownCommonConfigs}
-                         append={false}
+                         append={append}
                          metadata={markdown.metadata}
                 >
+                    {
+                        children
+                    }
                     {
                         (markdown.metadata.date||markdown.metadata.author)&&
                         <PageInfo data={markdown.metadata}/>

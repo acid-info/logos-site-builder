@@ -11,8 +11,6 @@ interface IProps extends AppProps {
 import "../public/compiled/theme.css";
 import "../styles/globals.css";
 import "../styles/templates.global.css"
-import {logosMathConfig} from "../configs/math.config";
-import {MathJaxContext} from "better-react-mathjax";
 
 function App({Component, pageProps}: IProps) {
     const {children, ...rest} = pageProps;

@@ -108,7 +108,6 @@ export interface ILogosAuthor{
     github: string
 }
 
-export interface ILogosPublicDataEntry<D>{
-    data:D;
+export type TLogosPublicDataEntry<D> = {
     filename: string;
-}
+} & IMarkdown<D>;

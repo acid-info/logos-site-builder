@@ -4,3 +4,75 @@
     --footer-height: calc(6 * var(--lh));
     --banner-height: calc(8 * var(--lh));
 }
+
+@media print {
+    header, aside, footer{ display: none !important;}
+
+    main>aside:last-child{
+        display: block !important;
+        position: relative !important;
+        top: 0;
+        left: 0;
+        height: fit-content !important;
+        margin-bottom: 5em !important;
+    }
+
+    article{
+        page-break-before: always !important;
+    }
+
+    article > * {
+        page-break-inside: avoid !important;
+    }
+
+    h1, h2{
+        margin: 0 !important;
+    }
+
+    main{
+        display: flex !important;
+        flex-direction: column-reverse;
+        padding: 0 !important;
+    }
+
+    nav{
+        height: auto !important;
+        padding-left: var(--column-gap);
+    }
+
+    .template-container>*{
+        margin-bottom: 0 !important;
+    }
+
+    .template-container{
+        padding-top: 0 !important;
+        display: flex !important;
+        flex-direction: column;
+    }
+
+    .template-container .page-info{
+        padding: 0 !important;
+        margin-bottom: 2em !important;
+    }
+
+    .template-container .page-info > h1{
+        display: block !important;
+        font-size: 200px !important;
+        line-height: 217px;
+        margin: 0 !important;
+    }
+
+    .template-container .page-info .page-info-sub{
+        font-size: 24px;
+        padding-left: var(--column-gap);
+    }
+
+    h1, h2{
+        /*page-break-before: always;*/
+    }
+
+    ul {
+        break-inside: avoid;
+    }
+
+}

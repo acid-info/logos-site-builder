@@ -19,16 +19,16 @@ module.exports = async (siteConfigs) => {
             const relPath = filePath.replace(LOCAL_DATA_PATH, "");
             let filename = basename(relPath);
             let folder = dirname(relPath).split(sep).pop();
-            const {data: metadata = {}, content} = await readMarkdown(filePath);
+            const md = await readMarkdown(filePath);
 
             if(folder.trim().length === 0){
                 folder = "index";
             }
 
             if(folders[folder]){
-                folders[folder].push({data: metadata, filename});
+                folders[folder].push({...md, filename});
             }else{
-                folders[folder] = [{data: metadata, filename}];
+                folders[folder] = [{...md, filename}];
             }
         }
 

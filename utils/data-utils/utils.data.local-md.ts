@@ -1,7 +1,7 @@
 import type {GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult, PreviewData} from "next/types";
 import {INavigationItemProps, IRouteParamForLocalFolder, ISiteConfigs} from "../../types/data.types";
 import {readFileSync} from "fs";
-import {join} from "path";
+import {join, dirname} from "path";
 import matter from "gray-matter";
 const toc = require('markdown-toc');
 import removeMarkdown from "markdown-to-text";
@@ -46,14 +46,14 @@ export const getStaticPropsFromFolder = <O extends PreviewData>() => async(conte
 
     if(navProps.isDir){
         const children = sidebar.filter((c) => {
+            const _dir = dirname(navProps.localPath);
             return (
-                //if the path of children is inside the directory
-                !!c.path.find((p) => navProps.path.indexOf(p) > -1)
+                c.localPath.startsWith(_dir)
                 &&
-                //it is not the index file of the dir
                 c.localPath!==navProps.localPath
             )
         });
+
         content += children.map((c) => `* [${c.metadata.title}](${c.path.join("/")})`).join(`\n`);
     }
 
