@@ -5,6 +5,7 @@ import {ECustomBlockNames} from "../../configs";
 import {AsciiWrapper} from "../../components/ui-components/Ascii/AsciiWrapper";
 import {Paragraph} from "../../components/ui-components/Paragraph";
 import ReactMarkdown from "react-markdown";
+import {MathJax} from "better-react-mathjax";
 
 export default function rehypeLogos(options: any) {
     return (tree: any) => {
@@ -73,6 +74,18 @@ export default function rehypeLogos(options: any) {
                             parent.properties.className = "codeblock-wrapper"
                             break;
                         }
+                    }
+                }
+                else if(className.indexOf("math") > -1){
+                    const math = "$"+String(node.children[0].value)+"$";
+                    const inline = className.indexOf("math-inline") > -1;
+                    parent.children[index] = {
+                        "type": "element",
+                        "tagName": "span",
+                        "properties": {
+                            "children": <MathJax inline={inline}>{math}</MathJax>
+                        },
+                        "children": []
                     }
                 }
             }

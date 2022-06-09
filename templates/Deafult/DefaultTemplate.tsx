@@ -37,6 +37,7 @@ export const DefaultTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => {
                 <Content className={`${style.content} ${commonStyle.content}`}
                          content={markdown.content}
                          config={markdownCommonConfigs}
+                         metadata={markdown.metadata}
                 />
                 <Toc className={`${style.toc} ${commonStyle.toc} hide-scroll`} toc={markdown.toc}/>
             </main>

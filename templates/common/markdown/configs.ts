@@ -2,7 +2,7 @@ import {logosRehypePlugins} from "./logos-rehype-plugins";
 import {logosRemarkPlugins} from "./logos-remark-plugins";
 import {transformImageUri} from "./logos-react-md-transformers/image-uri";
 import {logosReactMarkdownComponents} from "./components";
-import {PluggableList} from "react-markdown/lib/react-markdown";
+import {PluggableList, ReactMarkdownOptions} from "react-markdown/lib/react-markdown";
 import {TransformImage} from "react-markdown/lib/ast-to-react";
 
 export const logosCustomMarkdownLanguages = {
@@ -31,9 +31,10 @@ export interface IMarkdownConfig{
     logosReactMarkdownComponents: any;
 }
 
-export const markdownCommonConfigs: IMarkdownConfig = {
+export const markdownCommonConfigs: ReactMarkdownOptions = {
     rehypePlugins: logosRehypePlugins,
     remarkPlugins: logosRemarkPlugins,
     transformImageUri,
-    logosReactMarkdownComponents
+    components: logosReactMarkdownComponents,
+    children: "",
 }

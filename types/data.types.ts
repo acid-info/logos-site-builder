@@ -8,6 +8,7 @@ export interface ILogosMarkdownMetadataBase{
     categories?: string;
     author?: string
     summary?: string;
+    _includes?: string[]
 }
 
 export interface IMarkdown<D>{

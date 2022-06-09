@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "@agentofuser/remark-oembed": "^1.0.4",
+    "@matejmazur/react-mathjax": "^0.1.10",
     "@svgr/webpack": "^6.2.1",
+    "better-react-mathjax": "^2.0.1",
     "dotenv": "^16.0.1",
     "download-git-repo": "^3.0.2",
     "fast-glob": "^3.2.11",
@@ -35,6 +37,7 @@
     "rehype-attr": "^2.0.8",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-figure": "^1.0.1",
+    "rehype-katex": "^6.0.2",
     "rehype-mathjax": "^4.0.2",
     "rehype-slug": "^5.0.1",
     "rehype-stringify": "^9.0.3",
