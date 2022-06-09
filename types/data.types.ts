@@ -22,6 +22,7 @@ export interface IMarkdown<D>{
 export interface IPagePropsMarkdown{
     markdown: IMarkdown<ILogosMarkdownMetadataBase>;
     routeParams: IRouteParamForLocalFolder
+    navProps: INavigationItemProps
 }
 
 export interface IMarkdownTocItem{

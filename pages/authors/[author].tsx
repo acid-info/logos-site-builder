@@ -1,17 +1,24 @@
 import {GetStaticPaths, GetStaticProps, NextPage} from "next";
-import {ILogosAuthor, INavigationItemProps, ISiteConfigs, TLogosPublicDataEntry} from "../../types/data.types";
+import {
+    ILogosAuthor,
+    ILogosMarkdownMetadataBase,
+    INavigationItemProps,
+    ISiteConfigs,
+    TLogosPublicDataEntry
+} from "../../types/data.types";
 import {readFile} from "fs/promises";
 import {join} from "path";
 import {existsSync} from "fs";
 import {logosTemplates} from "../../configs/templates";
 import {defaultTemplateName} from "../../configs/defaults";
 import {AuthorProfile} from "../../templates/common/containers/AuthorProfile/AuthorProfile";
+import {LogosHead} from "../../components/LogosHead";
 
 
 const sidebar: INavigationItemProps[] = require("../../public/compiled/sidebar.flat.json");
 const siteConfigs: ISiteConfigs = require("../../public/compiled/config.json");
 
-interface IProps extends TLogosPublicDataEntry<ILogosAuthor>{
+interface IProps extends TLogosPublicDataEntry<ILogosAuthor&ILogosMarkdownMetadataBase>{
     pages: INavigationItemProps[]
 }
 
@@ -20,7 +27,19 @@ const DefaultPage: NextPage<IProps> = (props) => {
     const component = logosTemplates[siteConfigs.template||defaultTemplateName];
     return component({
         markdown,
-        children: <AuthorProfile pages={pages} data={markdown.metadata} />
+        children: <>
+            <LogosHead data={{
+                localPath: `/data/authors/${filename}`,
+                path: ["authors", markdown.metadata.short_name],
+                isDir: false,
+                metadata: {
+                    ...markdown.metadata,
+                    title: markdown.metadata.name
+                },
+                children: []
+            }}/>
+            <AuthorProfile pages={pages} data={markdown.metadata} />
+            </>
     });
 }
 

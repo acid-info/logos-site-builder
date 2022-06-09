@@ -2,7 +2,7 @@ import type {AppProps} from 'next/app'
 import {PageComponent} from "../types/page";
 import {LogosSiteProvider} from "../context/SiteProvider";
 import {LogosThemeProvider} from "../context/ThemeProvider";
-import {Head} from "../components/Head";
+import {LogosHead} from "../components/LogosHead";
 
 interface IProps extends AppProps {
     Component: PageComponent
@@ -16,7 +16,6 @@ function App({Component, pageProps}: IProps) {
     const {children, ...rest} = pageProps;
     return (
         <LogosSiteProvider>
-            <Head/>
             <LogosThemeProvider>
                 <Component {...rest}>{children}</Component>
             </LogosThemeProvider>

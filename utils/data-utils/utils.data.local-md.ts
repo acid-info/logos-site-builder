@@ -64,6 +64,7 @@ export const getStaticPropsFromFolder = <O extends PreviewData>() => async(conte
                 metadata: JSON.parse(JSON.stringify(metadata)),
                 toc: _toc
             },
+            navProps,
             routeParams: params
         }
     };

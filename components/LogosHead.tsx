@@ -2,15 +2,17 @@ import NextHead from 'next/head'
 import {FC} from "react";
 import {useLogosSite} from "../context/SiteProvider";
 import {useRouter} from "next/router";
+import {INavigationItemProps} from "../types/data.types";
 
 interface IProps{
-
+    data: INavigationItemProps
 }
 
-export const Head: FC<IProps> = () => {
+export const LogosHead: FC<IProps> = (props) => {
     const {config: {seo, navigation: {home}}, sitemap} = useLogosSite();
     const {asPath} = useRouter();
-    const pageNavItem = sitemap.find(n => `/${n.path.join("/")}` === asPath);
+
+    const pageNavItem = props.data;
 
     const isHome = pageNavItem && pageNavItem.localPath === home;
 
