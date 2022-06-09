@@ -15,10 +15,13 @@
     justify-content: center;
 }
 
+.container p{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 @media (min-width:600px) {
-    .container{
-        text-align: center;
-    }
+
     .bottomPart{
         display: flex;
         flex-direction: row;
