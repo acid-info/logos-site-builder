@@ -59,7 +59,7 @@ nav a:visited,
 nav a:hover{
     text-decoration: none;
     color: var(--txt-color);
-    text-transform: capitalize;
+    text-transform: initial;
 }
 
 a:hover{

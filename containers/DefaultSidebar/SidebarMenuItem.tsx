@@ -6,6 +6,7 @@ import styles from "./Styles.module.css";
 import {DefaultSidebar} from "./Sidebar";
 import {randomInt} from "../../utils/utils.math";
 import {useRouter} from "next/router";
+import {capitalizeFirstLetter} from "../../utils/utils.ui";
 
 interface IMenuItemProps {
     item: INavigationItemProps
@@ -28,15 +29,15 @@ export const DefaultSidebarMenuItem: FC<PropsWithChildren<IMenuItemProps>> = (pr
             <>
                 {
                     !isPage ?
-                        <span className={"cap"}>
+                        <span>
                             {item.metadata.title}
                         </span>
                         :
-                        <Link href={`/${item.path.join("/")}`} scroll={false}>
+                        <Link href={`/${item.path.join("/")}`} scroll={true}>
                             <a className={isActive ? "active" : ""}
                                title={item.metadata.title}
                             >
-                                {item.metadata.title}
+                                {capitalizeFirstLetter(item.metadata.title)}
                             </a>
                         </Link>
                 }

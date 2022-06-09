@@ -66,6 +66,13 @@
     .sidebar, .toc{
         top: calc(var(--page-padding-top) / 2);
         padding-top: calc(var(--page-padding-top) / 2);
+        overflow-y: hidden !important;
+    }
+
+    .sidebar nav, .toc nav{
+        padding-bottom: var(--page-padding-top);
+        height: calc(100vh - calc(var(--page-padding-top) * 1));
+        overflow-y: auto !important;
     }
 
     .sidebar :global(.sidebar-toggle-button){
@@ -75,6 +82,5 @@
         left: 0 !important;
         width: 30px;
         margin-top: -2px;
-        /*padding-top: calc(var(--page-padding-top));*/
     }
 }

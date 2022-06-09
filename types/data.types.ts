@@ -3,7 +3,7 @@ import {LogosTheme} from "./theme.types";
 import Theme = LogosTheme.Theme;
 
 export interface ILogosMarkdownMetadataBase{
-    title?:string;
+    title:string;
     date?: string;
     categories?: string;
     author?: string

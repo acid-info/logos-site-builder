@@ -31,7 +31,7 @@ export const DefaultSidebar: FC<ISidebarProps> = (props) => {
 
     return (
         <div className={`${className} defaultSidebar ${styles.container}`}>
-            <nav className={`sidebarNav`}>
+            <nav className={`sidebarNav hidden-scroll`}>
                 <DefaultSidebarMenu items={[{...sidebar, metadata: {title: "", published: true}, children: mainItems}]}
                       className={"mainMenu"}
                 />

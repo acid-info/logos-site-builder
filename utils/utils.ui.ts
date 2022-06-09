@@ -35,3 +35,7 @@ export const useViewport = (): IViewportState => {
         isNarrow: width <= 600
     }
 }
+
+export const capitalizeFirstLetter = (txt: string):string => {
+    return txt.charAt(0).toUpperCase() + txt.slice(1);
+}

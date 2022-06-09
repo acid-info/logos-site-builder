@@ -227,7 +227,6 @@
         width: auto;
         overflow-y: auto;
         height: fit-content;
-        /*height: calc(100vh - calc(var(--page-padding-top) * 2) - stickyPaddingTop - stickyTop);*/
         padding-bottom: var(--page-padding-top);
     }
 
