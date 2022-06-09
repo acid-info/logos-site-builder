@@ -44,6 +44,10 @@
     position: absolute;
 }
 
+.container :global(.serif){
+    font-family: serif;
+}
+
 @media (min-width:600px) {
 
     .container{

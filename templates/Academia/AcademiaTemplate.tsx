@@ -1,6 +1,7 @@
 import {FC} from "react";
 import {TTemplateProps} from "../../types/ui.types";
 import {IMarkdown} from "../../types/data.types";
+import formatDate from 'date-fns/format'
 
 
 import style from "./Style.module.css";
@@ -16,6 +17,7 @@ import {markdownCommonConfigs} from "../common/markdown/configs";
 import {useLogosTheme} from "../../context/ThemeProvider";
 import {useLogosSite} from "../../context/SiteProvider";
 import {Logo} from "../../components/design-system/logos";
+import {PageInfo} from "./components/PageInfo/PageInfo";
 
 interface IProps {
     markdown: IMarkdown<any>;
@@ -40,7 +42,12 @@ export const AcademiaTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => 
                          config={markdownCommonConfigs}
                          append={false}
                          metadata={markdown.metadata}
-                />
+                >
+                    {
+                        (markdown.metadata.date||markdown.metadata.author)&&
+                        <PageInfo data={markdown.metadata}/>
+                    }
+                </Content>
                 <Toc className={`${style.toc} ${commonStyle.toc} hidden-scroll`} toc={markdown.toc}/>
             </main>
             <Footer className={`${style.footer} ${commonStyle.footer}`}/>
