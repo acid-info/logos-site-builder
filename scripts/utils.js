@@ -76,8 +76,10 @@ class TreeNodeMarkdown {
         this.localPath = relative(rootPath, path);
         this.path = this.localPath.replace(".md", "").split(sep).map((s) => slug(s))
         this.children = [];
-        this.metadata = {};
-        this.metadata.title = basename(path, ".md");
+        this.metadata = {
+            published: true,
+            title: basename(path, ".md")
+        };
     }
 
     async attachMetadata(rootPath){
@@ -86,12 +88,15 @@ class TreeNodeMarkdown {
         const {data: metadata = {}} = matter(rawMD);
         this.metadata = {
             ...this.metadata,
-            ...metadata,
-            published: true
+            ...metadata
         };
         if(this.metadata.permalink && typeof this.metadata.permalink === "string"){
             let permalink = this.metadata.permalink.replace(/^\/|\/$/g, '');
             this.path = permalink.split("/");
+        }
+
+        if(this.metadata.image){
+            this.metadata.image= this.metadata.image.replace(/^\/|\/$/g, '');
         }
     }
 
@@ -143,22 +148,26 @@ async function buildSitemapForMarkdownDirectory(rootPath, siteConfigs) {
 
                 if (isAllowed) {
                     await childNode.attachMetadata(rootPath);
-                    if(childNode.localPath.endsWith("index.md")){
-                        currentNode.metadata = {
-                            ...childNode.metadata,
-                            title: childNode.metadata.title!=="index"? childNode.metadata.title :  currentNode.metadata.title
-                        };
-                        currentNode.localPath = childNode.localPath;
 
-                        flatmap.push({
-                            ...currentNode,
-                            children: []
-                        });
-                    }else{
-                        currentNode.children.push(childNode);
-                        flatmap.push(childNode);
-                        childNode.setOrder(fileOrdersInSidenav.indexOf(childNode.localPath))
+                    if(childNode.metadata.published){
+                        if(childNode.localPath.endsWith("index.md")){
+                            currentNode.metadata = {
+                                ...childNode.metadata,
+                                title: childNode.metadata.title!=="index"? childNode.metadata.title :  currentNode.metadata.title
+                            };
+                            currentNode.localPath = childNode.localPath;
+
+                            flatmap.push({
+                                ...currentNode,
+                                children: []
+                            });
+                        }else{
+                            currentNode.children.push(childNode);
+                            flatmap.push(childNode);
+                            childNode.setOrder(fileOrdersInSidenav.indexOf(childNode.localPath))
+                        }
                     }
+
                 }
 
                 if (

@@ -9,6 +9,8 @@ export interface ILogosMarkdownMetadataBase{
     author?: string
     summary?: string;
     _includes?: string[]
+    image?: string;
+    published: boolean;
 }
 
 export interface IMarkdown<D>{
