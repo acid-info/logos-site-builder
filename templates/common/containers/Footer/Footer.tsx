@@ -1,14 +1,8 @@
 import {FC} from "react";
 import {useLogosSite} from "../../../../context/SiteProvider";
-import {LogosLogo} from "../../../../components/design-system/logos/LogosLogo";
-import {ELogosDesignSystemID} from "../../../../types/data.types";
-import {Logo} from "../../../../components/design-system/logos";
-
-import GithubIcon from "/public/assets/icons/github.svg";
-import DiscordIcon from "/public/assets/icons/discord.svg";
-import TwitterIcon from "/public/assets/icons/twitter.svg";
 
 import styles from "./Styles.module.css";
+import {SocialMediaItem} from "../../../../components/SocialMediaItem";
 
 interface IProps{
     className?: string;
@@ -36,26 +30,9 @@ export const Footer: FC<IProps> = ({className=""}) => {
                 <div className={styles.bottomPart}>
                     <div className={styles.socialMedia}>
                         {
-                            seo.social_media.map((sm) => {
-                                return (
-                                    <span key={`sm-${sm.provider}`}>
-                                    {
-                                        (() => {
-                                            switch (sm.provider){
-                                                case "twitter":
-                                                    return <a href={`https://twitter.com/${sm.handler}`} className={"button"}><TwitterIcon/></a>
-                                                case "discord":
-                                                    return <a href={`https://discord.com/${sm.handler}`} className={"button"}><DiscordIcon/></a>
-                                                case "github":
-                                                    return <a href={`https://github.com/${sm.handler}`} className={"button"}><GithubIcon/></a>
-                                                default:
-                                                    return null;
-                                            }
-                                        })()
-                                    }
-                                </span>
-                                )
-                            })
+                            seo.social_media.map((sm) => (
+                                <SocialMediaItem {...sm} key={sm.provider}/>
+                            ))
                         }
                     </div>
                     <div>

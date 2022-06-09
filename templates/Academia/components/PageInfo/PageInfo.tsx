@@ -5,17 +5,18 @@ import formatDate from "date-fns/format";
 import style from "./Style.module.css";
 import {ILogosMarkdownMetadataBase} from "../../../../types/data.types";
 import {PageTitle} from "../PageTitle/PageTitle";
+import {NavItem} from "../../../../components/NavItem";
 
 interface IProps {
     data: ILogosMarkdownMetadataBase;
 }
 
-export const PageInfo: FC<IProps> = (props) => {
+export const ArticleInfo: FC<IProps> = (props) => {
     const {
         data: {
             date,
             author,
-            title
+            title,
         }
     } = props;
 
@@ -33,7 +34,14 @@ export const PageInfo: FC<IProps> = (props) => {
                 }
                 {
                     author &&
-                    <span>by <i> {author}</i></span>
+                    <>
+                        by
+                        <NavItem p={`authors/${author}`}
+                                 title={author}
+                        >
+                            <span><i> {author}</i></span>
+                        </NavItem>
+                    </>
                 }
             </div>
         </div>

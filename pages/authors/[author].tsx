@@ -1,23 +1,31 @@
 import {GetStaticPaths, GetStaticProps, NextPage} from "next";
-import {ILogosAuthor, ISiteConfigs, TLogosPublicDataEntry} from "../../types/data.types";
+import {ILogosAuthor, INavigationItemProps, ISiteConfigs, TLogosPublicDataEntry} from "../../types/data.types";
 import {readFile} from "fs/promises";
 import {join} from "path";
 import {existsSync} from "fs";
 import {logosTemplates} from "../../configs/templates";
 import {defaultTemplateName} from "../../configs/defaults";
+import {AuthorProfile} from "../../templates/common/containers/AuthorProfile/AuthorProfile";
 
+
+const sidebar: INavigationItemProps[] = require("../../public/compiled/sidebar.flat.json");
 const siteConfigs: ISiteConfigs = require("../../public/compiled/config.json");
 
-const DefaultPage: NextPage<TLogosPublicDataEntry<ILogosAuthor>> = (props) => {
-    const {filename, ...markdown} = props;
+interface IProps extends TLogosPublicDataEntry<ILogosAuthor>{
+    pages: INavigationItemProps[]
+}
+
+const DefaultPage: NextPage<IProps> = (props) => {
+    const {filename, pages, ...markdown} = props;
     const component = logosTemplates[siteConfigs.template||defaultTemplateName];
     return component({
-        markdown
+        markdown,
+        children: <AuthorProfile pages={pages} data={markdown.metadata} />
     });
 }
 
 export const getStaticPaths: GetStaticPaths = async() => {
-    const authorDataPath = join(process.cwd(), "public/compiled/data/authors");
+    const authorDataPath = join(process.cwd(), "public/compiled/data/authors.min.json");
 
     if(!existsSync(authorDataPath)){
         return {
@@ -27,7 +35,6 @@ export const getStaticPaths: GetStaticPaths = async() => {
     }
 
     const authors: TLogosPublicDataEntry<ILogosAuthor>[] = JSON.parse(await readFile(authorDataPath, "utf-8"));
-    console.log(authors)
 
     return {
         paths: authors.map(a => ({
@@ -41,9 +48,7 @@ export const getStaticPaths: GetStaticPaths = async() => {
 
 export const getStaticProps: GetStaticProps = async(ctx) => {
     const params = ctx.params!
-    const authorDataPath = join(process.cwd(), "public/compiled/data/authors");
-
-    console.log("authorDataPath", authorDataPath)
+    const authorDataPath = join(process.cwd(), "public/compiled/data/authors.min.json");
 
     if(!params||!params.author || !existsSync(authorDataPath)){
         return {
@@ -51,13 +56,22 @@ export const getStaticProps: GetStaticProps = async(ctx) => {
         }
     }
 
-
     const authors: TLogosPublicDataEntry<ILogosAuthor>[] = JSON.parse(await readFile(authorDataPath, "utf-8"));
     const author = authors.find((a) => a.metadata.short_name === params.author);
 
+    if(!author){
+        return {
+            notFound: true,
+        }
+    }
+
+    const pages = sidebar.filter((s) => s.metadata.author && s.metadata.author === author.metadata.short_name)
+
     return {
         props: {
-            data: author
+            ...author,
+            pages,
+            toc: []
         }
     }
 }

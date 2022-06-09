@@ -17,7 +17,7 @@ import {markdownCommonConfigs} from "../common/markdown/configs";
 import {useLogosTheme} from "../../context/ThemeProvider";
 import {useLogosSite} from "../../context/SiteProvider";
 import {Logo} from "../../components/design-system/logos";
-import {PageInfo} from "./components/PageInfo/PageInfo";
+import {ArticleInfo} from "./components/PageInfo/PageInfo";
 import {PagePrintInfo} from "../common/components/page-print-info/PagePrintInfo";
 
 interface IProps {
@@ -25,7 +25,7 @@ interface IProps {
 }
 
 export const AcademiaTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => {
-    const {markdown, append, children} = props;
+    const {markdown, append = false, children} = props;
     const {toggleMode} = useLogosTheme();
     const {config} = useLogosSite();
 
@@ -46,11 +46,11 @@ export const AcademiaTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => 
                          metadata={markdown.metadata}
                 >
                     {
-                        children
+                        children && children
                     }
                     {
                         (markdown.metadata.date||markdown.metadata.author)&&
-                        <PageInfo data={markdown.metadata}/>
+                        <ArticleInfo data={markdown.metadata}/>
                     }
                 </Content>
                 <Toc className={`${style.toc} ${commonStyle.toc} hidden-scroll`} toc={markdown.toc}/>
