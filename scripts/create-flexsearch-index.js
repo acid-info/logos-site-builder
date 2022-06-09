@@ -58,9 +58,9 @@ module.exports = async(siteConfig) => {
         let {data: metadata = {}, content} = matter(rawMD);
         content = content
             //remove ascii blocks
-            .replace(/^```logos-ascii([\s\S]*?)```$/gm, "")
+            .replace(/^```ascii([\s\S]*?)```$/gm, "")
             //remove line breaks
-            .replace(/(\r\n|\n|\r)/gm, "");
+            // .replace(/(\r\n|\n|\r)/gm, "");
 
         let id = child.path.join("/");
 

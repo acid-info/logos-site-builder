@@ -31,6 +31,7 @@ export const AcademiaTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => 
     return (
         <div className={`${style.container} ${commonStyle.container}`}>
             <Header className={`${style.header} ${commonStyle.header}`}/>
+            <h1 style={{display: "none"}}>{config.seo.title}</h1>
             <main className={`${style.main} ${commonStyle.main} ${commonStyle.main}`}>
                 <Sidebar className={`${style.sidebar} ${commonStyle.sidebar} hidden-scroll`}
                          initialDesktop={false}

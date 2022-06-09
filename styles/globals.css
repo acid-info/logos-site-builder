@@ -150,9 +150,15 @@ pre:not(:hover) > *{
 table, th, td {
     border: 1px solid;
 }
+
 table {
     width: 100%;
 }
+
+td{
+    padding: calc(var(--column-gap) / 4);
+}
+
 ::-webkit-scrollbar {
     width: var(--scrollbar-width);
     height: var(--scrollbar-height);

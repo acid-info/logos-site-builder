@@ -6,5 +6,5 @@ interface IProps{
 }
 
 export const PageTitle: FC<IProps> = (props) => (
-    props.title?<h1 className={`${style.container} serif`}>{props.title}</h1>:null
+    props.title?<h2 className={`${style.container} serif`}>{props.title}</h2>:null
 )

@@ -36,7 +36,6 @@ export const DefaultSidebar: FC<ISidebarProps> = (props) => {
                       className={"mainMenu"}
                 />
                 <br/>
-                <br/>
                 <DefaultSidebarMenu items={subItems} className={"subMenu"}/>
                 <div className={"external_links"}>
                     {

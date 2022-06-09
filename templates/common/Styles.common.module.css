@@ -51,13 +51,12 @@
 }
 
 /*TYPOGRAPHY sizing*/
-
 /*TYPOGRAPHY SPACING*/
 .toc :global(.h-1){
-    margin-top: calc(2 * var(--lh));
+    /*margin-top: calc(2 * var(--lh));*/
 }
 .toc :global(.h-2+.h-2) > *:last-child{
-    margin-top: var(--lh);
+    /*margin-top: var(--lh);*/
 }
 .toc :global(.h-3) > *:last-child{
     padding-left: var(--column-gap);
@@ -183,9 +182,6 @@
 }
 
 @media (min-width:600px){
-    /*@value stickyTop: calc(1 * var(--lh));*/
-    /*@value stickyPaddingTop: calc(var(--page-padding-top) - stickyTop);*/
-
     .container{
         max-width: var(--max-width);
         margin: auto;

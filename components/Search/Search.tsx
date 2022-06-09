@@ -14,7 +14,7 @@ interface IProps{
 export const Search: FC<IProps> = (props) => {
     const {className = ""}= props;
     const [q, setQ] = useState<string|null>(null);
-    const results = useFlexSearch(q, flexData.index, flexData.store, flexData.options, {suggest: true})
+    const results = useFlexSearch((q||"").toLowerCase().trim(), flexData.index, flexData.store, flexData.options, {suggest: false})
     const {asPath} = useRouter();
 
     useEffect(() => {

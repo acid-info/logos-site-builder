@@ -48,6 +48,11 @@
     font-family: serif;
 }
 
+.container table{
+    border-collapse:collapse;
+    border: none;
+}
+
 @media (min-width:600px) {
 
     .container{

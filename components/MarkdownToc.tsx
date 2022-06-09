@@ -13,7 +13,7 @@ export const MarkdownToc: FC<IProps> = (props) => {
     const {asPath} = useRouter();
     const isActive = (item: IMarkdownTocItem): boolean => asPath.indexOf(item.slug) > -1;
     return (
-        <nav className={`${className}`}>
+        <nav className={`${className} hidden-scroll`}>
             <ul>
                 {
                     toc.map((item, i) => (
