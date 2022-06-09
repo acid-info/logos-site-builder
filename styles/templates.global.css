@@ -5,6 +5,10 @@
     --banner-height: calc(8 * var(--lh));
 }
 
+.page-info{
+    display: none;
+}
+
 @media print {
     header, aside, footer{ display: none !important;}
 
@@ -51,6 +55,7 @@
     }
 
     .template-container .page-info{
+        display: block !important;
         padding: 0 !important;
         margin-bottom: 2em !important;
     }
