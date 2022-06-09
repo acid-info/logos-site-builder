@@ -30,7 +30,8 @@ export const Search: FC<IProps> = (props) => {
             <SearchInput onChange={handleChange} value={q}/>
             {
                 (q&&results.length>0)&&
-                <div className={"logos-search-box-results"}>
+                <div className={"logos-search-box-results hidden-scroll"}>
+                    <button className={"search-clear-btn"} onClick={() => setQ(null)}>Clear</button>
                     <ul>
                         {
                             results.map((item) => (
