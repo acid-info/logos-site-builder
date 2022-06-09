@@ -86,8 +86,13 @@ class TreeNodeMarkdown {
         const {data: metadata = {}} = matter(rawMD);
         this.metadata = {
             ...this.metadata,
-            ...metadata
+            ...metadata,
+            published: true
         };
+        if(this.metadata.permalink && typeof this.metadata.permalink === "string"){
+            let permalink = this.metadata.permalink.replace(/^\/|\/$/g, '');
+            this.path = permalink.split("/");
+        }
     }
 
     setOrder(orderIndex){
