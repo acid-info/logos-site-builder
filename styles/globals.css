@@ -96,7 +96,9 @@ pre:not(.logos-block-mermaid-ascii){
 
 img, iframe{
     -webkit-filter: url(#colored) grayscale(50%);
-    filter: url(#colored) grayscale(100%);
+    filter: url(#colored) grayscale(50%);
+    filter: gray;
+    filter: grayscale(1);
     width: 100%;
 }
 
