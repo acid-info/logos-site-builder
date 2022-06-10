@@ -1,10 +1,17 @@
 import type {GetStaticPathsResult, GetStaticPropsContext, GetStaticPropsResult, PreviewData} from "next/types";
-import {INavigationItemProps, IRouteParamForLocalFolder, ISiteConfigs} from "../../types/data.types";
+import {
+    ILogosAuthor,
+    INavigationItemProps,
+    IRouteParamForLocalFolder,
+    ISiteConfigs,
+    TLogosPublicDataEntry
+} from "../../types/data.types";
 import {readFileSync} from "fs";
 import {join, dirname} from "path";
 import matter from "gray-matter";
 const toc = require('markdown-toc');
 import removeMarkdown from "markdown-to-text";
+import {readFile} from "fs/promises";
 const slug = require("url-slug");
 
 const sidebar: INavigationItemProps[] = require("../../public/compiled/sidebar.flat.json");
@@ -20,6 +27,10 @@ const getStaticPathsFromFolder = () => async(): Promise<GetStaticPathsResult<IRo
         paths,
         fallback: false
     }
+}
+
+export const getCompiledData = async <D>(endpoint: string): Promise<D> => {
+    return JSON.parse(await readFile(join(process.cwd(), `public/compiled/data/${endpoint}`), "utf-8"));
 }
 
 export const getStaticPropsFromFolder = <O extends PreviewData>() => async(context: GetStaticPropsContext<IRouteParamForLocalFolder, O>): Promise<GetStaticPropsResult<any>> => {
@@ -55,6 +66,14 @@ export const getStaticPropsFromFolder = <O extends PreviewData>() => async(conte
         });
 
         content += children.map((c) => `* [${c.metadata.title}](${c.path.join("/")})`).join(`\n`);
+    }
+
+    if(navProps.metadata.injects){
+        for await (const endpoint of navProps.metadata.injects){
+            //TODO make it universal working
+            const data = await getCompiledData<TLogosPublicDataEntry<ILogosAuthor>[]>(`${endpoint}.min.json`);
+            content += data.map((c) => `* [${c.metadata.name}](authors/${c.metadata.short_name})`).join(`\n`);
+        }
     }
 
     return {

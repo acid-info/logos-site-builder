@@ -11,6 +11,7 @@ export interface ILogosMarkdownMetadataBase{
     _includes?: string[]
     image?: string;
     published: boolean;
+    injects?: string[]
 }
 
 export interface IMarkdown<D>{

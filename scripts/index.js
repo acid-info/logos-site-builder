@@ -1,7 +1,6 @@
 (async() => {
     await require('./clear');
-    let siteConfigs = await require("./download-source")();
-
+    const siteConfigs = await require("./download-source")();
     await require("./download-external-sources")(siteConfigs);
     await require('./copy-static-files')(siteConfigs);
     await require("./generate-content-data")(siteConfigs);
