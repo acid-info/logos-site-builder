@@ -18,7 +18,7 @@ const listMaxSize = 5;
 export const DefaultSidebarMenu: FC<IMenuProps> = (props) => {
     const {items, level = 0, className} = props;
     let cname = level===0? className: "";
-    const {config: {navigation: {exclude}}} = useLogosSite()
+    const {config: {navigation: {exclude = []}}} = useLogosSite()
 
     const visItems = items.filter((item) => exclude.indexOf(item.path.join("/")) === -1);
 

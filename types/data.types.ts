@@ -41,6 +41,7 @@ export interface INavigationItemProps{
     localPath: string;
     path: string[];
     isDir: boolean;
+    navOrder: number;
     metadata: ILogosMarkdownMetadataBase;
     children: INavigationItemProps[]
 }

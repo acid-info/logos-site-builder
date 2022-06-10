@@ -59,20 +59,33 @@ export const getStaticPropsFromFolder = <O extends PreviewData>() => async(conte
         const children = sidebar.filter((c) => {
             const _dir = dirname(navProps.localPath);
             return (
-                c.localPath.startsWith(_dir)
-                &&
+                // c.localPath.startsWith(_dir)
                 c.localPath!==navProps.localPath
+                &&
+                c.localPath.split("/").includes(_dir)
             )
         });
 
-        content += children.map((c) => `* [${c.metadata.title}](${c.path.join("/")})`).join(`\n`);
+        content += children
+            .sort((a, b) => b.navOrder - a.navOrder)
+            .map((c) => {
+                const {title} = c.metadata;
+                const path = c.path.join("/");
+                console.log(path)
+                return `* [${title}](${path})`
+            })
+            .join(`\n`)
     }
 
     if(navProps.metadata.injects){
         for await (const endpoint of navProps.metadata.injects){
             //TODO make it universal working
             const data = await getCompiledData<TLogosPublicDataEntry<ILogosAuthor>[]>(`${endpoint}.min.json`);
-            content += data.map((c) => `* [${c.metadata.name}](authors/${c.metadata.short_name})`).join(`\n`);
+            content += data
+                .sort((a, b) =>
+                    (b.metadata.author||"").charCodeAt(0) - (a.metadata.author||"").charCodeAt(0)
+                )
+                .map((c) => `* [${c.metadata.name}](authors/${c.metadata.short_name})`).join(`\n`);
         }
     }
 
