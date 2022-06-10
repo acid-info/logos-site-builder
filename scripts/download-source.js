@@ -26,6 +26,7 @@ module.exports = async () => {
             if(existsSync(LOCAL_CONTENT_DIST)){
                 await fsp.rm(LOCAL_CONTENT_DIST, { recursive: true, force: true});
             }
+            console.log("CONTENT_SOURCE_URL", CONTENT_SOURCE_URL, LOCAL_CONTENT_DIST);
             await fsp.mkdir(LOCAL_CONTENT_DIST);
             await downloadSource(CONTENT_SOURCE_URL, LOCAL_CONTENT_DIST);
         }catch (e){
@@ -39,7 +40,6 @@ module.exports = async () => {
             if(existsSync(LOCAL_CONTENT_DIST)){
                 await fsp.rm(LOCAL_CONTENT_DIST, { recursive: true, force: true});
             }
-            console.log("CONTENT_SOURCE_URL", CONTENT_SOURCE_URL, LOCAL_CONTENT_DIST);
             await fsp.mkdir(LOCAL_CONTENT_DIST);
             await copy(CONTENT_SOURCE_URL, LOCAL_CONTENT_DIST);
         }catch (e){
