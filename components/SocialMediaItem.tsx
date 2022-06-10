@@ -5,6 +5,7 @@ import GithubIcon from "/public/assets/icons/github.svg";
 import DiscordIcon from "/public/assets/icons/discord.svg";
 import TwitterIcon from "/public/assets/icons/twitter.svg";
 import TelegramIcon from "/public/assets/icons/telegram.svg";
+import DiscourseIcon from "/public/assets/icons/discourse.svg";
 
 
 interface IProps extends ISiteSeoSocialMedia{};
@@ -28,7 +29,7 @@ export const SocialMediaItem: FC<IProps> = (props) => (
                                   className={"button"}><TelegramIcon/></a>
                     case "discourse":
                         return <a href={props.handler.indexOf("http")>-1? props.handler : `https://${props.handler}`}
-                                  className={"button"}><TelegramIcon/></a>
+                                  className={"button"}><DiscourseIcon/></a>
                     default:
                         return null;
                 }
