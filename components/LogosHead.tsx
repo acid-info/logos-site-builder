@@ -9,7 +9,7 @@ interface IProps{
 }
 
 export const LogosHead: FC<IProps> = (props) => {
-    const {config: {seo, navigation: {home}}, sitemap} = useLogosSite();
+    const {config: {ds_id, seo, navigation: {home}}, sitemap} = useLogosSite();
     const {asPath} = useRouter();
 
     const pageNavItem = props.data;
@@ -29,6 +29,7 @@ export const LogosHead: FC<IProps> = (props) => {
             <title>{pageTitle}</title>
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             <meta name={"description"} content={pageDescription}/>
+            <link rel="shortcut icon" href={`/assets/logo/${ds_id}/favicon.ico`} />
 
             {/* Twitter */}
             {
