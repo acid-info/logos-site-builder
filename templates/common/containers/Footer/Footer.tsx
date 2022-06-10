@@ -40,10 +40,10 @@ export const Footer: FC<IProps> = ({className=""}) => {
                         {/*<small>*/}
                         {/*    Home Technology Learn About License Terms of Use  Privacy Policy Forum Vote Cookies*/}
                         {/*</small>*/}
-                        <span> | </span>
-                        <NavItem p={`term-of-use`} title={"Term of Use"}/>
-                        <span> | </span>
-                        <NavItem p={`privacy-policy`} title={"Privacy Policy"}/>
+                        {/*<span> | </span>*/}
+                        {/*<NavItem p={`term-of-use`} title={"Term of Use"}/>*/}
+                        {/*<span> | </span>*/}
+                        {/*<NavItem p={`privacy-policy`} title={"Privacy Policy"}/>*/}
                     </nav>
                 </div>
             </div>

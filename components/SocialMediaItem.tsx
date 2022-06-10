@@ -26,6 +26,9 @@ export const SocialMediaItem: FC<IProps> = (props) => (
                     case "telegram":
                         return <a href={`https://t.me/${props.handler}`}
                                   className={"button"}><TelegramIcon/></a>
+                    case "discourse":
+                        return <a href={props.handler.indexOf("http")>-1? props.handler : `https://${props.handler}`}
+                                  className={"button"}><TelegramIcon/></a>
                     default:
                         return null;
                 }
