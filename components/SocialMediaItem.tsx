@@ -17,7 +17,7 @@ export const SocialMediaItem: FC<IProps> = (props) => (
                         return <a href={`https://twitter.com/${props.handler}`}
                                   className={"button"}><TwitterIcon/></a>
                     case "discord":
-                        return <a href={`https://discord.com/${props.handler}`}
+                        return <a href={`https://discord.gg/${props.handler}`}
                                   className={"button"}><DiscordIcon/></a>
                     case "github":
                         return <a href={`https://github.com/${props.handler}`}
