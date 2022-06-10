@@ -45,7 +45,7 @@ export const DefaultSidebarMenu: FC<IMenuProps> = (props) => {
                 );
             })}
             {
-                visItems.length>=listMaxSize&&
+                visItems.length>listMaxSize&&
                 <li onClick={() => setRenderIndex((renderIndex<=listMaxSize? visItems.length : listMaxSize))}>
                     <span className={"button"}>...</span>
                 </li>
