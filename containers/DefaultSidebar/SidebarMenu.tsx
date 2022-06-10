@@ -5,6 +5,7 @@ import {DefaultSidebarMenuItem} from "./SidebarMenuItem";
 import {INavigationItemProps} from "../../types/data.types";
 
 import styles from "./Styles.module.css";
+import {useLogosSite} from "../../context/SiteProvider";
 
 interface IMenuProps{
     items: INavigationItemProps[]
@@ -17,6 +18,9 @@ const listMaxSize = 5;
 export const DefaultSidebarMenu: FC<IMenuProps> = (props) => {
     const {items, level = 0, className} = props;
     let cname = level===0? className: "";
+    const {config: {navigation: {exclude}}} = useLogosSite()
+
+    const visItems = items.filter((item) => exclude.indexOf(item.path.join("/")) === -1);
 
     const [renderIndex, setRenderIndex] = useState(listMaxSize);
     const {asPath} = useRouter();
@@ -28,7 +32,8 @@ export const DefaultSidebarMenu: FC<IMenuProps> = (props) => {
 
     return(
         <ul className={`sidebar-menu ${cname} ${styles.menu}`}>
-            {items.slice(0, renderIndex).map((item) => {
+            {
+                visItems.slice(0, renderIndex).map((item) => {
                 return (
                     <DefaultSidebarMenuItem item={item}
                                      level={level}
@@ -40,8 +45,8 @@ export const DefaultSidebarMenu: FC<IMenuProps> = (props) => {
                 );
             })}
             {
-                items.length>=listMaxSize&&
-                <li onClick={() => setRenderIndex((renderIndex<=listMaxSize? items.length : listMaxSize))}>
+                visItems.length>=listMaxSize&&
+                <li onClick={() => setRenderIndex((renderIndex<=listMaxSize? visItems.length : listMaxSize))}>
                     <span className={"button"}>...</span>
                 </li>
             }

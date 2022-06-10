@@ -18,12 +18,6 @@ export const DefaultSidebarMenuItem: FC<PropsWithChildren<IMenuItemProps>> = (pr
     const {level, item, children, isActive = false} = props;
     const isPage = item.localPath.endsWith(".md");
 
-    // const title = item.title.length <= 20 ?
-    //     item.title
-    //     :
-    //     // item.title
-    //     `${item.title.split(" ").slice(0, ~~(90/item.title.length)).join(" ")}..`
-
     return (
         <li className={`${styles.menuItem} menuitem level-${level}`}>
             <>

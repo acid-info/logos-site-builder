@@ -92,6 +92,7 @@ export interface ISiteConfigs{
         fileOrdersInSidenav: string[],
         folderOrdersInSidenav: string[],
         external_links: ISiteConfigExternalLink[];
+        exclude: string[]
     }
     seo: {
         title: string;
