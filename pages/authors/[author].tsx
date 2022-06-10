@@ -32,6 +32,7 @@ const DefaultPage: NextPage<IProps> = (props) => {
                 localPath: `/data/authors/${filename}`,
                 path: ["authors", markdown.metadata.short_name],
                 isDir: false,
+                navOrder: (markdown.metadata.name||"").charCodeAt(0),
                 metadata: {
                     ...markdown.metadata,
                     title: markdown.metadata.name

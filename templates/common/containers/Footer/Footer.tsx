@@ -3,6 +3,7 @@ import {useLogosSite} from "../../../../context/SiteProvider";
 
 import styles from "./Styles.module.css";
 import {SocialMediaItem} from "../../../../components/SocialMediaItem";
+import {NavItem} from "../../../../components/NavItem";
 
 interface IProps{
     className?: string;
@@ -35,11 +36,15 @@ export const Footer: FC<IProps> = ({className=""}) => {
                             ))
                         }
                     </div>
-                    <div>
-                        <small>
-                            Home Technology Learn About License Terms of Use  Privacy Policy Forum Vote Cookies
-                        </small>
-                    </div>
+                    <nav className={styles.legal}>
+                        {/*<small>*/}
+                        {/*    Home Technology Learn About License Terms of Use  Privacy Policy Forum Vote Cookies*/}
+                        {/*</small>*/}
+                        <span> | </span>
+                        <NavItem p={`term-of-use`} title={"Term of Use"}/>
+                        <span> | </span>
+                        <NavItem p={`privacy-policy`} title={"Privacy Policy"}/>
+                    </nav>
                 </div>
             </div>
         </footer>

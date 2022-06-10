@@ -41,6 +41,7 @@ export interface INavigationItemProps{
     localPath: string;
     path: string[];
     isDir: boolean;
+    navOrder: number;
     metadata: ILogosMarkdownMetadataBase;
     children: INavigationItemProps[]
 }
@@ -92,6 +93,7 @@ export interface ISiteConfigs{
         fileOrdersInSidenav: string[],
         folderOrdersInSidenav: string[],
         external_links: ISiteConfigExternalLink[];
+        exclude: string[]
     }
     seo: {
         title: string;

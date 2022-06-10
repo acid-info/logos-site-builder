@@ -20,6 +20,11 @@
     padding: 0 !important;
 }
 
+.legal{
+    display: flex;
+    column-gap: 10px;
+}
+
 @media (min-width:600px) {
 
     .bottomPart{
