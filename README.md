@@ -14,7 +14,6 @@
 ```dotenv
 CONTENT_SOURCE_TYPE=[git,]
 CONTENT_SOURCE_URL="url to download (zip) git repo"
-STATIC_CONTENT_FOLDER="relative path to the folder for static assets on content repo"
 ```
 
 ## limitations 
