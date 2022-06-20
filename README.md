@@ -47,7 +47,7 @@ Given all this, the idea comes from an always tempting question; **why not build
 - **Content containers**; we can see this as what I guess Ned has been referring to as “modules”. I can see them as pre-config components which render a particular content with a particular structure and sometimes with built-in functionality. (e.g; SideBar, BodyContent, NFT module, etc...)
 - **Page templating;** this is where we can define pre-composed layout templates (including responsive versions) At the moment we only have one layout which looks like the one below👇 . But the idea is to design more along the way.
 
-  ![Screenshot 2022-04-04 at 13.12.29.png](/public/assets/docs/Screenshot_2022-04-04_at_13.12.29.png)
+  ![Screenshot 2022-04-04 at 13.12.29.png](/public/assets/doc-assets/Screenshot_2022-04-04_at_13.12.29.png)
 
 - **Multi-language** (TBD)
     - Using internationalized routing with [i18n](https://en.wikipedia.org/wiki/Internationalization_and_localization#Naming)
@@ -66,7 +66,7 @@ The site builder framework will go hand in hand with the design system. While th
 
 ### High-level concept diagram
 
-![Logos Sitemap - Diagram - Logos branding software landscape (1).jpg](/public/assets/docs/Logos_Sitemap_-_Diagram_-_Logos_branding_software_landscape_(1).jpg)
+![Logos Sitemap - Diagram - Logos branding software landscape (1).jpg](/public/assets/doc-assets/Logos_Sitemap_-_Diagram_-_Logos_branding_software_landscape_(1).jpg)
 
 ### High level architect
 
@@ -98,7 +98,7 @@ The aim is to not create a library but more a codebase that functions as a frame
     ```
 
 
-![Logos Sitemap - Diagram - Copy of Logos branding software landscape (1).jpg](/public/assets/docs/Logos_Sitemap_-_Diagram_-_Copy_of_Logos_branding_software_landscape_(1).jpg)
+![Logos Sitemap - Diagram - Copy of Logos branding software landscape (1).jpg](/public/assets/doc-assets/Logos_Sitemap_-_Diagram_-_Copy_of_Logos_branding_software_landscape_(1).jpg)
 
 # Scope
 
