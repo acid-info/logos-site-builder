@@ -9,6 +9,15 @@
     display: none;
 }
 
+.logos-mermaid svg{
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+.logos-mermaid svg *{
+    font-size: 16px !important;
+}
+
 @media print {
     header, aside, footer{ display: none !important;}
 
