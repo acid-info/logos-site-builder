@@ -33,7 +33,12 @@
     }
 
     .search{
-        top: var(--page-padding-top);
-        padding-right: var(--column-gap);
+        top: 0;
+        padding-right: calc(calc(var(--column-gap) * 3) - 2px);
+    }
+
+    .search :global(.logos-search-box){
+        padding-top: var(--page-padding-top);
+        background: var(--bg-color);
     }
 }

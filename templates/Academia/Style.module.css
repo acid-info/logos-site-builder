@@ -49,6 +49,10 @@
     border: none;
 }
 
+.container input{
+    border: none !important;
+}
+
 @media (min-width:600px) {
 
     .container{

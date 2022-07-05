@@ -5,14 +5,12 @@
     padding-top: var(--page-padding-top);
     position: relative;
 }
-
-
 .banner{}
 
 .main{
     grid-area: main;
     padding-bottom: var(--footer-height);
-    min-height: calc(100vh - var(--bannerHeight));
+    min-height: calc(100vh - var(--banner-height));
 }
 
 .main > * {
@@ -131,7 +129,6 @@
     background: var(--bg-color);
     color: var(--txt-color);
     padding: 0.5em;
-    border: none;
 }
 
 .container a:global(.ha){
@@ -233,9 +230,6 @@
 
     .toc{
         display: flex;
-        /*margin: 0;*/
-        /*padding: 0 !important;*/
-        /*padding-top: calc(var(--lh) * 1) !important;*/
     }
 
     .content{
