@@ -22,7 +22,7 @@ export const Search: FC<IProps> = (props) => {
     }, [asPath]);
 
     const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-        setQ(event.target.value);
+        setQ(event.target.value.toLowerCase());
     }
 
     return (
