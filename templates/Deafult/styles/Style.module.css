@@ -32,6 +32,10 @@
       "footer footer footer footer footer" !important;
     }
 
+    .header :global(.logo-holder){
+        margin-left: calc(-2 * var(--column-gap));
+    }
+
     .search{
         top: 0;
         width: calc(100% - var(--column-gap));
