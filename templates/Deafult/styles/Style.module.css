@@ -34,7 +34,8 @@
 
     .search{
         top: 0;
-        padding-right: calc(calc(var(--column-gap) * 3) - 2px);
+        width: calc(100% - var(--column-gap));
+        max-width: calc(700px - var(--column-gap));
     }
 
     .search :global(.logos-search-box){
