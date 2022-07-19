@@ -11,7 +11,6 @@ interface IProps extends AppProps {
 import "../public/compiled/theme.css";
 import "../styles/globals.css";
 import "../styles/templates.global.css"
-
 function App({Component, pageProps}: IProps) {
     const {children, ...rest} = pageProps;
     return (
