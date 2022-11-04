@@ -11,10 +11,11 @@ interface IProps{
     append?: boolean;
     initialDesktop?: boolean;
     initialMobile?: boolean;
+    desktopToggleButton?: boolean
 }
 
 export const Sidebar: FC<PropsWithChildren<IProps>> = (props) => {
-    const {className, children, append=true, initialDesktop = true, initialMobile = false} = props;
+    const {className, children, append=true, initialDesktop = true, initialMobile = false, desktopToggleButton = true } = props;
     const [mobileShow, setMobileShow] = useState(initialMobile);
     const [desktopShow, setDesktopShow] = useState(initialDesktop);
 
@@ -38,8 +39,9 @@ export const Sidebar: FC<PropsWithChildren<IProps>> = (props) => {
     }
 
     return (
-        <aside className={`${styles.container} ${className}`}>
-            <SidebarToggleButton onClick={toggle} />
+        <aside className={`${styles.container} ${className} ${!desktopToggleButton && styles.hideDesktopToggleButton}`}>
+            <SidebarToggleButton onClick={toggle} className={styles.mobile} />
+            { desktopToggleButton && <SidebarToggleButton onClick={toggle} className={styles.desktop} /> } 
             {
                 mobileShow&&
                 <Dialog onClose={handleClose} className={styles.mobile}>
