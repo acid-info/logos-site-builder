@@ -13,7 +13,7 @@ interface IMenuProps{
     className?: string;
 }
 
-const listMaxSize = 5;
+const listMaxSize = 20;
 
 export const DefaultSidebarMenu: FC<IMenuProps> = (props) => {
     const {items, level = 0, className} = props;
