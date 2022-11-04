@@ -34,8 +34,8 @@ export const AcademiaTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => 
             <Header className={`${style.header} ${commonStyle.header}`}/>
             <PagePrintInfo config={config}/>
             <main className={`${style.main} ${commonStyle.main} ${commonStyle.main}`}>
-                <Sidebar className={`${style.sidebar} ${commonStyle.sidebar} hidden-scroll`}
-                         initialDesktop={false}
+                <Sidebar className={`${style.sidebar} ${commonStyle.sidebar} hidden-scroll`} 
+                    desktopToggleButton={false}
                 >
                     <Logo dsid={config.ds_id} onClick={toggleMode}/>
                 </Sidebar>
