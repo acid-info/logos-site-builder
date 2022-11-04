@@ -57,10 +57,10 @@
     /*margin-top: var(--lh);*/
 }
 .toc :global(.h-3) > *:last-child{
-    padding-left: var(--column-gap);
+    padding-left: calc(0.5 * var(--column-gap));
 }
 .toc :global(.h-4) > *:last-child{
-    padding-left: calc(2 * var(--column-gap));
+    padding-left: var(--column-gap);
 }
 
 .container article{
