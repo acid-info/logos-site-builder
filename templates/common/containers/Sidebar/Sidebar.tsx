@@ -39,7 +39,7 @@ export const Sidebar: FC<PropsWithChildren<IProps>> = (props) => {
     }
 
     return (
-        <aside className={`${styles.container} ${className}`}>
+        <aside className={`${styles.container} ${className} ${!desktopToggleButton && styles.hideDesktopToggleButton}`}>
             <SidebarToggleButton onClick={toggle} className={styles.mobile} />
             { desktopToggleButton && <SidebarToggleButton onClick={toggle} className={styles.desktop} /> } 
             {

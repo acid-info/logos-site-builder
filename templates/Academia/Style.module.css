@@ -58,6 +58,9 @@
 }
 
 @media (min-width:600px) {
+    .container {
+        --column-gap: 1.1vw;
+    }
 
     .container{
         --page-padding-top: calc(5 * var(--lh));

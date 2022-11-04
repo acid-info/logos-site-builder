@@ -34,6 +34,7 @@ export const DefaultSidebar: FC<ISidebarProps> = (props) => {
             <nav className={`sidebarNav hidden-scroll`}>
                 <DefaultSidebarMenu items={[{...sidebar, metadata: {title: "", published: true}, children: mainItems}]}
                       className={"mainMenu"}
+                      listMaxSize={20}
                 />
                 <br/>
                 <DefaultSidebarMenu items={subItems} className={"subMenu"}/>

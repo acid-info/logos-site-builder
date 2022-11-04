@@ -11,17 +11,16 @@ interface IMenuProps{
     items: INavigationItemProps[]
     level?: number
     className?: string;
+    listMaxSize?: number
 }
 
-const listMaxSize = 20;
-
 export const DefaultSidebarMenu: FC<IMenuProps> = (props) => {
-    const {items, level = 0, className} = props;
+    const {items, level = 0, className, listMaxSize = 7 } = props;
     let cname = level===0? className: "";
     const {config: {navigation: {exclude = []}}} = useLogosSite()
 
     const visItems = items.filter((item) => exclude.indexOf(item.path.join("/")) === -1);
-
+    
     const [renderIndex, setRenderIndex] = useState(listMaxSize);
     const {asPath} = useRouter();
 
@@ -40,7 +39,7 @@ export const DefaultSidebarMenu: FC<IMenuProps> = (props) => {
                                      key={item.localPath}
                                      isActive={isActive(item)}
                     >
-                        <DefaultSidebarMenu items={item.children} level={level+1}/>
+                        <DefaultSidebarMenu items={item.children} level={level+1} listMaxSize={listMaxSize} />
                     </DefaultSidebarMenuItem>
                 );
             })}
