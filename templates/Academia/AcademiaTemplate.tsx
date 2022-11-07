@@ -41,7 +41,7 @@ export const AcademiaTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => 
                 </Sidebar>
                 <Content className={`${style.content} ${commonStyle.content}`}
                          content={markdown.content}
-                         config={markdownCommonConfigs}
+                         config={markdownCommonConfigs({ siteConfig: config, pageMetadata: markdown.metadata })}
                          append={append}
                          metadata={markdown.metadata}
                 >
