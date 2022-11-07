@@ -36,7 +36,7 @@ export const DefaultTemplate_Markdown: FC<TTemplateProps<IProps>> = (props) => {
                 <Sidebar className={`${style.sidebar} ${commonStyle.sidebar} hide-scroll`}/>
                 <Content className={`${style.content} ${commonStyle.content}`}
                          content={markdown.content}
-                         config={markdownCommonConfigs}
+                         config={markdownCommonConfigs({ siteConfig: config, pageMetadata: markdown.metadata })}
                          metadata={markdown.metadata}
                          append={append}
                 >

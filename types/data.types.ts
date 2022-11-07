@@ -103,6 +103,9 @@ export interface ISiteConfigs{
         social_media: ISiteSeoSocialMedia[]
         cc?: string
     }
+    markdown: {
+        autoEmbedYoutube: boolean
+    }
 }
 
 export interface ILogosAuthor{
