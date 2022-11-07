@@ -95,4 +95,12 @@
         width: 30px;
         margin-top: -2px;
     }
+
+    .sidebar {
+        padding-right: 1.8vw;
+    }
+
+    .sidebar :global(.subMenu) ul li {
+        margin-bottom: calc(var(--lh) * 0.4);
+    }
 }
