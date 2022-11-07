@@ -14,7 +14,10 @@ export const logosReactMarkdownComponents = (params: ICreateMarkdownConfigsParam
     h6: CustomMarkdownH,
     //@ts-ignore
     a: ({node, children, href = "", ..._props}) => {
-        const autoEmbedYoutube = [1, '1', 'true', 'yes'].includes(params.pageMetadata.auto_embed_youtube ?? String(params.siteConfig.markdown?.autoEmbedYoutube) ?? 1)
+        const autoEmbedYoutube = [1, "1", "true", "yes"].includes(
+            params.pageMetadata.auto_embed_youtube ??
+            String(params.siteConfig.markdown?.autoEmbedYoutube ?? true)
+        );
 
         if(autoEmbedYoutube && href.indexOf("www.youtube") > -1){
             return <Youtube url={href} title={(node.children[0]||{}).value}/>
