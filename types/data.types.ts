@@ -105,7 +105,8 @@ export interface ISiteConfigs{
     }
     markdown: {
         autoEmbedYoutube: boolean
-    }
+    },
+    useTerms?: boolean,
 }
 
 export interface ILogosAuthor{

@@ -20,7 +20,7 @@ export const DefaultSidebarMenu: FC<IMenuProps> = (props) => {
     const {config: {navigation: {exclude = []}}} = useLogosSite()
 
     const visItems = items.filter((item) => exclude.indexOf(item.path.join("/")) === -1);
-    
+
     const [renderIndex, setRenderIndex] = useState(listMaxSize);
     const {asPath} = useRouter();
 

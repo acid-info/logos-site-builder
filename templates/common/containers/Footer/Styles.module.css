@@ -25,6 +25,10 @@
     column-gap: 10px;
 }
 
+.empty{
+    display: none !important;
+}
+
 @media (min-width:600px) {
 
     .bottomPart{
