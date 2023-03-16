@@ -6,6 +6,7 @@
 
 ## Setup content repository
 - use and clone [logos site-builder content template](https://github.com/acid-info/logos-sb-content-repo-template).
+- Update `DEV_SITE` environment variable in the `Jenkinsfile` in the clone `logos site-builder content template` with your domain, such as `dev.domain.com` and uncomment it before the build.
 
 ## ENV
 ```dotenv
