@@ -66,10 +66,11 @@ export type ITemplateUiConfigs = {
 
 export enum ELogosDesignSystemID{
     LOGOS="logos",
-    LOGOS_BLOCKCHAIN="logos_blockchain",
+    LOGOS_BLOCKNOMOSCHAIN="logos_blockchain",
     VAC="vac",
     WAKU="waku",
-    CODEX="codex"
+    CODEX="codex",
+    ACID_INFO="acid_info"
 }
 
 export interface ISiteSeoSocialMedia{

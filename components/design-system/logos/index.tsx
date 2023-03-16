@@ -5,6 +5,7 @@ import {LogosLogo} from "./LogosLogo";
 import {CodexLogo} from "./CodexLogo";
 import {VacsLogo} from "./VacLogo";
 import {WakuLogo} from "./WakuLogo";
+import {AcidInfoLogo} from "./AcidInfoLogo";
 
 interface IProps extends PropsWithChildren<any>{
     dsid: ELogosDesignSystemID
@@ -21,6 +22,8 @@ export const Logo: FC<IProps> = (props) => {
             return <VacsLogo {...rest}/>;
         case ELogosDesignSystemID.WAKU:
             return <WakuLogo {...rest}/>;
+        case ELogosDesignSystemID.ACID_INFO:
+            return <AcidInfoLogo {...rest}/>;
         default:
             return null;
     }
