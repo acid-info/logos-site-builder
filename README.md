@@ -26,7 +26,7 @@ We host and deploy using vercel. And we trigger the build using Github actions.
 
 ## Problem statement & background
 
-Initially, we started with developing the design system which we are going to use to build not only the Logos website but hopefully across all other web-based projects falling under the Logos branding. However, during the process of developing the Design System, Ned came up with the idea of making a modular system that can build and create all those products for us and other people with a design that looks very similar to documentation websites. At this moment we considered using existing documentation builder frameworks such as [docusaurus.io](http://docusaurus.io/). But this would come with one big drawback which is a limitation in **customisability and expandability**
+Initially, we started with developing the design system which we are going to use to build not only the Logos website but hopefully across all other web-based projects falling under the Logos collective. However, during the process of developing the Design System, X-ray came up with the idea of making a modular system that can build and create all those products for us and other people with a design that looks very similar to documentation websites. At this moment we considered using existing documentation builder frameworks such as [docusaurus.io](http://docusaurus.io/). But this would come with one big drawback which is a limitation in **customisability and expandability**
 
 > While we might have a clear design at the moment, there will be many hidden corners and functionalities which require a high level of customization, and hence using an existing framework that is designed for only documentation website making, will not cut it. It is important to put a difference between a UI that looks like a documentation website with a website that is supposed to only function as documentation. In our case, the Logos website and all its related projects will have almost the same documentation-looking UI, but with lots of different features and functionalities and probably occasional pages with a customized design underneath.
 >
@@ -45,7 +45,7 @@ Given all this, the idea comes from an always tempting question; **why not build
 </aside>
 
 - **CMS integration**; we can develop one or multiple modules which can inject content into the website from different sources such as Github, [Gitea.io](http://Gitea.io), [Notion.so](http://Notion.so), or local files.
-- **Content containers**; we can see this as what I guess Ned has been referring to as “modules”. I can see them as pre-config components which render a particular content with a particular structure and sometimes with built-in functionality. (e.g; SideBar, BodyContent, NFT module, etc...)
+- **Content containers**; we can refer to these as “modules”. we can see them as pre-config components which render a particular content with a particular structure and sometimes with built-in functionality. (e.g; SideBar, BodyContent, NFT module, etc...)
 - **Page templating;** this is where we can define pre-composed layout templates (including responsive versions) At the moment we only have one layout which looks like the one below👇 . But the idea is to design more along the way.
 
   ![Screenshot 2022-04-04 at 13.12.29.png](/public/assets/doc-assets/Screenshot_2022-04-04_at_13.12.29.png)
